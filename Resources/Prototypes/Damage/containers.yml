@@ -1,0 +1,81 @@
+# Living things, like animals or animal parts
+- type: damageContainer
+  id: Biological
+  supportedGroups:
+    - Brute
+    - Burn
+    - Toxin
+    - Airloss
+    - Genetic
+
+# "Living" things that are predominantly static, like walls of meat
+- type: damageContainer
+  id: StructuralBiological
+  supportedGroups:
+  - Brute
+  - Burn
+  - Toxin
+  - Airloss
+  - Genetic
+  supportedTypes:
+  - Structural
+
+# Not living things that are typically items, like sheets of metal or a tool
+- type: damageContainer
+  id: Inorganic
+  supportedGroups:
+    - Brute
+  supportedTypes:
+    - Heat
+    - Shock
+
+# Not living things that are "well-built" and rarely move, like machines or tables
+# If it's on wheels it probably belongs here, too
+- type: damageContainer
+  id: StructuralInorganic
+  supportedGroups:
+  - Brute
+  supportedTypes:
+  - Heat
+  - Shock
+  - Structural
+
+- type: damageContainer
+  id: Silicon
+  supportedGroups:
+    - Brute
+  supportedTypes:
+    - Heat
+    - Shock
+
+- type: damageContainer
+  id: Shield
+  supportedGroups:
+    - Brute
+  supportedTypes:
+    - Heat
+
+- type: damageContainer
+  id: ShadowHaze
+  supportedTypes:
+    - Heat
+
+- type: damageContainer
+  id: ManifestedSpirit
+  supportedGroups:
+    - Metaphysical
+    - Brute
+  supportedTypes:
+    - Heat
+    - Shock
+    - Caustic
+
+- type: damageContainer
+  id: BiologicalMetaphysical
+  supportedGroups:
+  - Brute
+  - Burn
+  - Toxin
+  - Airloss
+  - Genetic
+  - Metaphysical

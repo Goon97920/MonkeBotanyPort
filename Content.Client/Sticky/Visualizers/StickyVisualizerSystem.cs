@@ -1,0 +1,30 @@
+using Content.Shared.Sticky.Components;
+using Robust.Client.GameObjects;
+
+namespace Content.Client.Sticky.Visualizers;
+
+public sealed partial class StickyVisualizerSystem : VisualizerSystem<StickyVisualizerComponent>
+{
+    [Dependency] private EntityQuery<SpriteComponent> _spriteQuery = default!;
+
+    [SubscribeLocalEvent]
+    private void OnInit(Entity<StickyVisualizerComponent> ent, ref ComponentInit args)
+    {
+        if (!_spriteQuery.TryComp(ent, out var sprite))
+            return;
+
+        ent.Comp.OriginalDrawDepth = sprite.DrawDepth;
+    }
+
+    protected override void OnAppearanceChange(EntityUid uid, StickyVisualizerComponent comp, ref AppearanceChangeEvent args)
+    {
+        if (args.Sprite == null)
+            return;
+
+        if (!args.TryGetData<bool>(StickyVisuals.IsStuck, out var isStuck))
+            return;
+
+        var drawDepth = isStuck ? comp.StuckDrawDepth : comp.OriginalDrawDepth;
+        SpriteSystem.SetDrawDepth((uid, args.Sprite), drawDepth);
+    }
+}

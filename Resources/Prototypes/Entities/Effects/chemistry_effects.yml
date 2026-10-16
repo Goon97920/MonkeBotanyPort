@@ -1,0 +1,257 @@
+- type: entity
+  id: BaseFoam
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: Effects
+  - type: Appearance
+  - type: AnimationPlayer
+  - type: SmokeVisuals
+  - type: Transform
+    anchored: true
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        hard: false
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        mask:
+        - ItemMask
+        layer:
+        - SlipLayer
+  - type: Smoke
+  - type: ActiveEdgeSpreader
+  - type: EdgeSpreader
+    id: Smoke
+  - type: Solution
+    id: solutionArea
+    solution:
+      maxVol: 600 # Required for it to spawn correctly, but should be removed in the future:tm: Arguably could move the solution to SmokeComponent as well considering it's nonreactive
+      canReact: false
+
+- type: entity
+  parent: BaseFoam
+  id: Smoke
+  name: smoke
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Occluder
+  - type: Sprite
+    sprite: Effects/chemsmoke.rsi
+    state: chemsmoke
+  - type: TimedDespawn
+    lifetime: 10
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  parent: BaseFoam
+  id: TearGasSmoke
+  name: tear gas
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Effects/chemsmoke.rsi
+    state: chemsmoke
+  - type: TimedDespawn
+    lifetime: 10
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  parent: TearGasSmoke
+  id: TearGasSmokeWhite
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: chemsmoke_white
+
+- type: entity
+  parent: Smoke
+  id: WizardSmoke
+  name: smoke
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Smoke
+    spreadAmount: 5
+
+- type: entity
+  parent: BaseFoam
+  id: Foam
+  name: foam
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    color: "#ffffffcc"
+    sprite: Effects/foam.rsi
+    layers:
+    - state: foam
+      map: ["enum.FoamVisualLayers.Base"]
+  - type: IconSmooth
+    key: foam
+    states:
+    - !type:EdgeSpriteSmoothing
+      mask: [ foam, walls, windows, marble ]
+      base: foam-
+  - type: FoamVisuals
+    animationTime: 0.6
+    animationState: foam-dissolve
+  - type: Slippery
+  - type: StepTrigger
+  # disabled until foam reagent duplication is fixed
+  #- type: ScoopableSolution
+  #  solution: solutionArea
+
+- type: entity
+  id: MetalFoam
+  name: metal foam
+  categories: [ HideSpawnMenu ]
+  parent: Foam
+  components:
+  - type: Sprite
+    color: "#ffffffcc"
+    sprite: Effects/foam.rsi
+    layers:
+    - state: m_foam
+      map: ["enum.FoamVisualLayers.Base"]
+  - type: IconSmooth
+    key: foam
+    states:
+    - !type:EdgeSpriteSmoothing
+      mask: [ foam, walls, windows, marble ]
+      base: m_foam-
+  - type: EdgeSpreader
+    id: MetalFoam
+  - type: FoamVisuals
+    animationTime: 0.6
+    animationState: m_foam-dissolve
+
+- type: entity
+  id: IronMetalFoam
+  name: iron metal foam
+  categories: [ HideSpawnMenu ]
+  parent: MetalFoam
+  components:
+  - type: SpawnOnDespawn
+    prototype: FoamedIronMetal
+
+- type: entity
+  id: AluminiumMetalFoam
+  name: aluminium metal foam
+  categories: [ HideSpawnMenu ]
+  parent: MetalFoam
+  components:
+  - type: SpawnOnDespawn
+    prototype: FoamedAluminiumMetal
+
+- type: entity
+  abstract: true
+  parent: StructureHealthBarrierWeak
+  id: BaseFoamedMetal
+  name: base foamed metal
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: RCDDeconstructable
+    cost: 2
+    delay: 2
+    fx: EffectRCDDeconstruct2
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    drawdepth: Walls
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb {}
+        layer:
+        - WallLayer
+        mask:
+        - WallLayer
+  - type: Occluder
+  - type: Appearance
+  - type: IconSmooth
+    key: foam
+    states:
+    - !type:EdgeSpriteSmoothing
+      mask: [ foam, walls, windows, marble ]
+      base: foam-
+  - type: Transform
+    anchored: true
+  - type: Airtight
+    noAirWhenFullyAirBlocked: false
+  - type: ReplaceFloorOnSpawn
+    replaceableTiles:
+    - Plating
+    - Lattice
+    replacementTiles:
+    - FloorMetalFoam
+
+- type: entity
+  id: FoamedIronMetal
+  name: foamed iron metal
+  description: "For sealing hull breaches."
+  parent: BaseFoamedMetal
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    color: "#ffffffcc"
+    sprite: Effects/foam.rsi
+    layers:
+    - state: iron_foam
+      map: ["enum.FoamVisualLayers.Base"]
+  - type: IconSmooth
+    key: foam
+    states:
+    - !type:EdgeSpriteSmoothing
+      mask: [ foam, walls, windows, marble ]
+      base: iron_foam-
+
+- type: entity
+  parent: BaseFoamedMetal
+  id: FoamedAluminiumMetal
+  name: foamed aluminium metal
+  description: "Leftover sparse foam from an aluminum foam grenade. Easily destroyed."
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    color: "#ffffffcc"
+    sprite: Effects/foam.rsi
+    layers:
+    - state: metal_foam
+      map: ["enum.FoamVisualLayers.Base"]
+  - type: IconSmooth
+    key: foam
+    states:
+    - !type:EdgeSpriteSmoothing
+      mask: [ foam, walls, windows, marble ]
+      base: metal_foam-
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1 # Intentionally very weak to encourage speedy repair, think of it as thin webbing
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: ReactionFlash
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    enabled: true
+    radius: 2
+    energy: 8
+  - type: LightFade
+    duration: 0.5
+  - type: TimedDespawn
+    lifetime: 0.5

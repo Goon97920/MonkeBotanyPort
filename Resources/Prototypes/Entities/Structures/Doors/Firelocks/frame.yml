@@ -1,0 +1,47 @@
+- type: entity
+  parent: [ BaseStructureDynamic, StructureHealthDoorWeak ]
+  id: FirelockFrame
+  name: firelock frame
+  description: That is a firelock frame.
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Standard/firelock-base.rsi
+    layers:
+    - state: assembly
+  - type: Appearance
+  - type: Construction
+    graph: Firelock
+    node: frame1
+  - type: InteractionOutline
+  - type: RCDDeconstructable
+    cost: 4
+    delay: 6
+    fx: EffectRCDDeconstruct6
+  - type: Damageable
+    damageModifierSet: PlasteelStaticMod
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -4
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 55
+        mask:
+        - Impassable
+        - HighImpassable
+        layer:
+        - HighImpassable
+        - MidImpassable

@@ -1,0 +1,13 @@
+- type: job
+  id: Visitor
+  name: job-name-visitor
+  description: job-description-visitor
+  playTimeTracker: JobVisitor
+  icon: JobIconVisitor
+  setPreference: false
+  overrideConsoleVisibility: true
+  guides: [ Civilian ] # Doesn't need a unique guidebook page because Civilian is a catch-all for zero-responsibility jobs
+  access:
+  - Maintenance
+  extendedAccess:
+  - External

@@ -1,0 +1,1224 @@
+- type: entity
+  abstract: true
+  parent: BaseStructure
+  id: BaseStructureWall
+  name: basewall
+  description: Keeps the air in and the greytide out.
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Anchorable
+    flags:
+    - Anchorable
+  - type: Rotatable
+  - type: RangedDamageSound
+    soundGroups:
+      Brute:
+        collection:
+          MetalBulletImpact
+    soundTypes:
+      Heat:
+        collection:
+          MetalLaserImpact
+  - type: Wall
+  - type: IsRoof
+  - type: Sprite
+    drawdepth: Walls
+  - type: Icon
+    state: full
+  - type: PlacementReplacement
+    key: walls
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 1000
+  - type: Airtight
+  - type: StaticPrice
+    price: 75
+  - type: RadiationBlocker
+    resistance: 2
+  - type: BlockWeather
+  - type: SunShadowCast
+
+- type: entity
+  abstract: true
+  parent: BaseStructureWall
+  id: BaseWall
+  components:
+  - type: Occluder # Breaks on diagonal walls
+  - type: PlacementReplacement
+    key: walls
+  - type: StructureAlignerPylon
+    pylons:
+    - Door
+    - Firelock
+
+- type: entity
+  abstract: true
+  parent: BaseStructureWall
+  id: WallDiagonalBase
+  suffix: Diagonal
+  components:
+  - type: Tag
+    tags:
+    - Diagonal
+  - type: IconSmooth
+    key: walls
+    states:
+    - !type:DiagonalSpriteSmoothing
+      mask: [ walls, windows, grilles, marble, doors ]
+      base: state
+  - type: Airtight
+    noAirWhenFullyAirBlocked: false
+    airBlockedDirection:
+    - South
+    - East
+  - type: Occluder
+    polygon:
+    - "-0.5,-0.5"
+    - "0.5,0.5"
+    - "0.5,-0.5"
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PolygonShape
+          vertices:
+          - "-0.5,-0.5"
+          - "0.5,0.5"
+          - "0.5,-0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+
+- type: entity
+  parent: [ BaseWall, StructureHealthWallWeak ]
+  id: WallBrick
+  name: brick wall
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/brick.rsi
+  - type: Icon
+    sprite: Structures/Walls/brick.rsi
+  - type: RCDDeconstructable
+    cost: 6
+    delay: 8
+    fx: EffectRCDDeconstruct8
+  - type: Damageable
+    damageModifierSet: RockMod
+  - type: Destructible
+    thresholds:
+    - trigger: &DamageWallWeak
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - &SoundBreakStone !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/break_stone.ogg
+      - &SpawnGirder !type:SpawnEntitiesBehavior
+        offset: 0
+        spawn:
+          Girder:
+            min: 1
+            max: 1
+  - type: IconSmooth
+    key: walls
+    states:
+    - !type:CornerSpriteSmoothing
+      mask: [ walls, windows, grilles, marble, doors ]
+      base: brick
+
+- type: entity
+  parent: [ BaseWall, StructureHealthWallWeak ]
+  id: WallBrass
+  name: brass wall
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/brass.rsi
+  - type: Icon
+    sprite: Structures/Walls/brass.rsi
+  - type: Construction
+    graph: Girder
+    node: brassWall
+  - type: Damageable
+    damageModifierSet: BrassMod
+  - type: Destructible
+    thresholds:
+    - trigger: *DamageWallWeak
+      behaviors:
+      - &SoundMetalSlam !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+          params:
+            volume: -4
+      - &ChangeNodeGirder !type:ChangeConstructionNodeBehavior
+        node: girder
+  - type: IconSmooth
+    key: walls
+    states:
+    - !type:CornerSpriteSmoothing
+      mask: [ walls, windows, grilles, marble, doors ]
+      base: brass
+
+- type: entity
+  parent: [ BaseWall, StructureHealthWallWeak ]
+  id: WallMeat
+  name: meat wall
+  description: Sticky.
+  components:
+  - type: Tag
+    tags:
+    - Structure
+  - type: Sprite
+    sprite: Structures/Walls/meat.rsi
+  - type: Icon
+    sprite: Structures/Walls/meat.rsi
+  - type: Construction
+    graph: Girder
+    node: meatWall
+  - type: Injurable
+    damageContainer: StructuralBiological
+  - type: Destructible
+    thresholds:
+    - trigger: *DamageWallWeak
+      behaviors:
+      - *ChangeNodeGirder
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialSheetMeat1: &BaseWallSpawn
+            min: 0
+            max: 1
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+  - type: IconSmooth
+    key: walls
+    states:
+    - !type:CornerSpriteSmoothing
+      mask: [ walls, windows, grilles, marble, doors ]
+      base: meat
+
+- type: entity
+  parent: [ BaseWall, BaseStructureHealth ]
+  id: WallDebug
+  name: debug wall
+  suffix: DEBUG
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/debug.rsi
+  - type: Icon
+    sprite: Structures/Walls/debug.rsi
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1
+      behaviors:
+      - *SpawnGirder
+  - type: IconSmooth
+    key: walls
+    states:
+    - !type:CornerSpriteSmoothing
+      mask: [ walls, windows, grilles, marble, doors ]
+      base: debug
+
+- type: entity
+  parent: WallDebug
+  id: WallDebugA
+  name: debug wall
+  suffix: DEBUG, AltA
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/debugalt.rsi
+  - type: Icon
+    sprite: Structures/Walls/debugalt.rsi
+  - type: IconSmooth
+    key: walls
+    states:
+    - !type:CardinalCornerSpriteSmoothing
+      mask: [ walls ]
+      altMask: [ windows, grilles, marble, doors ]
+      base: debug
+
+- type: entity
+  parent: WallDebugA
+  id: WallDebugB
+  name: debug wall
+  suffix: DEBUG, AltB
+  components:
+  - type: IconSmooth
+    key: marble
+    states:
+    - !type:CardinalCornerSpriteSmoothing
+      mask: [ marble ]
+      altMask: [ windows, grilles, walls, doors ]
+      base: debug
+
+- type: entity
+  parent: [ BaseWall, StructureHealthWallWeak ]
+  id: WallGold
+  name: gold wall
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/gold.rsi
+  - type: Icon
+    sprite: Structures/Walls/gold.rsi
+  - type: Construction
+    graph: Girder
+    node: goldWall
+  - type: RCDDeconstructable
+    cost: 6
+    delay: 8
+    fx: EffectRCDDeconstruct8
+  - type: Damageable
+    damageModifierSet: PreciousMetalMod
+  - type: Destructible
+    thresholds:
+    - trigger: *DamageWallWeak
+      behaviors:
+      - *ChangeNodeGirder
+      - *SoundMetalSlam
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          IngotGold1: *BaseWallSpawn
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 4000
+  - type: IconSmooth
+    key: walls
+    states:
+    - !type:CornerSpriteSmoothing
+      mask: [ walls, windows, grilles, marble, doors ]
+      base: gold
+
+- type: entity
+  parent: [ BaseWall, StructureHealthWallWeak ]
+  id: WallPlasma
+  name: plasma wall
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/plasma.rsi
+  - type: Icon
+    sprite: Structures/Walls/plasma.rsi
+  - type: Construction
+    graph: Girder
+    node: plasmaWall
+  - type: RCDDeconstructable
+    cost: 6
+    delay: 8
+    fx: EffectRCDDeconstruct8
+  - type: Damageable
+    damageModifierSet: PlasmaMod
+  - type: Destructible
+    thresholds:
+    - trigger: *DamageWallWeak
+      behaviors:
+      - *ChangeNodeGirder
+      - *SoundMetalSlam
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetPlasma1: *BaseWallSpawn
+  - type: IconSmooth
+    key: walls
+    states:
+    - !type:CornerSpriteSmoothing
+      mask: [ walls, windows, grilles, marble, doors ]
+      base: plasma
+  - type: RadiationBlocker
+    resistance: 5
+
+- type: entity
+  parent: BaseWall
+  id: WallPlastitaniumIndestructible
+  name: plastitanium wall
+  suffix: indestructible
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/plastitanium.rsi
+  - type: Icon
+    sprite: Structures/Walls/plastitanium.rsi
+  - type: IconSmooth
+    key: walls
+    states:
+    - !type:CornerSpriteSmoothing
+      mask: [ walls, windows, grilles, marble, doors ]
+      base: plastitanium
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 4000
+  - type: RadiationBlocker
+    resistance: 5
+  - type: Tag
+    tags:
+    - SmeltingImmune
+
+- type: entity
+  parent: [ WallPlastitaniumIndestructible, StructureHealthWallStrong ]
+  id: WallPlastitanium
+  name: plastitanium wall
+  suffix: ""
+  components:
+  - type: Damageable
+    damageModifierSet: PlastitaniumMod
+  - type: Destructible
+    thresholds:
+    - trigger: &DamageWallStrong
+        !type:DamageTrigger
+        damage: 350
+      behaviors:
+      - *SpawnGirder
+
+- type: entity
+  parent: WallDiagonalBase
+  id: WallPlastitaniumDiagonalIndestructible
+  name: plastitanium wall
+  suffix: diagonal, indestructible
+  components:
+  - type: Sprite
+    drawdepth: Walls
+    sprite: Structures/Walls/plastitanium-diagonal.rsi
+  - type: Icon
+    sprite: Structures/Walls/plastitanium-diagonal.rsi
+    state: state0
+  - type: RadiationBlocker
+    resistance: 5
+  - type: Tag
+    tags:
+    - Diagonal
+    - SmeltingImmune
+
+- type: entity
+  parent: [ WallPlastitaniumDiagonalIndestructible, StructureHealthWallStrong ]
+  id: WallPlastitaniumDiagonal
+  name: plastitanium wall
+  suffix: diagonal
+  components:
+  - type: Sprite
+    drawdepth: Walls
+    sprite: Structures/Walls/plastitanium-diagonal.rsi
+    state: state0
+  - type: Icon
+    sprite: Structures/Walls/plastitanium-diagonal.rsi
+    state: state0
+  - type: Damageable
+    damageModifierSet: PlastitaniumMod
+  - type: Destructible
+    thresholds:
+    - trigger: *DamageWallStrong
+      behaviors:
+      - *SoundMetalSlam
+      - *SpawnGirder
+
+- type: entity
+  parent: [ BaseWall, StructureHealthWallStrong ]
+  id: WallReinforced
+  name: reinforced wall
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/solid.rsi
+  - type: Icon
+    sprite: Structures/Walls/solid.rsi
+    state: rgeneric
+  - type: Construction
+    graph: Girder
+    node: reinforcedWall
+  - type: Damageable
+    damageModifierSet: PlasteelStaticMod
+  - type: Destructible
+    thresholds:
+    - trigger: *DamageWallStrong
+      behaviors:
+      - &ChangeNodeReinforcedGirder !type:ChangeConstructionNodeBehavior
+        node: reinforcedGirder
+      - *SoundMetalSlam
+      - &SpawnPlasteel !type:SpawnEntitiesBehavior
+        spawn:
+          SheetPlasteel1: *BaseWallSpawn
+  - type: IconSmooth
+    key: walls
+    states:
+    - !type:CornerSpriteSmoothing
+      mask: [ walls, windows, grilles, marble, doors ]
+      base: reinf_over
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ReinforcedWallVisuals.DeconstructionStage:
+        ReinforcedWallVisualLayers.Deconstruction:
+          -1: { visible: false }
+          0: { state: reinf_construct-0, visible: true}
+          1: { state: reinf_construct-1, visible: true}
+          2: { state: reinf_construct-2, visible: true}
+          3: { state: reinf_construct-3, visible: true}
+          4: { state: reinf_construct-4, visible: true}
+          5: { state: reinf_construct-5, visible: true}
+  - type: ReinforcedWallReplacementMarker
+  - type: StaticPrice
+    price: 250
+  - type: RadiationBlocker
+    resistance: 5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 2000
+
+- type: entity
+  parent: WallReinforced
+  id: WallReinforcedRust
+  suffix: rusted
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/solid-rust.rsi
+  - type: Icon
+    sprite: Structures/Walls/solid-rust.rsi
+    state: rgeneric
+  - type: Construction
+    graph: Girder
+    node: reinforcedWallRust
+  - type: IconSmooth
+    key: walls
+    states:
+    - !type:CornerSpriteSmoothing
+      mask: [ walls, windows, grilles, marble, doors ]
+      base: reinf_over
+    # Rusted walls should be made weaker through a damage mod status effect.
+
+- type: entity
+  parent: [ WallDiagonalBase, StructureHealthWallStrong ]
+  id: WallReinforcedDiagonal
+  name: reinforced wall
+  components:
+  - type: Sprite
+    drawdepth: Walls
+    sprite: Structures/Walls/reinforced-diagonal.rsi
+  - type: Icon
+    sprite: Structures/Walls/reinforced-diagonal.rsi
+    state: state0
+  - type: Damageable
+    damageModifierSet: PlasteelStaticMod
+  - type: Destructible
+    thresholds:
+    - trigger: *DamageWallStrong
+      behaviors:
+      - *ChangeNodeReinforcedGirder
+      - *SoundMetalSlam
+      - *SpawnPlasteel
+  - type: RadiationBlocker
+    resistance: 5
+
+- type: entity
+  parent: BaseWall
+  id: WallMarbleIndestructible
+  name: marble wall
+  suffix: indestructible
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/marble.rsi
+  - type: Icon
+    sprite: Structures/Walls/marble.rsi
+  - type: IconSmooth
+    key: marble
+    states:
+    - !type:CardinalCornerSpriteSmoothing
+      mask: [ marble ]
+      altMask: [ walls, windows, grilles, doors ]
+      base: wall
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 4000
+  - type: RadiationBlocker
+    resistance: 5
+
+- type: entity
+  parent: [ WallMarbleIndestructible, StructureHealthWallStrong ]
+  id: WallMarble
+  name: marble wall
+  suffix: ""
+  components:
+  - type: Injurable
+    damageContainer: StructuralInorganic
+  - type: Damageable
+    damageModifierSet: RockMod
+  - type: Destructible
+    thresholds:
+    - trigger: *DamageWallStrong
+      behaviors:
+      - *SoundMetalSlam
+      - *SpawnGirder
+      - *SpawnPlasteel
+  - type: StaticPrice
+    price: 150
+
+- type: entity
+  parent: [ BaseWall, StructureHealthWallWeak ]
+  id: WallSilver
+  name: silver wall
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/silver.rsi
+  - type: Icon
+    sprite: Structures/Walls/silver.rsi
+  - type: Construction
+    graph: Girder
+    node: silverWall
+  - type: RCDDeconstructable
+    cost: 6
+    delay: 8
+    fx: EffectRCDDeconstruct8
+  - type: Damageable
+    damageModifierSet: PreciousMetalMod
+  - type: Destructible
+    thresholds:
+    - trigger: *DamageWallWeak
+      behaviors:
+      - *ChangeNodeGirder
+      - *SoundMetalSlam
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          IngotSilver1: *BaseWallSpawn
+  - type: IconSmooth
+    key: walls
+    states:
+    - !type:CornerSpriteSmoothing
+      mask: [ walls, windows, grilles, marble, doors ]
+      base: silver
+
+#shuttle walls
+- type: entity
+  parent: [ WallDiagonalBase, StructureHealthWallStrong ]
+  id: WallShuttleDiagonal
+  name: shuttle wall
+  components:
+  - type: Sprite
+    drawdepth: Walls
+    sprite: Structures/Walls/shuttle-diagonal.rsi
+  - type: Icon
+    sprite: Structures/Walls/shuttle-diagonal.rsi
+    state: state0
+  - type: Reflect
+    reflectProb: 1
+  - type: Pullable
+  - type: Airtight
+    noAirWhenFullyAirBlocked: false
+    airBlockedDirection:
+    - South
+    - East
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PolygonShape
+          vertices:
+          - "-0.5,-0.5"
+          - "0.5,0.5"
+          - "0.5,-0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 2000
+  - type: Damageable
+    damageModifierSet: PlasteelStaticMod
+  - type: Destructible
+    thresholds:
+    - trigger: *DamageWallStrong
+      behaviors:
+      - *ChangeNodeReinforcedGirder
+      - *SoundMetalSlam
+      - *SpawnPlasteel
+  - type: Construction
+    graph: Girder
+    node: diagonalshuttleWall
+  - type: RadiationBlocker
+    resistance: 5
+  - type: StaticPrice
+    price: 200
+
+- type: entity
+  parent: [ BaseWall, StructureHealthWallStrong ]
+  id: WallShuttle
+  name: shuttle wall
+  components:
+  - type: Damageable
+    damageModifierSet: PlasteelStaticMod
+  - type: Destructible
+    thresholds:
+    - trigger: *DamageWallStrong
+      behaviors:
+      - *ChangeNodeReinforcedGirder
+      - *SoundMetalSlam
+      - *SpawnPlasteel
+  - type: StaticPrice
+    price: 300
+  - type: RadiationBlocker
+    resistance: 5
+  - type: Sprite
+    sprite: Structures/Walls/shuttle.rsi
+  - type: Icon
+    sprite: Structures/Walls/shuttle.rsi
+    state: full
+  - type: Construction
+    graph: Girder
+    node: shuttleWall
+  - type: IconSmooth
+    key: walls
+    states:
+    - !type:CornerSpriteSmoothing
+      mask: [ walls, windows, grilles, marble, doors ]
+      base: state
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ShuttleWallVisuals.DeconstructionStage:
+        ShuttleWallVisualLayers.Deconstruction:
+          -1: { visible: false }
+          0: { state: shuttle_construct-0, visible: true}
+          1: { state: shuttle_construct-1, visible: true}
+          2: { state: shuttle_construct-2, visible: true}
+          3: { state: shuttle_construct-3, visible: true}
+          4: { state: shuttle_construct-4, visible: true}
+          5: { state: shuttle_construct-5, visible: true}
+  - type: Reflect
+    reflectProb: 1
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 2000
+
+- type: entity
+  parent: [ BaseWall, StructureHealthWall ]
+  id: WallSolid
+  name: solid wall
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/solid.rsi
+  - type: WallReplacementMarker
+  - type: Construction
+    graph: Girder
+    node: wall
+  - type: Icon
+    sprite: Structures/Walls/solid.rsi
+  - type: RCDDeconstructable
+    cost: 6
+    delay: 8
+    fx: EffectRCDDeconstruct8
+  - type: Damageable
+    damageModifierSet: SteelStaticMod
+  - type: Destructible
+    thresholds:
+    - trigger: &DamageWallNormal
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - *ChangeNodeGirder
+      - *SoundMetalSlam
+      - &SpawnSteel !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1: *BaseWallSpawn
+  - type: IconSmooth
+    key: walls
+    states:
+    - !type:CornerSpriteSmoothing
+      mask: [ walls, windows, grilles, marble, doors ]
+      base: solid
+
+- type: entity
+  parent: [ WallDiagonalBase, StructureHealthWall ]
+  id: WallSolidDiagonal
+  name: solid wall
+  components:
+  - type: Sprite
+    drawdepth: Walls
+    sprite: Structures/Walls/solid-diagonal.rsi
+  - type: Icon
+    sprite: Structures/Walls/solid-diagonal.rsi
+    state: state0
+  - type: Destructible
+    thresholds:
+    - trigger: *DamageWallNormal
+      behaviors:
+      - *ChangeNodeGirder
+      - *SoundMetalSlam
+      - *SpawnSteel
+
+- type: entity
+  parent: WallSolid
+  id: WallSolidRust
+  suffix: rusted
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/solid-rust.rsi
+  - type: Icon
+    sprite: Structures/Walls/solid-rust.rsi
+    state: full
+  - type: Construction
+    graph: Girder
+    node: wallrust
+  - type: IconSmooth
+    key: walls
+    states:
+    - !type:CornerSpriteSmoothing
+      mask: [ walls, windows, grilles, marble, doors ]
+      base: solid
+  # Rusted walls should be made weaker through a damage mod status effect.
+
+- type: entity
+  parent: [ BaseWall, StructureHealthWall ]
+  id: WallSolidChitin
+  name: exodermis wall
+  components:
+  - type: Damageable
+    damageModifierSet: SteelStaticMod
+  - type: Destructible
+    thresholds:
+    - trigger: *DamageWallNormal
+      behaviors:
+      - *ChangeNodeGirder
+      - *SoundMetalSlam
+      - *SpawnSteel
+  - type: Sprite
+    sprite: Structures/Walls/exo.rsi
+  - type: Icon
+    sprite: Structures/Walls/exo.rsi
+  - type: IconSmooth
+    key: walls
+    states:
+    - !type:CornerSpriteSmoothing
+      mask: [ walls, windows, grilles, marble, doors ]
+      base: solid
+  - type: Construction
+    graph: Girder
+    node: wallChitin
+  - type: RCDDeconstructable
+    cost: 6
+    delay: 8
+    fx: EffectRCDDeconstruct8
+
+- type: entity
+  parent: [ BaseWall, StructureHealthWallStrong ]
+  id: WallReinforcedChitin
+  name: reinforced exodermis
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/exo.rsi
+  - type: Icon
+    sprite: Structures/Walls/exo.rsi
+    state: rgeneric
+  - type: Damageable
+    damageModifierSet: PlasteelStaticMod
+  - type: Destructible
+    thresholds:
+    - trigger: *DamageWallStrong
+      behaviors:
+      - *ChangeNodeReinforcedGirder
+      - *SoundMetalSlam
+      - *SpawnPlasteel
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ReinforcedWallVisuals.DeconstructionStage:
+        ReinforcedWallVisualLayers.Deconstruction:
+          -1: { visible: false }
+          0: { state: reinf_construct-0, visible: true}
+          1: { state: reinf_construct-1, visible: true}
+          2: { state: reinf_construct-2, visible: true}
+          3: { state: reinf_construct-3, visible: true}
+          4: { state: reinf_construct-4, visible: true}
+          5: { state: reinf_construct-5, visible: true}
+  - type: StaticPrice
+    price: 250
+  - type: RadiationBlocker
+    resistance: 5
+  - type: IconSmooth
+    key: walls
+    states:
+    - !type:CornerSpriteSmoothing
+      mask: [ walls, windows, grilles, marble, doors ]
+      base: reinf_over
+  - type: Construction
+    graph: Girder
+    node: reinforcedWallChitin
+
+- type: entity
+  parent: WallPlastitanium
+  id: WallXenoborg
+  name: mechadermis wall
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/exo-borg.rsi
+  - type: Icon
+    sprite: Structures/Walls/exo-borg.rsi
+  - type: IconSmooth
+    key: walls
+    states:
+    - !type:CornerSpriteSmoothing
+      mask: [ walls, windows, grilles, marble, doors ]
+      base: xenoborg
+
+- type: entity
+  parent: WallPlastitaniumDiagonal
+  id: WallXenoborgDiagonal
+  name: mechadermis wall
+  suffix: diagonal
+  components:
+  - type: Sprite
+    drawdepth: Walls
+    sprite: Structures/Walls/exo-borg-diagonal.rsi
+    state: state0
+  - type: Icon
+    sprite: Structures/Walls/exo-borg-diagonal.rsi
+    state: state0
+
+- type: entity
+  parent: [ BaseWall, StructureHealthWallWeak ]
+  id: WallUranium
+  name: uranium wall
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/uranium.rsi
+  - type: Icon
+    sprite: Structures/Walls/uranium.rsi
+  - type: Construction
+    graph: Girder
+    node: uraniumWall
+  - type: Damageable
+    damageModifierSet: PlasteelStaticMod
+  - type: Destructible
+    thresholds:
+    - trigger: *DamageWallWeak
+      behaviors:
+      - *ChangeNodeGirder
+      - *SoundMetalSlam
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetUranium1: *BaseWallSpawn
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 6000
+  - type: IconSmooth
+    key: walls
+    states:
+    - !type:CornerSpriteSmoothing
+      mask: [ walls, windows, grilles, marble, doors ]
+      base: uranium
+  - type: RadiationBlocker
+    resistance: 6
+
+- type: entity
+  parent: [ BaseWall, StructureHealthBarrierStrong ]
+  id: WallWood
+  name: wood wall
+  description: The traditional greytide defense.
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/wood.rsi
+  - type: Icon
+    sprite: Structures/Walls/wood.rsi
+  - type: Construction
+    graph: Barricade
+    node: woodWall
+  - type: Damageable
+    damageModifierSet: WoodMod
+  - type: Destructible
+    thresholds:
+    - trigger: &DamageBarrierStrong
+        !type:DamageTrigger
+        damage: 120
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroyHeavy
+      - !type:ChangeConstructionNodeBehavior
+        node: Barricade
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1: *BaseWallSpawn
+  - type: IconSmooth
+    key: walls
+    states:
+    - !type:CornerSpriteSmoothing
+      mask: [ walls, windows, grilles, marble, doors ]
+      base: wood
+
+- type: entity
+  parent: [ BaseWall, StructureHealthBarrier ]
+  id: WallWeb
+  name: web wall
+  description: Keeps the spiders in and the greytide out.
+  components:
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path:
+          "/Audio/Weapons/slash.ogg"
+  - type: Damageable
+    damageModifierSet: ThreadMod
+  - type: Sprite
+    sprite: Structures/Walls/web.rsi
+  - type: Icon
+    sprite: Structures/Walls/web.rsi
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 80
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWebSilk1: *BaseWallSpawn
+  - type: IconSmooth
+    key: webs
+    states:
+    - !type:CornerSpriteSmoothing
+      mask: [ walls, windows, grilles, marble, doors, webs ]
+      base: wall
+  - type: Construction
+    graph: WebStructures
+    node: wall
+
+- type: entity
+  parent: [ BaseWall, StructureHealthWall ]
+  id: WallMining
+  name: mining wall
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/mining.rsi
+  - type: Icon
+    sprite: Structures/Walls/mining.rsi
+  - type: Damageable
+    damageModifierSet: SteelStaticMod
+  - type: Destructible
+    thresholds:
+    - trigger: *DamageWallNormal
+      behaviors:
+      - *SoundMetalSlam
+      - *SpawnGirder
+  - type: IconSmooth
+    key: walls
+    states:
+    - !type:CornerSpriteSmoothing
+      mask: [ walls, windows, grilles, marble, doors ]
+      base: mining
+  - type: Appearance
+
+- type: entity
+  parent: [ WallDiagonalBase, StructureHealthWall ]
+  id: WallMiningDiagonal
+  name: mining wall
+  components:
+  - type: Sprite
+    drawdepth: Walls
+    sprite: Structures/Walls/mining-diagonal.rsi
+  - type: Icon
+    sprite: Structures/Walls/mining-diagonal.rsi
+    state: state0
+  - type: Damageable
+    damageModifierSet: SteelStaticMod
+  - type: Destructible
+    thresholds:
+    - trigger: *DamageWallNormal
+      behaviors:
+      - *SpawnGirder
+      - *SoundMetalSlam
+
+# Mime
+
+- type: entity
+  id: WallInvisible
+  name: invisible wall
+  components:
+  - type: TimedDespawn
+    lifetime: 15
+  - type: Wall
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - GlassLayer
+  - type: Airtight
+
+- type: entity
+  id: WallForce
+  name: force wall
+  components:
+  - type: TimedDespawn
+    lifetime: 10
+  - type: Wall
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - SpecialWallLayer
+        layer:
+        - SpecialWallLayer
+  - type: Airtight
+  - type: Sprite
+    sprite: Structures/Magic/forcewall.rsi
+    state: forcewall
+  - type: Icon
+    sprite: Structures/Magic/forcewall.rsi
+    state: forcewall
+
+- type: entity
+  parent: [ BaseWall, StructureHealthBarrierStrong ]
+  id: WallConcrete
+  name: concrete wall
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/concrete.rsi
+  - type: Icon
+    sprite: Structures/Walls/concrete.rsi
+  - type: RCDDeconstructable
+    cost: 6
+    delay: 8
+    fx: EffectRCDDeconstruct8
+  - type: Damageable
+    damageModifierSet: RockMod
+  - type: Destructible
+    thresholds:
+    - trigger: *DamageBarrierStrong
+      behaviors:
+      - *SoundBreakStone
+  - type: IconSmooth
+    key: walls
+    states:
+    - !type:CornerSpriteSmoothing
+      mask: [ walls, windows, grilles, marble, doors ]
+      base: concrete
+
+# Cardboard
+
+- type: entity
+  parent: [ BaseStructure, StructureHealthBarrierWeak ]
+  id: Cardwall
+  name: cardboard wall
+  description: Budget cuts are hitting hard.
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path:
+          "/Audio/Weapons/pierce.ogg"
+  - type: Wall
+  - type: Sprite
+    drawdepth: SmallObjects #so bullets pass 'through'
+    sprite: Structures/Walls/card.rsi
+  - type: Icon
+    sprite: Structures/Walls/card.rsi
+    state: full
+  - type: Construction
+    graph: Cardwall
+    node: cardwall
+    deconstructionTarget: start
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - FlimsyLayer
+  - type: Damageable
+    damageModifierSet: CardboardMod
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialCardboard1: *BaseWallSpawn
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/poster_broken.ogg
+  - type: IconSmooth
+    key: cards
+    states:
+    - !type:CornerSpriteSmoothing
+      mask: [ cards ]
+      base: card
+  - type: Occluder
+  - type: BlockWeather
+  - type: SunShadowCast

@@ -1,0 +1,79 @@
+using Content.Client.Light.Components;
+using Content.Shared.Light.Components;
+using Robust.Client.GameObjects;
+
+namespace Content.Client.Light.EntitySystems;
+
+public sealed partial class ExpendableLightVisualsSystem : VisualizerSystem<ExpendableLightComponent>
+{
+    [Dependency] private PointLightSystem _pointLightSystem = default!;
+    [Dependency] private LightBehaviorSystem _lightBehavior = default!;
+
+    protected override void OnAppearanceChange(EntityUid uid, ExpendableLightComponent comp, ref AppearanceChangeEvent args)
+    {
+        if (args.Sprite == null)
+            return;
+
+        if (args.TryGetData<string>(ExpendableLightVisuals.Behavior, out var lightBehaviourID)
+            && TryComp<LightBehaviourComponent>(uid, out var lightBehaviour))
+        {
+            _lightBehavior.StopLightBehaviour((uid, lightBehaviour));
+
+            if (!string.IsNullOrEmpty(lightBehaviourID))
+            {
+                _lightBehavior.StartLightBehaviour((uid, lightBehaviour), lightBehaviourID);
+            }
+            else if (TryComp<PointLightComponent>(uid, out var light))
+            {
+                _pointLightSystem.SetEnabled(uid, false, light);
+            }
+        }
+
+        if (!args.TryGetData<ExpendableLightState>(ExpendableLightVisuals.State, out var state))
+            return;
+
+        var sprite = (uid, args.Sprite);
+        switch (state)
+        {
+            case ExpendableLightState.Lit:
+                if (SpriteSystem.LayerMapTryGet(sprite, ExpendableLightVisualLayers.Overlay, out var layerIdx, true))
+                {
+                    if (!string.IsNullOrWhiteSpace(comp.IconStateLit))
+                        SpriteSystem.LayerSetRsiState(sprite, layerIdx, comp.IconStateLit);
+                    if (!string.IsNullOrWhiteSpace(comp.SpriteShaderLit))
+                        args.Sprite.LayerSetShader(layerIdx, comp.SpriteShaderLit);
+                    else
+                        args.Sprite.LayerSetShader(layerIdx, null, null);
+                    if (comp.GlowColorLit.HasValue)
+                        SpriteSystem.LayerSetColor(sprite, layerIdx, comp.GlowColorLit.Value);
+                    SpriteSystem.LayerSetVisible(sprite, layerIdx, true);
+                }
+
+                if (comp.GlowColorLit.HasValue)
+                    SpriteSystem.LayerSetColor(sprite, ExpendableLightVisualLayers.Glow, comp.GlowColorLit.Value);
+                SpriteSystem.LayerSetVisible(sprite, ExpendableLightVisualLayers.Glow, true);
+                break;
+
+            case ExpendableLightState.Dead:
+                if (SpriteSystem.LayerMapTryGet(sprite, ExpendableLightVisualLayers.Overlay, out layerIdx, true))
+                {
+                    if (!string.IsNullOrWhiteSpace(comp.IconStateSpent))
+                        SpriteSystem.LayerSetRsiState(sprite, layerIdx, comp.IconStateSpent);
+                    if (!string.IsNullOrWhiteSpace(comp.SpriteShaderSpent))
+                        args.Sprite.LayerSetShader(layerIdx, comp.SpriteShaderSpent);
+                    else
+                        args.Sprite.LayerSetShader(layerIdx, null, null);
+                }
+
+                SpriteSystem.LayerSetVisible(sprite, ExpendableLightVisualLayers.Glow, false);
+                break;
+        }
+    }
+}
+
+public enum ExpendableLightVisualLayers : byte
+{
+    Base = 0,
+    Glow = 1,
+    Overlay = 2,
+}
