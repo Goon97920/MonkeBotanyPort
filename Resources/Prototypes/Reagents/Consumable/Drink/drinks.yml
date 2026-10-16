@@ -254,17 +254,19 @@
   flavor: milk
   color: "#DFDFDF"
   recognizable: true
-  plantMetabolism:
-    - !type:PlantAdjustNutrition
-      amount: 0.1
-    - !type:PlantAdjustWater
-      amount: 0.9
   metabolisms:
     Digestion:
       effects:
       - !type:Satiate
         satiationType: Thirst
         factor: 4
+  plantMetabolism:
+    - !type:PlantAdjustStat
+      stat: Potency
+      perUnit: -0.5
+      round: false
+    - !type:PlantAdjustHealth
+      perUnit: 0.1
 
 - type: reagent
   id: MilkGoat
@@ -372,6 +374,9 @@
   flavor: fizzy
   color: "#619494"
   fizziness: 0.8
+  plantMetabolism:
+    - !type:PlantAdjustHealth
+      perUnit: 0.15
 
 - type: reagent
   id: SoyLatte
@@ -485,9 +490,6 @@
       - !type:Satiate
         satiationType: Thirst
         factor: 3 # Slightly worse for quenching thirst than just straight water
-  plantMetabolism:
-  - !type:PlantAdjustWater
-    amount: 1 # The internet tells me I should avoid watering plants with ice, but mostly because of temperature, so this value being the same as water should probably be fine?
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/iceglass.rsi
     state: icon_empty

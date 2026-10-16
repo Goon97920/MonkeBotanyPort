@@ -39,19 +39,15 @@
         damage:
           types:
             Poison: 0.2
-  plantMetabolism:
-  - !type:PlantAdjustWater
-    amount: 0.5
-  - !type:DnaImprint
-    reagent: Blood
-    minScale: 5
-    leader: true
-    friendly: true
-    guidebookText: entity-effect-guidebook-dna-imprint
   footstepSound:
     collection: FootstepBlood
     params:
       volume: 6
+  plantMetabolism:
+    - !type:PlantTrayAdjust
+      attribute: Pests
+      flatMin: 2
+      flatMax: 3
 
 - type: reagent
   parent: Blood
@@ -63,14 +59,6 @@
   color: "#808A51"
   recognizable: true
   physicalDesc: reagent-physical-desc-slimy
-  plantMetabolism:
-  - !type:DnaImprint
-    reagent: InsectBlood
-    minScale: 5
-    leader: true
-    friendly: true
-    guidebookText: entity-effect-guidebook-dna-imprint
-
 - type: reagent
   id: Slime
   name: reagent-name-slime
@@ -104,14 +92,6 @@
     collection: FootstepSlime # makes sense
     params:
       volume: 6
-  plantMetabolism:
-  - !type:DnaImprint
-    reagent: Slime
-    minScale: 5
-    leader: true
-    friendly: true
-    guidebookText: entity-effect-guidebook-dna-imprint
-
 - type: reagent
   id: Sap
   name: reagent-name-sap
@@ -138,14 +118,6 @@
     collection: FootstepSlime
     params:
       volume: 6
-  plantMetabolism:
-  - !type:DnaImprint
-    reagent: Sap
-    minScale: 5
-    leader: true
-    friendly: true
-    guidebookText: entity-effect-guidebook-dna-imprint
-
 - type: reagent
   parent: Blood
   id: CopperBlood
@@ -156,14 +128,6 @@
   color: "#162581"
   recognizable: true
   physicalDesc: reagent-physical-desc-metallic
-  plantMetabolism:
-  - !type:DnaImprint
-    reagent: CopperBlood
-    minScale: 5
-    leader: true
-    friendly: true
-    guidebookText: entity-effect-guidebook-dna-imprint
-
 - type: reagent
   parent: Blood
   id: AmmoniaBlood
@@ -174,14 +138,6 @@
   color: "#7a8bf2"
   recognizable: true
   physicalDesc: reagent-physical-desc-pungent
-  plantMetabolism:
-  - !type:DnaImprint
-    reagent: AmmoniaBlood
-    minScale: 5
-    leader: true
-    friendly: true
-    guidebookText: entity-effect-guidebook-dna-imprint
-
 - type: reagent
   parent: Blood
   id: SulfurBlood
@@ -192,14 +148,6 @@
   color: "#ccac1f"
   recognizable: true
   physicalDesc: reagent-physical-desc-strong-smelling
-  plantMetabolism:
-  - !type:DnaImprint
-    reagent: SulfurBlood
-    minScale: 5
-    leader: true
-    friendly: true
-    guidebookText: entity-effect-guidebook-dna-imprint
-
 - type: reagent
   id: ZombieBlood
   name: reagent-name-zombie-blood
@@ -279,9 +227,6 @@
       - !type:ModifyBleed
         amount: -1.5
   # Just in case you REALLY want to water your plants
-  plantMetabolism:
-  - !type:PlantAdjustWater
-    amount: 0.5
   footstepSound:
     collection: FootstepBlood
     params:

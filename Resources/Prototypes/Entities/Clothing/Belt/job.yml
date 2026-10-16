@@ -319,8 +319,9 @@
       - Dropper
       components:
       - PlantAnalyzer
-      - BotanySampleTaker
-      - BotanyHoe
+      - BotanySecateurs
+      - BotanyCultivator
+      - PlantGeneDisk
       - Seed
       - Smokable
       - HandLabeler
@@ -335,7 +336,7 @@
       hoe:
         whitelist:
           components:
-          - BotanyHoe
+          - BotanyCultivator
       secateurs: # We don't have secateurs and this looks similar enough.
         whitelist:
           tags:

@@ -48,6 +48,7 @@
   - HydroponicsToolSpade
   - HydroponicsToolClippers
   - PlantAnalyzer
+  - PlantDataDisk # Monkestation: roundstart tech
 
 ## Dynamic
 
@@ -83,6 +84,8 @@
   - FatExtractorMachineCircuitboard
   - HydroponicsTrayMachineCircuitboard # roundstart gear being unlocked roundstart when
   - SeedExtractorMachineCircuitboard # ^
+  - PlantDnaManipulatorMachineCircuitboard
+  - PlantSplicerMachineCircuitboard
   - MassMediaCircuitboard
   - ReagentGrinderIndustrialMachineCircuitboard
   - JukeboxCircuitBoard

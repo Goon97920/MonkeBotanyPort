@@ -66,6 +66,7 @@
         - id: Saw
         - id: Hemostat
         - id: ClothingMaskSterile
+        - id: StomachPump
 
 - type: entity
   parent: CrateMedical

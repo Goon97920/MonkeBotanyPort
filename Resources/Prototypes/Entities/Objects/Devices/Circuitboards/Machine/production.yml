@@ -252,8 +252,7 @@
       GlassBeaker:
         amount: 1
         defaultPrototype: Beaker
-    componentRequirements:
-      BotanySwab:
+      Swab:
         amount: 1
         defaultPrototype: DiseaseSwab
 

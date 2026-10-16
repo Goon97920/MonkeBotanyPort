@@ -557,6 +557,7 @@
   - type: Machine
     board: BiogeneratorMachineCircuitboard
   - type: MaterialStorage
+    storageLimit: 1000000000 # 1e9 biomass
   - type: ProduceMaterialExtractor
   - type: ItemSlots
     slots:
@@ -565,13 +566,20 @@
         whitelist:
           components:
           - FitsInDispenser
+      output_slot:
+        name: lathe-component-output-slot-storage-name
+        whitelist:
+          components:
+          - Storage
   - type: ContainerContainer
     containers:
       machine_board: !type:Container
       machine_parts: !type:Container
       beaker_slot: !type:ContainerSlot
+      output_slot: !type:ContainerSlot
   - type: Lathe
     reagentOutputSlotId: beaker_slot
+    itemOutputSlotId: output_slot
     idleState: icon
     runningState: building
     staticPacks:

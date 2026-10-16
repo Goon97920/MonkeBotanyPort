@@ -289,6 +289,16 @@
   id: SeedExtractorMachineCircuitboard
   result: SeedExtractorMachineCircuitboard
 
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseServiceMachineRecipeCategory ]
+  id: PlantDnaManipulatorMachineCircuitboard
+  result: PlantDnaManipulatorMachineCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseServiceMachineRecipeCategory ]
+  id: PlantSplicerMachineCircuitboard
+  result: PlantSplicerMachineCircuitboard
+
 # Kitchen
 - type: latheRecipe
   parent: [ BaseCircuitboardRecipe, BaseServiceMachineRecipeCategory ]

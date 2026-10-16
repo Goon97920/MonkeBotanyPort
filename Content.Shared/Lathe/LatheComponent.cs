@@ -45,6 +45,13 @@ namespace Content.Shared.Lathe
         public string? ReagentOutputSlotId;
 
         /// <summary>
+        /// Item slot holding a storage item (a plant bag, a box) that printed items go into.
+        /// When it is empty or full, items are dropped on the floor as usual.
+        /// </summary>
+        [DataField]
+        public string? ItemOutputSlotId;
+
+        /// <summary>
         /// The default amount that's displayed in the UI for selecting the print amount.
         /// </summary>
         [DataField, AutoNetworkedField]

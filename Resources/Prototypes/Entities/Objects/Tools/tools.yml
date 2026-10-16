@@ -43,7 +43,6 @@
       Steel: 100
   - type: StaticPrice
     price: 30
-  - type: BotanySampleTaker
 
 - type: entity
   name: screwdriver

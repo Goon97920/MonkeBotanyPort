@@ -1414,6 +1414,9 @@
   id: SurveillanceCameraMonitorCircuitboard # ConstructionGraph: WallmountTelescreen
 
 - type: Tag
+  id: Swab # MachineBoard requirement: DiagnoserMachineCircuitboard. Ammo whitelist: BoxMouthSwab
+
+- type: Tag
   id: Syndicate # FTLDestination whitelist in nukieplanet.yml. Tag exists on ComputerShuttleSyndie and infiltrator.yml
 
 - type: Tag

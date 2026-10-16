@@ -7,11 +7,6 @@
   color: "#cf3600"
   physicalDesc: reagent-physical-desc-opaque
   contrabandSeverity: Minor
-  plantMetabolism:
-  - !type:PlantAdjustToxins
-    amount: 10
-  - !type:PlantAdjustHealth
-    amount: -5
   metabolisms:
     Bloodstream:
       effects:
@@ -19,6 +14,10 @@
         damage:
           types:
             Poison: 4
+  plantMetabolism:
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: 2
 
 - type: reagent
   id: CarpoToxin
@@ -30,11 +29,6 @@
   physicalDesc: reagent-physical-desc-exotic-smelling
   allowedDepartments:
   - Medical
-  plantMetabolism:
-  - !type:PlantAdjustToxins
-    amount: 10
-  - !type:PlantAdjustHealth
-    amount: -5
   metabolisms:
     Bloodstream:
       effects:
@@ -47,6 +41,10 @@
         visualType: MediumCaution
         messages: [ "generic-reagent-effect-burning-insides" ]
         probability: 0.33
+  plantMetabolism:
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: 2
 
 - type: reagent
   id: ChloralHydrate
@@ -79,6 +77,10 @@
         damage:
           types:
             Poison: 1.5
+  plantMetabolism:
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: 2
 
 - type: reagent
   id: GastroToxin
@@ -101,6 +103,10 @@
             reagent: GastroToxin
             min: 2
           probability: 0.2
+  plantMetabolism:
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: 2
 
 - type: reagent
   id: Mold
@@ -118,6 +124,10 @@
         damage:
           types:
             Poison: 1
+  plantMetabolism:
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: 2
 
 - type: reagent
   id: PolytrinicAcid
@@ -130,13 +140,6 @@
   color: "#a1000b"
   boilingPoint: 78.2 # This isn't a real chemical...
   meltingPoint: -19.4
-  plantMetabolism:
-  - !type:PlantAdjustToxins
-    amount: 20
-  - !type:PlantAdjustWeeds
-    amount: -4
-  - !type:PlantAdjustHealth
-    amount: -8
   reactiveEffects:
     Acidic:
       methods: [ Touch ]
@@ -165,6 +168,16 @@
       - !type:Emote
         emote: Scream
         probability: 0.3
+  plantMetabolism:
+    - !type:PlantAdjustHealth
+      perUnit: -2
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: 3
+    - !type:PlantTrayAdjust
+      attribute: Weeds
+      flatMin: -4
+      flatMax: -1
 
 - type: reagent
   id: FerrochromicAcid
@@ -186,6 +199,10 @@
           types:
             Heat: 2.5
             Caustic: 1
+  plantMetabolism:
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: 2
 
 - type: reagent
   id: FluorosulfuricAcid
@@ -226,6 +243,16 @@
       - !type:Emote
         emote: Scream
         probability: 0.25
+  plantMetabolism:
+    - !type:PlantAdjustHealth
+      perUnit: -2
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: 3
+    - !type:PlantTrayAdjust
+      attribute: Weeds
+      flatMin: -4
+      flatMax: -1
 
 - type: reagent
   id: SulfuricAcid
@@ -240,13 +267,6 @@
   recognizable: true
   boilingPoint: 337.0
   meltingPoint: 10.31
-  plantMetabolism:
-  - !type:PlantAdjustToxins
-    amount: 10
-  - !type:PlantAdjustWeeds
-    amount: -2
-  - !type:PlantAdjustHealth
-    amount: -5
   reactiveEffects:
     Acidic:
       methods: [ Touch ]
@@ -275,6 +295,16 @@
       - !type:Emote
         emote: Scream
         probability: 0.2
+  plantMetabolism:
+    - !type:PlantAdjustHealth
+      perUnit: -1
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: 1.5
+    - !type:PlantTrayAdjust
+      attribute: Weeds
+      flatMin: -2
+      flatMax: -1
 
 - type: reagent
   id: UnstableMutagen
@@ -289,10 +319,6 @@
   color: "#00ff5f"
   boilingPoint: 340282300 # Ethidium bromide, which doesn't boil.
   meltingPoint: 261.0
-  plantMetabolism:
-  - !type:PlantAdjustMutationLevel
-    amount: 1
-    mutationTable: RandomPlantMutations
   metabolisms:
     Bloodstream:
       effects:
@@ -300,6 +326,10 @@
         damage:
           types:
             Radiation: 3
+  plantMetabolism:
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: 2
 
 - type: reagent
   id: HeartbreakerToxin
@@ -317,8 +347,9 @@
           types:
             Asphyxiation: 5
   plantMetabolism:
-  - !type:PlantAdjustToxins
-    amount: 10
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: 2
 
 - type: reagent
   id: Lexorin
@@ -336,6 +367,10 @@
           types:
             Asphyxiation: 5
             Bloodloss: 5
+  plantMetabolism:
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: 2
 
 - type: reagent
   id: MindbreakerToxin
@@ -345,9 +380,6 @@
   physicalDesc: reagent-physical-desc-opaque
   flavor: bitter
   color: "#77b58e"
-  plantMetabolism:
-  - !type:PlantAdjustToxins
-    amount: 10
   metabolisms:
     Bloodstream:
       effects:
@@ -356,6 +388,10 @@
         type: Add
         time: 10
   # TODO: PROPER hallucinations
+  plantMetabolism:
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: 2
 
 - type: reagent
   id: Histamine
@@ -396,6 +432,10 @@
         visualType: Medium
         messages: [ "histamine-effect-heavy-itchiness" ]
         probability: 0.2
+  plantMetabolism:
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: 2
 
 - type: reagent
   id: Theobromine
@@ -422,6 +462,10 @@
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Animal, Arachnid ]
+  plantMetabolism:
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: 2
 
 - type: reagent
   id: Amatoxin
@@ -439,6 +483,10 @@
         damage:
           types:
             Poison: 3
+  plantMetabolism:
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: 2
 
 - type: reagent
   id: VentCrud
@@ -455,6 +503,10 @@
           damage:
             types:
               Poison: 2
+  plantMetabolism:
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: 2
 
 - type: reagent
   id: Romerol
@@ -474,6 +526,10 @@
             - !type:ReagentCondition
               reagent: Romerol
               min: 5
+  plantMetabolism:
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: 2
 
 - type: reagent
   id: UncookedAnimalProteins
@@ -528,6 +584,10 @@
           type: [ Vox ]
         reagent: Protein
         amount: 0.25
+  plantMetabolism:
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: 2
 
 - type: reagent
   id: Allicin
@@ -551,6 +611,10 @@
         damage:
           types:
             Poison: 0.06
+  plantMetabolism:
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: 2
 
 - type: reagent
   id: Honk
@@ -579,7 +643,10 @@
         damage:
           types:
             Poison: 0.06
-
+  plantMetabolism:
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: 2
 
 - type: reagent
   id: Lead
@@ -597,6 +664,10 @@
         damage:
           types:
             Poison: 0.6 # Makes it 20 damage per unit.
+  plantMetabolism:
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: 2
 
 - type: reagent
   id: Bungotoxin
@@ -614,6 +685,10 @@
         damage:
           types:
             Poison: 1.8
+  plantMetabolism:
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: 2
 
 - type: reagent
   id: Vestine
@@ -624,12 +699,6 @@
   contrabandSeverity: Syndicate
   flavor: medicine
   color: "#435166"
-  plantMetabolism:
-  - !type:PlantAdjustMutationLevel
-    amount: 1
-    mutationTable: EvilPlantMutations
-  - !type:PlantAdjustToxins
-    amount: 10
   metabolisms:
     Bloodstream:
       effects:
@@ -646,6 +715,10 @@
           types:
             Asphyxiation: 1
             Bloodloss: 1
+  plantMetabolism:
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: 2
 
 - type: reagent
   id: Tazinide
@@ -663,6 +736,10 @@
       - !type:Electrocute
         electrocuteTime: 1
         probability: 0.5
+  plantMetabolism:
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: 2
 
 - type: reagent
   id: Lipolicide
@@ -691,6 +768,10 @@
 
 # inspired by the spider neurotoxin GsMtx-4
 # poisons non-spiders and slows you down at high doses
+  plantMetabolism:
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: 2
 - type: reagent
   id: Mechanotoxin
   name: reagent-name-mechanotoxin
@@ -733,6 +814,10 @@
         sprintSpeedModifier: 0.4
       - !type:ModifyBleed # thickens the blood, preventing venom from being excreted into blood puddles by bleeding from pierce damage injection.
         amount: -0.25
+  plantMetabolism:
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: 2
 
 - type: reagent
   id: ToxinTrash
@@ -750,6 +835,10 @@
         conditions:
         - !type:MetabolizerTypeCondition
           type: [Vox]
+  plantMetabolism:
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: 2
 
 - type: reagent
   id: Hemorrhinol
@@ -787,6 +876,10 @@
         probability: 0.1
       - !type:Jitter
         probability: 0.25
+  plantMetabolism:
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: 2
 
 - type: reagent
   id: Hivarol
@@ -836,6 +929,10 @@
           min: 4
         - !type:MetabolizerTypeCondition
           type: [ Changeling ]
+  plantMetabolism:
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: 2
 
 - type: reagent
   id: PhosphoricAcid
@@ -845,11 +942,6 @@
   group: Toxins
   flavor: sour
   color: "#236931" # Not actually green IRL but is often dyed green when diluted.
-  plantMetabolism:
-  - !type:PlantAdjustNutrition
-    amount: 2
-  - !type:PlantAdjustHealth
-    amount: -0.5
   reactiveEffects:
     Acidic:
       methods: [ Touch ]
@@ -878,6 +970,16 @@
       - !type:Emote
         emote: Scream
         probability: 0.1
+  plantMetabolism:
+    - !type:PlantAdjustHealth
+      perUnit: -1
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: 1.5
+    - !type:PlantTrayAdjust
+      attribute: Weeds
+      flatMin: -2
+      flatMax: -1
 
 - type: reagent
   id: HardlightToxin
@@ -908,3 +1010,7 @@
         delay: 2.5
         walkSpeedModifier: 0.5
         sprintSpeedModifier: 0.5
+  plantMetabolism:
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: 2

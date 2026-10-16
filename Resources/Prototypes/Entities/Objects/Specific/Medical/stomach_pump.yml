@@ -1,0 +1,33 @@
+- type: entity
+  parent: BaseItem
+  id: StomachPump
+  name: stomach pump
+  description: Empties a patient's stomach, including any plant matter still waiting to be digested. Load a beaker, or use it on a container or chemistry machine to run the hose there; otherwise it empties onto the floor.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/stomach_pump.rsi
+    state: icon
+  - type: Item
+    size: Normal
+    sprite: Objects/Specific/Medical/stomach_pump.rsi
+  - type: StomachPump
+  - type: ItemSlots
+    slots:
+      beaker_slot:
+        name: stomach-pump-slot-beaker
+        whitelist:
+          components:
+          - FitsInDispenser
+  - type: ContainerContainer
+    containers:
+      beaker_slot: !type:ContainerSlot
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 150
+      Plastic: 150
+      Glass: 50
+  - type: StaticPrice
+    price: 150
+  - type: GuideHelp
+    guides:
+    - MedicalDoctor

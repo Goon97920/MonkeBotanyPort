@@ -1,88 +1,72 @@
 <Document>
 # Botany
-As a botanist, it is your job to grow enough food to stop the chef from seeking "alternative sources". Grow lots of wheat, and when you get tired of that, grow weed. Make weed smoothies and spike drinks with nettles. Just keep growing plants, and you'll do great!
+As a botanist, it is your job to grow enough food to stop the chef from seeking "alternative sources". Grow lots of wheat, and when you get tired of that, grow weed. Breed plants that make chemicals for Medbay, the Bartender and Cargo, or just see how strange you can make them.
 
 ## Starting your shift
-First identify the machines around you that you will be using. Coordinate with the Chef to see if they want anything specific to be grown, otherwise grow wheat and bananas and whatever else you feel like growing. You may also grow plants for Chemistry (Medbay), the Bartender, or to sell by Cargo.
+Your locker has a portable seed extractor and a box of plant data disks. Find the hydroponics trays, the seed extractor, the biogenerator, the plant DNA manipulator and the seed splicer. Coordinate with the Chef to see if they want anything specific grown.
 
-
-# Tools
-There are many tools that can be used to keep your crops healthy and growing. The Hydroponics Tray is where you will spend most of your time as a botanist.
-
+# Growing
 ## Hydroponics Tray
 <Box>
 <GuideEntityEmbed Entity="HydroponicsTray"/>
 </Box>
-It's a hydroponics tray, it grows plants with water. First fill the tray with water, then add seeds.
-Hydroponics tray lights indicate different things depending on color and position:
-- [color=red]Red Light, Left[/color]: Dead plant that needs re-planting. Use a spade to remove the plant.
-- [color=orange]Flashing Orange Light, Center[/color]: The environment is sub-optimal. Check what is affecting the plant by Shift Clicking on it. It is likely weeds but it could be undesirable pressure or lack of oxygen. If weeds, use a mini hoe or spray 1 time with weed spray. Be warned, however, that overuse of weed killers can lead to unhealthy plants, possibly killing them.
-- [color=#0336ff]Blue Light, Right[/color]: Needs water. Use bucket on the water tank and fill the tray.
-- [color=green]Green Light, Left[/color]: Ready for harvest. Left click to harvest.
-- [color=yellow]Yellow Light, Right[/color]: Needs nutrients. Use any fruit and put it into the soil or get EZ nutrients from chemistry.
+Fill the tray with water, add nutrients, and plant a seed. Every 10 seconds the plant grows a little, and the reagents in the tray change it: nutrients heal it and improve its stats, toxins hurt it, and weed and pest killers clear the tray. The tray uses up a little of its reagents every cycle.
 
-The lifecycle of a hydroponics tray is the following:
-- [color=lightgreen]Empty[/color]: no water, seed or nutrients
-- [color=lightgreen]Hydrated[/color]: you've added water to it (e.g. from a bottle or bucket).
-- [color=lightgreen]Ready for planting[/color]: you've added water and nutrients to it (i.e. fertilizer).
-- [color=lightgreen]Planted[/color]: you've added a seed to it
-- [color=lightgreen]Ready for Harvest[/color]: you've waited for the plant to grow
-- [color=lightgreen]Sampled[/color]: you've taken a sample (seed)
-- [color=lightgreen]Harvested[/color]: you've picked ready plants. Some plants will then grow again. Others will die and need replanting.
-- [color=lightgreen]Unhealthy[/color]: You've sampled too many seeds or sprayed it with deadly chemicals. The plant isn't coping too well. It'll continue to grow. Health can be restored by fertilizers or you can cut your losses and extract a seed (plant clippers) and replant.
-- [color=lightgreen]Old / Wilted[/color]: the plant has matured and will soon die. It will still be harvestable and you can extract seeds but only for a short duration. Extract the seed and then pluck it out / chop it down.
-- [color=lightgreen]Dead[/color]: the plant has been harvested and ceased growing. It should be plucked out / chopped down. No seeds can be extracted.
+- [color=red]Red light[/color]: the plant is dying or dead. Use a spade to dig it out.
+- [color=#0336ff]Blue light[/color]: it needs water.
+- [color=yellow]Yellow light[/color]: it needs nutrients.
+- [color=orange]Orange light[/color]: weeds, pests or toxins. Use a cultivator (mini hoe) on weeds.
+- [color=green]Green light[/color]: ready to harvest. Click it with an empty hand or a plant bag.
+
+Perennial plants grow back after a harvest; the rest die. A harvest gives about one item for every 10 yield, and some of those come out as seeds.
 
 ## Seed Extractor
 <Box>
 <GuideEntityEmbed Entity="SeedExtractor"/>
 </Box>
-It extracts seeds. Insert crop, receive seeds.
+Use produce (or a bag of it) on the extractor to turn it into seeds. The seeds drop where you click. Seeds you put into the extractor by hand are stored, and you can take them out again from its screen.
 
+## Biogenerator
+<Box>
+<GuideEntityEmbed Entity="Biogenerator"/>
+</Box>
+Turns produce into biomass. Every unit of nutriment, vitamin and protein in a plant becomes biomass. Biomass buys nutrients, materials and lesser strange seeds. Put a plant bag in its output slot to catch what it prints.
 
-# Plant Genetics
-Like all other forms of life known to NanoTrasen, plants pass traits to offspring in their genes. By manipulating plant genetics, botanists can produce plant varieties with desirable mutations that increase plant health and yield.
+# Genetics
+Every seed has [color=cyan]core genes[/color] (potency, yield, production speed, endurance, lifespan, weed growth and weed vulnerability), [color=cyan]chemical genes[/color] (what reagents its produce contains, as a percentage of its volume) and [color=cyan]trait genes[/color]. Use a plant analyzer to read them.
 
-## Traits
-The phenotype, or set of observable characteristics and traits of a plant, can be determined through careful observation and study. A few common traits include:
+Potency multiplies how much of each chemical the produce holds. Traits like Densified Chemicals and the vesicle traits make produce hold far more.
 
-- [color=lightgreen]Bioluminescence[/color]: plants with this trait glow in the dark
-- [color=lightgreen]High yield[/color]: plants with this trait yield more fruit per harvest
-- [color=lightgreen]Less water[/color]: plants with this trait require less water than normal to grow
-- [color=lightgreen]Ligneous[/color]: plants with this trait require sharp tools to harvest
-- [color=lightgreen]Long life[/color]: plants with this trait live for more harvest cycles before dying
-- [color=lightgreen]Low light[/color]: plants with this trait need less light than normal to grow
-- [color=lightgreen]Pest resistance[/color]: plants with this trait are more resistant to pests
-- [color=lightgreen]Seedless[/color]: plants with this trait do not produce viable seeds
-- [color=lightgreen]Weed resistance[/color]: plants with this trait suppress weed growth
+## Plant DNA Manipulator
+<Box>
+<GuideEntityEmbed Entity="PlantDnaManipulator"/>
+<GuideEntityEmbed Entity="PlantDataDisk"/>
+</Box>
+Extract a gene from a seed onto a plant data disk (this destroys the seed), then insert it into another seed. You can also remove chemical and trait genes, or replace a core gene with one from a disk. Immutable and Essential traits can't be removed. Extracted yield is capped at 10 and endurance and lifespan at 110.
 
-You can determine the phenotype of a plant simply by growing them and observing them! This is how Gregor Mendel, father of genetics, studied them in 1866.
+## Seed Splicer
+<Box>
+<GuideEntityEmbed Entity="PlantSplicer"/>
+</Box>
+Splices two different seeds into a hybrid with averaged stats and both plants' chemicals. It can also infuse a seed with the reagents in a beaker: some reagents change its stats, and 100u or more of a reagent can become a new chemical gene. Infusing damages the seed; too much and it falls apart.
+
+## Strange Seeds
+<Box>
+<GuideEntityEmbed Entity="LesserStrangeSeeds"/>
+</Box>
+Strange seeds have random stats, and may come with random chemicals and traits. Grow them, then extract the genes you want.
 
 ## Mutations
-Plants treated with [color=cyan]unstable mutagen[/color] will experience random genetic mutations, which can alter their genes and result in changes to their traits. You can save the plants with mutations you want by harvesting their seeds.
+When a plant's stats fall inside a species' mutation window, its seeds and produce can come out as a different plant. Watermelons with potency 30-50 and endurance 60-80 can become holymelons, for example.
 
-The more unstable mutagen you use, the more mutations you will get. Since many genes are vital to a plant's survival, most mutations will cause a plant to die.
-
-<Box>
-<GuideEntityEmbed Entity="ChemistryBottleUnstableMutagen"/>
-</Box>
-
-## Cross-Pollination
-You can use a [color=cyan]sterile swab[/color] to transfer pollen from one plant to another. Plants that are cross-pollinated have a chance to transfer traits. Be careful re-using swabs; pollen is sticky!
-
-<Box>
-<GuideEntityEmbed Entity="BoxMouthSwab"/>
-<GuideEntityEmbed Entity="DiseaseSwab"/>
-</Box>
+## Grafting and Training
+Plant clippers take a graft from a plant, which carries one of its traits. Apply a graft to another planted tray to give it that trait. Some reagents slowly train traits into a growing plant.
 
 ## Chemicals
 Some chemicals have special effects on plants.
 
 [textlink="Click here to see all botanical chemicals." link="Botanical"]
 
-<GuideReagentEmbed Reagent="Dylovene"/>
-<GuideReagentEmbed Reagent="Cryoxadone"/>
-<GuideReagentEmbed Reagent="Phalanximine"/>
 <GuideReagentGroupEmbed Group="Botanical"/>
 
 </Document>

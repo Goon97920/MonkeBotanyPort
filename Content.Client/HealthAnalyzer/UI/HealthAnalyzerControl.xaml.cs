@@ -50,7 +50,7 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
     /// <param name="state">The state that carries the information about the patient.</param>
     public void Populate(HealthAnalyzerUiState state)
     {
-        PopulateDataFields(state.TargetEntity, state.ScanMode, state.BloodLevel, state.Unrevivable, state.Bleeding);
+        PopulateDataFields(state.TargetEntity, state.ScanMode, state.BloodLevel, state.Unrevivable, state.Bleeding, state.UndigestedPlantMatter);
         if (!float.IsNaN(state.Temperature))
             PopulateTemperature(state.Temperature);
     }
@@ -63,7 +63,7 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
     /// <param name="bloodlevel">The bloodlevel of the entity.</param>
     /// <param name="unrevivable">Whether this entity is revivable.</param>
     /// <param name="bleeding">Whether this entity is bleeding.</param>
-    private void PopulateDataFields(NetEntity? targetEntity, bool scanMode, float bloodlevel, bool unrevivable, bool bleeding)
+    private void PopulateDataFields(NetEntity? targetEntity, bool scanMode, float bloodlevel, bool unrevivable, bool bleeding, float undigested = float.NaN)
     {
         var target = _entityManager.GetEntity(targetEntity);
 
@@ -129,7 +129,8 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
         DamageLabel.Text = _damageable.GetTotalDamage(target.Value).ToString();
 
         // Alerts
-        var showAlerts = unrevivable || bleeding;
+        var hasUndigested = !float.IsNaN(undigested) && undigested > 0;
+        var showAlerts = unrevivable || bleeding || hasUndigested;
 
         AlertsDivider.Visible = showAlerts;
         AlertsContainer.Visible = showAlerts;
@@ -151,6 +152,15 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
             AlertsContainer.AddChild(new RichTextLabel
             {
                 Text = Loc.GetString("health-analyzer-window-entity-bleeding-text"),
+                Margin = new Thickness(0, 4),
+                MaxWidth = 300,
+            });
+        }
+        if (hasUndigested)
+        {
+            AlertsContainer.AddChild(new RichTextLabel
+            {
+                Text = Loc.GetString("health-analyzer-window-entity-undigested-text", ("amount", MathF.Round(undigested, 1))),
                 Margin = new Thickness(0, 4),
                 MaxWidth = 300,
             });

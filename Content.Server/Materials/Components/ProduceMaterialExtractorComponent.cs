@@ -19,12 +19,22 @@ public sealed partial class ProduceMaterialExtractorComponent : Component
 
     /// <summary>
     /// List of reagents that determines how much material is yielded from a produce.
+    /// Monkestation counts every nutriment subtype, which in SS14 means these three.
     /// </summary>
     [DataField]
     public List<ProtoId<ReagentPrototype>> ExtractionReagents = new()
     {
-        "Nutriment"
+        "Nutriment",
+        "Vitamin",
+        "Protein",
     };
+
+    /// <summary>
+    /// Biomass per unit of extraction reagent. Monkestation's biogenerator uses its manipulator tier;
+    /// 4 matches tier 4 parts.
+    /// </summary>
+    [DataField]
+    public float Productivity = 4f;
 
     [DataField]
     public SoundSpecifier? ExtractSound = new SoundPathSpecifier("/Audio/Effects/waterswirl.ogg");

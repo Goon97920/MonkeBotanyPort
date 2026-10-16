@@ -1,0 +1,1588 @@
+# Plant species. Stats, traits and mutations follow Monkestation (code/modules/hydroponics/grown).
+# SS14-specific chemicals are kept (as production rates) so cooking and grinding still work; Monkestation rates
+# override them where the same reagent exists.
+
+- type: plantSpecies
+  id: WheatPlants
+  name: seeds-wheat-name
+  packetPrototype: WheatSeeds
+  productPrototypes: [ WheatBushel ]
+  plantRsi: Objects/Specific/Hydroponics/wheat.rsi
+  growthStages: 6
+  lifespan: 25
+  endurance: 15
+  maturation: 25
+  production: 1
+  yield: 40
+  potency: 15
+  harvestAge: 100
+  chemicals:
+    Nutriment: 0.04
+    Flour: 0.05
+  cookingMinimums: # SS14's old amounts
+    Flour: { min: 5, max: 20, potencyDivisor: 20 }
+  mutations: [ MutationOat, MutationMeatWheat ]
+
+- type: plantSpecies
+  id: MeatWheatPlants
+  name: seeds-meatwheat-name
+  packetPrototype: MeatwheatSeeds
+  productPrototypes: [ MeatwheatBushel ]
+  plantRsi: Objects/Specific/Hydroponics/meatwheat.rsi
+  growthStages: 6
+  lifespan: 25
+  endurance: 15
+  maturation: 25
+  production: 1
+  yield: 40
+  potency: 15
+  harvestAge: 100
+  chemicals:
+    Nutriment: 0.04
+    UncookedAnimalProteins: 0.05
+  cookingMinimums: # SS14's old amounts
+    UncookedAnimalProteins: { min: 5, max: 20, potencyDivisor: 20 }
+
+- type: plantSpecies
+  id: OatPlants
+  name: seeds-oat-name
+  packetPrototype: OatSeeds
+  productPrototypes: [ OatBushel ]
+  plantRsi: Objects/Specific/Hydroponics/oat.rsi
+  growthStages: 6
+  lifespan: 25
+  endurance: 15
+  maturation: 25
+  production: 1
+  yield: 40
+  potency: 15
+  harvestAge: 100
+  chemicals:
+    Nutriment: 0.04
+    Oats: 0.05
+  cookingMinimums: # SS14's old amounts
+    Oats: { min: 5, max: 20, potencyDivisor: 20 }
+
+- type: plantSpecies
+  id: BananaPlants
+  name: seeds-banana-name
+  packetPrototype: BananaSeeds
+  productPrototypes: [ FoodBanana ]
+  plantRsi: Objects/Specific/Hydroponics/banana.rsi
+  growthStages: 6
+  lifespan: 50
+  endurance: 30
+  maturation: 25
+  production: 25
+  yield: 30
+  potency: 10
+  chemicals:
+    Vitamin: 0.04
+    Nutriment: 0.02
+    JuiceBanana: 0.1
+    Potassium: 0.1
+  traits: [ SlipperySkin, PerennialGrowth ]
+  graftTrait: SlipperySkin
+  mutations: [ MutationMimana ]
+
+- type: plantSpecies
+  id: MimanaPlants
+  name: seeds-mimana-name
+  packetPrototype: MimanaSeeds
+  productPrototypes: [ FoodMimana ]
+  plantRsi: Objects/Specific/Hydroponics/mimana.rsi
+  growthStages: 6
+  lifespan: 50
+  endurance: 30
+  maturation: 25
+  production: 25
+  yield: 30
+  potency: 10
+  chemicals:
+    MuteToxin: 0.1
+    Nutriment: 0.02
+    Nothing: 0.1
+  traits: [ SlipperySkin, PerennialGrowth ]
+  graftTrait: SlipperySkin
+  rarity: 15
+
+- type: plantSpecies
+  id: CarrotPlants
+  name: seeds-carrots-name
+  packetPrototype: CarrotSeeds
+  productPrototypes: [ FoodCarrot ]
+  plantRsi: Objects/Specific/Hydroponics/carrot.rsi
+  growthStages: 3
+  lifespan: 25
+  endurance: 15
+  maturation: 10
+  production: 1
+  yield: 50
+  potency: 10
+  chemicals:
+    JuiceCarrot: 0.05
+    Oculine: 0.25
+    Vitamin: 0.04
+    Nutriment: 0.05
+
+- type: plantSpecies
+  id: LaughinPeaPlants
+  name: seeds-laughin-pea-name
+  packetPrototype: LaughinPeaSeeds
+  productPrototypes: [ FoodLaughinPeaPod ]
+  plantRsi: Objects/Specific/Hydroponics/laughin_pea.rsi
+  growthStages: 3
+  lifespan: 25
+  endurance: 15
+  maturation: 7
+  production: 5
+  yield: 70
+  potency: 10
+  chemicals:
+    Nutriment: 0.07
+    Sugar: 0.05
+    Laughter: 0.05
+  cookingMinimums: # SS14's old amounts
+    Sugar: { min: 1, max: 10, potencyDivisor: 5 }
+  traits: [ PerennialGrowth, PurpleBioluminescence, HallucinatoryFeedback ]
+  graftTrait: HallucinatoryFeedback
+  mutations: [ MutationWorldPea ]
+  rarity: 25
+
+- type: plantSpecies
+  id: LemonPlants
+  name: seeds-lemon-name
+  packetPrototype: LemonSeeds
+  productPrototypes: [ FoodLemon ]
+  plantRsi: Objects/Specific/Hydroponics/lemon.rsi
+  growthStages: 6
+  lifespan: 55
+  endurance: 45
+  maturation: 25
+  production: 25
+  yield: 40
+  potency: 10
+  chemicals:
+    Nutriment: 0.05
+    Vitamin: 0.04
+  traits: [ PerennialGrowth ]
+  mutations: [ MutationLemoon ]
+
+- type: plantSpecies
+  id: LemoonPlants
+  name: seeds-lemoon-name
+  packetPrototype: LemoonSeeds
+  productPrototypes: [ FoodLemoon ]
+  plantRsi: Objects/Specific/Hydroponics/lemoon.rsi
+  growthStages: 6
+  lifespan: 55
+  endurance: 45
+  maturation: 25
+  production: 25
+  yield: 40
+  potency: 10
+  chemicals:
+    Vitamin: 0.04
+    Milk: 0.2
+    Nutriment: 0.05
+  cookingMinimums: # SS14's old amounts
+    Milk: { min: 8, max: 20, potencyDivisor: 5 }
+  traits: [ PerennialGrowth ]
+
+- type: plantSpecies
+  id: LimePlants
+  name: seeds-lime-name
+  packetPrototype: LimeSeeds
+  productPrototypes: [ FoodLime ]
+  plantRsi: Objects/Specific/Hydroponics/lime.rsi
+  growthStages: 6
+  lifespan: 55
+  endurance: 50
+  maturation: 25
+  production: 25
+  yield: 40
+  potency: 15
+  chemicals:
+    Nutriment: 0.05
+    Vitamin: 0.04
+  traits: [ PerennialGrowth ]
+  mutations: [ MutationOrange ]
+
+- type: plantSpecies
+  id: OrangePlants
+  name: seeds-orange-name
+  packetPrototype: OrangeSeeds
+  productPrototypes: [ FoodOrange ]
+  plantRsi: Objects/Specific/Hydroponics/orange.rsi
+  growthStages: 6
+  lifespan: 60
+  endurance: 50
+  maturation: 25
+  production: 25
+  yield: 50
+  potency: 20
+  chemicals:
+    Nutriment: 0.05
+    Vitamin: 0.04
+  traits: [ PerennialGrowth ]
+  mutations: [ MutationLime, MutationExtradimensionalOrange ]
+
+- type: plantSpecies
+  id: ExtradimensionalOrangePlants
+  name: seeds-extradimensionalorange-name
+  packetPrototype: ExtradimensionalOrangeSeeds
+  productPrototypes: [ FoodExtradimensionalOrange ]
+  plantRsi: Objects/Specific/Hydroponics/extradimensional_orange.rsi
+  growthStages: 6
+  lifespan: 60
+  endurance: 50
+  maturation: 25
+  production: 25
+  yield: 50
+  potency: 20
+  chemicals:
+    Haloperidol: 0.15
+    Nutriment: 0.05
+    Vitamin: 0.04
+  traits: [ PerennialGrowth ]
+
+- type: plantSpecies
+  id: PineapplePlants
+  name: seeds-pineapple-name
+  packetPrototype: PineappleSeeds
+  productPrototypes: [ FoodPineapple ]
+  plantRsi: Objects/Specific/Hydroponics/pineapple.rsi
+  growthStages: 3
+  lifespan: 40
+  endurance: 30
+  maturation: 25
+  production: 25
+  yield: 30
+  potency: 10
+  chemicals:
+    Nutriment: 0.2
+    Water: 0.04
+    Vitamin: 0.02
+  traits: [ PerennialGrowth, AutoJuicing ]
+  graftTrait: AutoJuicing
+
+- type: plantSpecies
+  id: PotatoPlants
+  name: seeds-potato-name
+  packetPrototype: PotatoSeeds
+  productPrototypes: [ FoodPotato ]
+  plantRsi: Objects/Specific/Hydroponics/potato.rsi
+  growthStages: 4
+  lifespan: 30
+  endurance: 15
+  maturation: 10
+  production: 1
+  yield: 40
+  potency: 10
+  harvestAge: 100
+  chemicals:
+    Nutriment: 0.1
+    Vitamin: 0.04
+  traits: [ CapacitiveCellProduction, LargeBites ]
+  graftTrait: CapacitiveCellProduction
+
+- type: plantSpecies
+  id: SugarcanePlants
+  name: seeds-sugarcane-name
+  packetPrototype: SugarcaneSeeds
+  productPrototypes: [ Sugarcane ]
+  plantRsi: Objects/Specific/Hydroponics/sugarcane.rsi
+  growthStages: 3
+  lifespan: 60
+  endurance: 50
+  maturation: 30
+  production: 25
+  yield: 40
+  potency: 10
+  chemicals:
+    Sugar: 0.25
+    Nutriment: 0.04
+  cookingMinimums: # SS14's old amounts
+    Sugar: { min: 4, max: 5, potencyDivisor: 5 }
+  traits: [ PerennialGrowth ]
+  mutations: [ MutationPapercane ]
+
+- type: plantSpecies
+  id: TeaPlantPlants
+  name: seeds-teaplant-name
+  packetPrototype: TeaPlantSeeds
+  productPrototypes: [ LeavesTea ]
+  plantRsi: Objects/Specific/Hydroponics/tea_plant.rsi
+  growthStages: 5
+  lifespan: 20
+  endurance: 15
+  maturation: 5
+  production: 5
+  yield: 50
+  potency: 10
+  chemicals:
+    Vitamin: 0.04
+    TeaPowder: 0.1
+  traits: [ PerennialGrowth ]
+
+- type: plantSpecies
+  id: PapercanePlants
+  name: seeds-papercane-name
+  packetPrototype: PapercaneSeeds
+  productPrototypes: [ Papercane ]
+  plantRsi: Objects/Specific/Hydroponics/papercane.rsi
+  growthStages: 3
+  lifespan: 60
+  endurance: 50
+  maturation: 30
+  production: 25
+  yield: 40
+  potency: 10
+  chemicals:
+    Nutriment: 0.04
+    Sugar: 0.25
+  traits: [ PerennialGrowth ]
+
+- type: plantSpecies
+  id: TowercapPlants
+  name: seeds-towercap-name
+  noun: seeds-noun-spores
+  packetPrototype: TowercapSeeds
+  productPrototypes: [ Log ]
+  plantRsi: Objects/Specific/Hydroponics/towercap.rsi
+  growthStages: 3
+  lifespan: 80
+  endurance: 50
+  maturation: 15
+  production: 1
+  yield: 50
+  potency: 50
+  chemicals:
+    Cellulose: 0.05
+  traits: [ FungalVitality ]
+  graftTrait: FungalVitality
+  mutations: [ MutationSteelcap ]
+
+- type: plantSpecies
+  id: SteelcapPlants
+  name: seeds-steelcap-name
+  noun: seeds-noun-spores
+  packetPrototype: SteelcapSeeds
+  productPrototypes: [ SteelLog ]
+  plantRsi: Objects/Specific/Hydroponics/steelcap.rsi
+  growthStages: 3
+  lifespan: 80
+  endurance: 50
+  maturation: 15
+  production: 1
+  yield: 50
+  potency: 50
+  chemicals:
+    Cellulose: 0.05
+    Iron: 0.05
+  traits: [ FungalVitality ]
+  graftTrait: FungalVitality
+  rarity: 20
+
+- type: plantSpecies
+  id: TomatoPlants
+  name: seeds-tomato-name
+  packetPrototype: TomatoSeeds
+  productPrototypes: [ FoodTomato ]
+  plantRsi: Objects/Specific/Hydroponics/tomato.rsi
+  growthStages: 6
+  lifespan: 25
+  endurance: 15
+  maturation: 8
+  production: 25
+  yield: 30
+  potency: 10
+  chemicals:
+    Nutriment: 0.1
+    Vitamin: 0.04
+    Water: 0.04
+  traits: [ LiquidContents, PerennialGrowth ]
+  graftTrait: LiquidContents
+  mutations: [ MutationBlueTomato, MutationBloodTomato, MutationKillerTomato ]
+
+- type: plantSpecies
+  id: BlueTomatoPlants
+  name: seeds-bluetomato-name
+  packetPrototype: BlueTomatoSeeds
+  productPrototypes: [ FoodBlueTomato ]
+  plantRsi: Objects/Specific/Hydroponics/blue_tomato.rsi
+  growthStages: 6
+  lifespan: 25
+  endurance: 15
+  maturation: 8
+  production: 25
+  yield: 2
+  potency: 10
+  chemicals:
+    Nutriment: 0.1
+    SpaceLube: 0.2
+    Vitamin: 0.04
+  traits: [ SlipperySkin, PerennialGrowth ]
+  graftTrait: SlipperySkin
+  mutations: [ MutationBlueTomato, MutationBloodTomato, MutationKillerTomato ]
+  rarity: 20
+
+- type: plantSpecies
+  id: BloodTomatoPlants
+  name: seeds-bloodtomato-name
+  packetPrototype: BloodTomatoSeeds
+  productPrototypes: [ FoodBloodTomato ]
+  plantRsi: Objects/Specific/Hydroponics/blood_tomato.rsi
+  growthStages: 6
+  lifespan: 25
+  endurance: 15
+  maturation: 8
+  production: 25
+  yield: 30
+  potency: 10
+  chemicals:
+    Blood: 0.2
+    Vitamin: 0.04
+    Nutriment: 0.1
+  traits: [ LiquidContents, PerennialGrowth ]
+  graftTrait: LiquidContents
+  mutations: [ MutationKillerTomato ]
+  rarity: 20
+
+- type: plantSpecies
+  id: KillerTomatoPlants
+  name: seeds-killertomato-name
+  packetPrototype: KillerTomatoSeeds
+  productPrototypes: [ MobTomatoKiller ]
+  plantRsi: Objects/Specific/Hydroponics/tomatokiller.rsi
+  growthStages: 2
+  lifespan: 25
+  endurance: 15
+  maturation: 8
+  production: 25
+  yield: 20
+  potency: 10
+  chemicals:
+    Blood: 0.1
+    JuiceTomato: 0.04
+    Vitamin: 0.04
+    Nutriment: 0.1
+  cookingMinimums: # SS14's old amounts
+    JuiceTomato: { min: 1, max: 4, potencyDivisor: 25 }
+  traits: [ DormantFerocity ]
+  graftTrait: LiquidContents
+  rarity: 30
+  harvestLogImpact: High
+  plantLogImpact: High
+
+- type: plantSpecies
+  id: EggplantPlants
+  name: seeds-eggplant-name
+  packetPrototype: EggplantSeeds
+  productPrototypes: [ FoodEggplant ]
+  plantRsi: Objects/Specific/Hydroponics/eggplant.rsi
+  growthStages: 3
+  lifespan: 25
+  endurance: 15
+  maturation: 25
+  production: 25
+  yield: 20
+  potency: 20
+  chemicals:
+    Nutriment: 0.1
+    Vitamin: 0.04
+  traits: [ PerennialGrowth ]
+  infusionMutations: [ MutationEggyInfusion ]
+
+- type: plantSpecies
+  id: CabbagePlants
+  name: seeds-cabbage-name
+  packetPrototype: CabbageSeeds
+  productPrototypes: [ FoodCabbage ]
+  plantRsi: Objects/Specific/Hydroponics/cabbage.rsi
+  growthStages: 1
+  lifespan: 50
+  endurance: 25
+  maturation: 30
+  production: 5
+  yield: 40
+  potency: 10
+  harvestAge: 100
+  chemicals:
+    Nutriment: 0.1
+    Vitamin: 0.04
+  traits: [ PerennialGrowth ]
+
+- type: plantSpecies
+  id: GarlicPlants
+  name: seeds-garlic-name
+  packetPrototype: GarlicSeeds
+  productPrototypes: [ FoodGarlic ]
+  plantRsi: Objects/Specific/Hydroponics/garlic.rsi
+  growthStages: 3
+  lifespan: 25
+  endurance: 15
+  maturation: 25
+  production: 25
+  yield: 60
+  potency: 25
+  chemicals:
+    Nutriment: 0.1
+    Vitamin: 0.04
+    Allicin: 0.15
+  cookingMinimums: # SS14's old amounts
+    Allicin: { min: 1, max: 8, potencyDivisor: 25 }
+
+- type: plantSpecies
+  id: ApplePlants
+  name: seeds-apple-name
+  packetPrototype: AppleSeeds
+  productPrototypes: [ FoodApple ]
+  plantRsi: Objects/Specific/Hydroponics/apple.rsi
+  growthStages: 6
+  lifespan: 55
+  endurance: 35
+  maturation: 25
+  production: 25
+  yield: 50
+  potency: 10
+  harvestAge: 200
+  chemicals:
+    Nutriment: 0.1
+    Vitamin: 0.04
+  traits: [ PerennialGrowth, LargeBites ]
+  mutations: [ MutationGoldenApple ]
+
+- type: plantSpecies
+  id: GoldenApplePlants
+  name: seeds-goldenapple-name
+  packetPrototype: GoldenAppleSeeds
+  productPrototypes: [ FoodGoldenApple ]
+  plantRsi: Objects/Specific/Hydroponics/golden_apple.rsi
+  growthStages: 6
+  lifespan: 55
+  endurance: 35
+  maturation: 30
+  production: 30
+  yield: 50
+  potency: 10
+  harvestAge: 400
+  chemicals:
+    Nutriment: 0.1
+    Vitamin: 0.04
+    DoctorsDelight: 0.1
+    Gold: 0.2
+  traits: [ PerennialGrowth ]
+  rarity: 40
+
+- type: plantSpecies
+  id: CornPlants
+  name: seeds-corn-name
+  packetPrototype: CornSeeds
+  productPrototypes: [ FoodCorn ]
+  plantRsi: Objects/Specific/Hydroponics/corn.rsi
+  growthStages: 3
+  lifespan: 25
+  endurance: 15
+  maturation: 8
+  production: 25
+  yield: 30
+  potency: 20
+  chemicals:
+    Nutriment: 0.1
+    Cornmeal: 0.1
+    Cornoil: 0.2
+    Vitamin: 0.04
+  cookingMinimums: # SS14's old amounts
+    Cornmeal: { min: 5, max: 15, potencyDivisor: 10 }
+
+- type: plantSpecies
+  id: OnionPlants
+  name: seeds-onion-name
+  packetPrototype: OnionSeeds
+  productPrototypes: [ FoodOnion ]
+  plantRsi: Objects/Specific/Hydroponics/onion.rsi
+  growthStages: 3
+  lifespan: 20
+  endurance: 25
+  maturation: 30
+  production: 4
+  yield: 60
+  potency: 10
+  weedChance: 3
+  harvestAge: 80
+  chemicals:
+    Nutriment: 0.1
+    Vitamin: 0.04
+    Allicin: 0.04
+  cookingMinimums: # SS14's old amounts
+    Allicin: { min: 1, max: 4, potencyDivisor: 25 }
+  mutations: [ MutationOnionRed, MutationBloonion ]
+
+- type: plantSpecies
+  id: OnionRedPlants
+  name: seeds-onionred-name
+  packetPrototype: OnionRedSeeds
+  productPrototypes: [ FoodOnionRed ]
+  plantRsi: Objects/Specific/Hydroponics/onion_red.rsi
+  growthStages: 3
+  lifespan: 20
+  endurance: 25
+  maturation: 30
+  production: 4
+  yield: 60
+  potency: 10
+  weedChance: 1
+  harvestAge: 80
+  chemicals:
+    Nutriment: 0.1
+    Vitamin: 0.04
+    Allicin: 0.04
+  cookingMinimums: # SS14's old amounts
+    Allicin: { min: 1, max: 4, potencyDivisor: 25 }
+
+- type: plantSpecies
+  id: ChanterellePlants
+  name: seeds-chanterelle-name
+  noun: seeds-noun-spores
+  packetPrototype: ChanterelleSeeds
+  productPrototypes: [ FoodMushroom ]
+  plantRsi: Objects/Specific/Hydroponics/chanterelle.rsi
+  growthStages: 3
+  lifespan: 35
+  endurance: 20
+  maturation: 7
+  production: 1
+  yield: 50
+  potency: 15
+  chemicals:
+    Nutriment: 0.1
+  traits: [ FungalVitality ]
+  graftTrait: FungalVitality
+
+- type: plantSpecies
+  id: EggyPlants
+  name: seeds-eggy-name
+  packetPrototype: EggySeeds
+  productPrototypes: [ FoodEgg ]
+  plantRsi: Objects/Specific/Hydroponics/eggy.rsi
+  growthStages: 6
+  lifespan: 75
+  endurance: 15
+  maturation: 25
+  production: 12
+  yield: 20
+  potency: 20
+  harvestAge: 240
+  chemicals:
+    Egg: 0.1
+    Nutriment: 0.1
+  cookingMinimums: # SS14's old amounts
+    Egg: { min: 4, max: 12, potencyDivisor: 10 }
+  traits: [ PerennialGrowth ]
+
+- type: plantSpecies
+  id: CannabisPlants
+  name: seeds-cannabis-name
+  packetPrototype: CannabisSeeds
+  productPrototypes: [ LeavesCannabis ]
+  plantRsi: Objects/Specific/Hydroponics/cannabis.rsi
+  growthStages: 3
+  lifespan: 25
+  endurance: 15
+  maturation: 40
+  production: 25
+  yield: 30
+  potency: 20
+  chemicals:
+    THC: 0.15
+  traits: [ PerennialGrowth ]
+  mutations: [ MutationOmegaCannabis, MutationRainbowCannabis ]
+
+- type: plantSpecies
+  id: RainbowCannabisPlants
+  name: seeds-rainbow-cannabis-name
+  packetPrototype: RainbowCannabisSeeds
+  productPrototypes: [ LeavesCannabisRainbow ]
+  plantRsi: Objects/Specific/Hydroponics/rainbow_cannabis.rsi
+  growthStages: 3
+  lifespan: 25
+  endurance: 15
+  maturation: 40
+  production: 25
+  yield: 30
+  potency: 20
+  chemicals:
+    SpaceDrugs: 0.15
+    Lipolicide: 0.15
+    MindbreakerToxin: 0.1
+    Happiness: 0.1
+    Psicodine: 0.03
+  traits: [ PerennialGrowth ]
+  rarity: 40
+
+- type: plantSpecies
+  id: TobaccoPlants
+  name: seeds-tobacco-name
+  packetPrototype: TobaccoSeeds
+  productPrototypes: [ LeavesTobacco ]
+  plantRsi: Objects/Specific/Hydroponics/tobacco.rsi
+  growthStages: 3
+  lifespan: 20
+  endurance: 15
+  maturation: 35
+  production: 5
+  yield: 100
+  potency: 10
+  chemicals:
+    Nicotine: 0.1
+
+- type: plantSpecies
+  id: NettlePlants
+  name: seeds-nettle-name
+  packetPrototype: NettleSeeds
+  productPrototypes: [ Nettle ]
+  plantRsi: Objects/Specific/Hydroponics/nettle.rsi
+  growthStages: 5
+  lifespan: 30
+  endurance: 40
+  maturation: 25
+  production: 25
+  yield: 40
+  potency: 10
+  chemicals:
+    Histamine: 0.25
+    SulfuricAcid: 0.5
+  traits: [ PerennialGrowth, WeedAdaptation, SharpenedLeaves, StingingStem ]
+  graftTrait: WeedAdaptation
+  mutations: [ MutationDeathNettle ]
+
+- type: plantSpecies
+  id: DeathNettlePlants
+  name: seeds-deathnettle-name
+  packetPrototype: DeathNettleSeeds
+  productPrototypes: [ DeathNettle ]
+  plantRsi: Objects/Specific/Hydroponics/death_nettle.rsi
+  growthStages: 5
+  lifespan: 30
+  endurance: 25
+  maturation: 8
+  production: 25
+  yield: 20
+  potency: 10
+  chemicals:
+    SulfuricAcid: 0.5
+    FluorosulfuricAcid: 0.5
+  traits: [ PerennialGrowth, WeedAdaptation, HypodermicPrickles, AggressiveSharpenedLeaves, AggressiveStingingStem ]
+  graftTrait: HypodermicPrickles
+  rarity: 20
+  harvestLogImpact: High
+  plantLogImpact: High
+
+- type: plantSpecies
+  id: ChiliPlants
+  name: seeds-chili-name
+  packetPrototype: ChiliSeeds
+  productPrototypes: [ FoodChiliPepper ]
+  plantRsi: Objects/Specific/Hydroponics/chili.rsi
+  growthStages: 6
+  lifespan: 20
+  endurance: 15
+  maturation: 20
+  production: 20
+  yield: 40
+  potency: 20
+  harvestAge: 100
+  chemicals:
+    CapsaicinOil: 0.25
+    Nutriment: 0.04
+    Vitamin: 0.04
+  cookingMinimums: # SS14's old amounts
+    CapsaicinOil: { min: 1, max: 10, potencyDivisor: 10 }
+  traits: [ PerennialGrowth ]
+  infusionMutations: [ MutationChillyInfusion ]
+
+- type: plantSpecies
+  id: ChillyPlants
+  name: seeds-chilly-name
+  packetPrototype: ChillySeeds
+  productPrototypes: [ FoodChillyPepper ]
+  plantRsi: Objects/Specific/Hydroponics/chilly.rsi
+  growthStages: 6
+  lifespan: 25
+  endurance: 15
+  maturation: 12
+  production: 4
+  yield: 40
+  potency: 20
+  harvestAge: 80
+  chemicals:
+    FrostOil: 0.25
+    Nutriment: 0.02
+    Vitamin: 0.02
+  cookingMinimums: # SS14's old amounts
+    FrostOil: { min: 1, max: 10, potencyDivisor: 10 }
+  traits: [ EndothermicActivity ]
+  graftTrait: EndothermicActivity
+  rarity: 20
+
+- type: plantSpecies
+  id: PoppyPlants
+  name: seeds-poppy-name
+  packetPrototype: PoppySeeds
+  productPrototypes: [ FoodPoppy ]
+  plantRsi: Objects/Specific/Hydroponics/poppy.rsi
+  growthStages: 3
+  lifespan: 25
+  endurance: 10
+  maturation: 8
+  production: 25
+  yield: 60
+  potency: 20
+  chemicals:
+    Nutriment: 0.05
+    Bicaridine: 0.2
+  traits: [ NaturalInsecticide ]
+  mutations: [ MutationLily ]
+
+- type: plantSpecies
+  id: LilyPlants
+  name: seeds-lily-name
+  packetPrototype: LilySeeds
+  productPrototypes: [ FoodLily ]
+  plantRsi: Objects/Specific/Hydroponics/lily.rsi
+  growthStages: 3
+  lifespan: 25
+  endurance: 10
+  maturation: 8
+  production: 25
+  yield: 60
+  potency: 20
+  chemicals:
+    Nutriment: 0.05
+    Bicaridine: 0.2
+  traits: [ NaturalInsecticide ]
+  mutations: [ MutationSpacemansTrumpet ]
+
+- type: plantSpecies
+  id: AloePlants
+  name: seeds-aloe-name
+  packetPrototype: AloeSeeds
+  productPrototypes: [ FoodAloe ]
+  plantRsi: Objects/Specific/Hydroponics/aloe.rsi
+  growthStages: 5
+  lifespan: 60
+  endurance: 25
+  maturation: 12
+  production: 12
+  yield: 60
+  potency: 10
+  chemicals:
+    Aloe: 0.1
+    Dermaline: 0.1
+    Vitamin: 0.05
+    Nutriment: 0.05
+
+- type: plantSpecies
+  id: LingzhiPlants
+  name: seeds-lingzhi-name
+  noun: seeds-noun-spores
+  packetPrototype: LingzhiSeeds
+  productPrototypes: [ FoodLingzhi ]
+  plantRsi: Objects/Specific/Hydroponics/lingzhi.rsi
+  growthStages: 3
+  lifespan: 35
+  endurance: 35
+  maturation: 10
+  production: 5
+  yield: 40
+  potency: 15
+  chemicals:
+    Ultravasculine: 0.2
+    Epinephrine: 0.2
+    Painkiller: 0.35
+    Dylovene: 0.35
+  traits: [ FungalVitality ]
+  graftTrait: FungalVitality
+
+- type: plantSpecies
+  id: AmbrosiaVulgarisPlants
+  name: seeds-ambrosiavulgaris-name
+  packetPrototype: AmbrosiaVulgarisSeeds
+  productPrototypes: [ FoodAmbrosiaVulgaris ]
+  plantRsi: Objects/Specific/Hydroponics/ambrosia_vulgaris.rsi
+  growthStages: 6
+  lifespan: 60
+  endurance: 25
+  maturation: 25
+  production: 25
+  yield: 60
+  potency: 5
+  chemicals:
+    Nutriment: 0.05
+    Bicaridine: 0.1
+    Kelotane: 0.1
+    Vitamin: 0.04
+    SpaceDrugs: 0.15
+    Toxin: 0.1
+  traits: [ PerennialGrowth ]
+  mutations: [ MutationAmbrosiaDeus ]
+
+- type: plantSpecies
+  id: AmbrosiaDeusPlants
+  name: seeds-ambrosiadeus-name
+  packetPrototype: AmbrosiaDeusSeeds
+  productPrototypes: [ FoodAmbrosiaDeus ]
+  plantRsi: Objects/Specific/Hydroponics/ambrosia_deus.rsi
+  growthStages: 6
+  lifespan: 60
+  endurance: 25
+  maturation: 25
+  production: 25
+  yield: 60
+  potency: 5
+  chemicals:
+    Nutriment: 0.05
+    Omnizine: 0.15
+    SpaceDrugs: 0.1
+    Synaptizine: 0.15
+    Vitamin: 0.04
+  traits: [ PerennialGrowth ]
+  rarity: 40
+
+- type: plantSpecies
+  id: GalaxythistlePlants
+  name: seeds-galaxythistle-name
+  packetPrototype: GalaxythistleSeeds
+  productPrototypes: [ FoodGalaxythistle ]
+  plantRsi: Objects/Specific/Hydroponics/galaxythistle.rsi
+  growthStages: 3
+  lifespan: 70
+  endurance: 40
+  maturation: 30
+  production: 2
+  yield: 20
+  potency: 25
+  chemicals:
+    Stellibinin: 0.25
+    Nutriment: 0.05
+  traits: [ WeedAdaptation, GalaxythistleSpreading ]
+  graftTrait: InvasiveSpreading
+  mutations: [ MutationGlasstle ]
+
+- type: plantSpecies
+  id: GlasstlePlants
+  name: seeds-glasstle-name
+  packetPrototype: GlasstleSeeds
+  productPrototypes: [ FoodGlasstle ]
+  plantRsi: Objects/Specific/Hydroponics/glasstle.rsi
+  growthStages: 3
+  lifespan: 70
+  endurance: 40
+  maturation: 30
+  production: 2
+  yield: 20
+  potency: 25
+  chemicals:
+    Razorium: 0.25
+    Desoxyephedrine: 0.1
+    Nutriment: 0.05
+  traits: [ WeedAdaptation, GalaxythistleSpreading ]
+  graftTrait: InvasiveSpreading
+
+- type: plantSpecies
+  id: FlyAmanitaPlants
+  name: seeds-flyamanita-name
+  noun: seeds-noun-spores
+  packetPrototype: FlyAmanitaSeeds
+  productPrototypes: [ FoodFlyAmanita ]
+  plantRsi: Objects/Specific/Hydroponics/fly_amanita.rsi
+  growthStages: 2
+  lifespan: 50
+  endurance: 35
+  maturation: 10
+  production: 5
+  yield: 40
+  potency: 10
+  harvestAge: 100
+  chemicals:
+    Amatoxin: 0.35
+    Nutriment: 0.05
+  traits: [ FungalVitality ]
+  graftTrait: FungalVitality
+
+- type: plantSpecies
+  id: GatfruitPlants
+  name: seeds-gatfruit-name
+  packetPrototype: GatfruitSeeds
+  productPrototypes: [ FoodGatfruit ]
+  plantRsi: Objects/Specific/Hydroponics/gatfruit.rsi
+  growthStages: 2
+  lifespan: 20
+  endurance: 20
+  maturation: 1
+  production: 10
+  yield: 20
+  potency: 60
+  chemicals:
+    Nutriment: 0.05
+    Sulfur: 0.1
+    Carbon: 0.1
+    Nitrogen: 0.07
+    Potassium: 0.05
+  traits: [ PerennialGrowth ]
+  mutations: [ MutationFakeCapfruit, MutationRealCapfruit ]
+  rarity: 60
+
+- type: plantSpecies
+  id: FakeCapfruitPlants
+  name: seeds-capfruit-name
+  packetPrototype: FakeCapfruitSeeds
+  productPrototypes: [ FoodFakeCapfruit ]
+  plantRsi: Objects/Specific/Hydroponics/capfruit.rsi
+  growthStages: 2
+  lifespan: 20
+  endurance: 20
+  maturation: 1
+  production: 10
+  yield: 20
+  potency: 60
+  chemicals:
+    Nutriment: 0.05
+    Sulfur: 0.1
+    Carbon: 0.1
+    Nitrogen: 0.07
+    Potassium: 0.05
+  traits: [ PerennialGrowth ]
+  rarity: 60
+
+- type: plantSpecies
+  id: RealCapfruitPlants
+  name: seeds-capfruit-name
+  packetPrototype: RealCapfruitSeeds
+  productPrototypes: [ FoodRealCapfruit ]
+  plantRsi: Objects/Specific/Hydroponics/capfruit.rsi
+  growthStages: 2
+  lifespan: 20
+  endurance: 20
+  maturation: 1
+  production: 10
+  yield: 20
+  potency: 60
+  chemicals:
+    Nutriment: 0.05
+    Sulfur: 0.1
+    Carbon: 0.1
+    Nitrogen: 0.07
+    Potassium: 0.05
+  traits: [ PerennialGrowth ]
+  rarity: 60
+
+- type: plantSpecies
+  id: RicePlants
+  name: seeds-rice-name
+  packetPrototype: RiceSeeds
+  productPrototypes: [ RiceBushel ]
+  plantRsi: Objects/Specific/Hydroponics/rice.rsi
+  growthStages: 4
+  lifespan: 25
+  endurance: 15
+  maturation: 25
+  production: 1
+  yield: 40
+  potency: 15
+  harvestAge: 100
+  chemicals:
+    Nutriment: 0.04
+    Rice: 0.05
+  cookingMinimums: # SS14's old amounts
+    Rice: { min: 5, max: 20, potencyDivisor: 20 }
+
+- type: plantSpecies
+  id: SoybeanPlants
+  name: seeds-soybeans-name
+  packetPrototype: SoybeanSeeds
+  productPrototypes: [ FoodSoybeans ]
+  plantRsi: Objects/Specific/Hydroponics/soybeans.rsi
+  growthStages: 4
+  lifespan: 25
+  endurance: 15
+  maturation: 12
+  production: 4
+  yield: 30
+  potency: 15
+  chemicals:
+    Nutriment: 0.05
+    Vitamin: 0.04
+    Oil: 0.03
+  traits: [ PerennialGrowth ]
+  mutations: [ MutationKoibean ]
+
+- type: plantSpecies
+  id: SpacemansTrumpetPlants
+  name: seeds-spacemans-trumpet-name
+  packetPrototype: SpacemansTrumpetSeeds
+  productPrototypes: [ FoodSpacemansTrumpet ]
+  plantRsi: Objects/Specific/Hydroponics/spacemans_trumpet.rsi
+  growthStages: 4
+  lifespan: 80
+  endurance: 10
+  maturation: 12
+  production: 5
+  yield: 40
+  potency: 20
+  weedRate: 2
+  weedChance: 10
+  chemicals:
+    Nutriment: 0.05
+    PolypyryliumOligomers: 0.2
+  traits: [ NaturalInsecticide ]
+  rarity: 30
+
+- type: plantSpecies
+  id: KoibeanPlants
+  name: seeds-koibean-name
+  packetPrototype: KoibeanSeeds
+  productPrototypes: [ FoodKoibean ]
+  plantRsi: Objects/Specific/Hydroponics/koibean.rsi
+  growthStages: 4
+  lifespan: 25
+  endurance: 15
+  maturation: 12
+  production: 4
+  yield: 30
+  potency: 10
+  chemicals:
+    Nutriment: 0.05
+    CarpoToxin: 0.1
+    Vitamin: 0.04
+  traits: [ PerennialGrowth ]
+  rarity: 20
+
+- type: plantSpecies
+  id: GrapePlants
+  name: seeds-grape-name
+  packetPrototype: GrapeSeeds
+  productPrototypes: [ FoodGrape ]
+  plantRsi: Objects/Specific/Hydroponics/grape.rsi
+  growthStages: 2
+  lifespan: 50
+  endurance: 25
+  maturation: 30
+  production: 5
+  yield: 40
+  potency: 10
+  chemicals:
+    Nutriment: 0.1
+    Vitamin: 0.04
+    Sugar: 0.1
+  traits: [ PerennialGrowth ]
+
+- type: plantSpecies
+  id: WatermelonPlants
+  name: seeds-watermelon-name
+  packetPrototype: WatermelonSeeds
+  productPrototypes: [ FoodWatermelon ]
+  plantRsi: Objects/Specific/Hydroponics/watermelon.rsi
+  growthStages: 6
+  lifespan: 50
+  endurance: 40
+  maturation: 25
+  production: 25
+  yield: 30
+  potency: 10
+  chemicals:
+    Nutriment: 0.2
+    Water: 0.2
+    Vitamin: 0.04
+  traits: [ PerennialGrowth ]
+  mutations: [ MutationBarrelmelon, MutationHolymelon, MutationHoneydew ]
+
+- type: plantSpecies
+  id: HolymelonPlants
+  name: seeds-holymelon-name
+  packetPrototype: HolymelonSeeds
+  productPrototypes: [ FoodHolymelon ]
+  plantRsi: Objects/Specific/Hydroponics/holymelon.rsi
+  growthStages: 6
+  lifespan: 50
+  endurance: 40
+  maturation: 25
+  production: 25
+  yield: 30
+  potency: 10
+  chemicals:
+    Nutriment: 0.1
+    Holywater: 0.2
+    Vitamin: 0.04
+  traits: [ YellowBioluminescence, AntiMagicVacuoles ]
+  graftTrait: YellowBioluminescence
+  rarity: 20
+
+- type: plantSpecies
+  id: CocoaPlants
+  name: seeds-cocoa-name
+  packetPrototype: CocoaSeeds
+  productPrototypes: [ FoodCocoaPod ]
+  plantRsi: Objects/Specific/Hydroponics/cocoa.rsi
+  growthStages: 6
+  lifespan: 20
+  endurance: 15
+  maturation: 25
+  production: 25
+  yield: 20
+  potency: 10
+  chemicals:
+    Vitamin: 0.04
+    Nutriment: 0.1
+    CocoaPowder: 0.25
+  traits: [ PerennialGrowth ]
+  mutations: [ MutationBungo ]
+
+- type: plantSpecies
+  id: BerryPlants
+  name: seeds-berries-name
+  packetPrototype: BerrySeeds
+  productPrototypes: [ FoodBerries ]
+  plantRsi: Objects/Specific/Hydroponics/berries.rsi
+  growthStages: 6
+  lifespan: 20
+  endurance: 15
+  maturation: 25
+  production: 5
+  yield: 20
+  potency: 10
+  harvestAge: 100
+  chemicals:
+    Nutriment: 0.1
+    Vitamin: 0.04
+  traits: [ PerennialGrowth ]
+
+- type: plantSpecies
+  id: BungoPlants
+  name: seeds-bungo-name
+  packetPrototype: BungoSeeds
+  productPrototypes: [ FoodBungo ]
+  plantRsi: Objects/Specific/Hydroponics/bungo.rsi
+  growthStages: 4
+  lifespan: 30
+  endurance: 15
+  maturation: 12
+  production: 7
+  yield: 30
+  potency: 10
+  chemicals:
+    Nutriment: 0.1
+    Enzyme: 0.1
+  cookingMinimums: # SS14's old amounts
+    Enzyme: { min: 5, max: 10, potencyDivisor: 20 }
+  traits: [ PerennialGrowth ]
+  rarity: 15
+
+- type: plantSpecies
+  id: PeaPlants
+  name: seeds-pea-name
+  packetPrototype: PeaSeeds
+  productPrototypes: [ FoodPeaPod ]
+  plantRsi: Objects/Specific/Hydroponics/pea.rsi
+  growthStages: 3
+  lifespan: 25
+  endurance: 15
+  maturation: 30
+  production: 25
+  yield: 30
+  potency: 25
+  chemicals:
+    Nutriment: 0.05
+    Vitamin: 0.1
+    Water: 0.05
+  traits: [ PerennialGrowth ]
+  mutations: [ MutationLaughinPea ]
+
+- type: plantSpecies
+  id: WorldPeaPlants
+  name: seeds-worldpea-name
+  packetPrototype: PeaSeeds
+  productPrototypes: [ FoodWorldPeas ]
+  plantRsi: Objects/Specific/Hydroponics/world_pea.rsi
+  growthStages: 3
+  lifespan: 25
+  endurance: 15
+  maturation: 20
+  production: 10
+  yield: 10
+  potency: 75
+  chemicals:
+    Happiness: 0.1
+    Nutriment: 0.15
+    Pax: 0.1
+  traits: [ BlueBioluminescence ]
+  graftTrait: BlueBioluminescence
+  rarity: 50
+
+- type: plantSpecies
+  id: PumpkinPlants
+  name: seeds-pumpkin-name
+  packetPrototype: PumpkinSeeds
+  productPrototypes: [ FoodPumpkin ]
+  plantRsi: Objects/Specific/Hydroponics/pumpkin.rsi
+  growthStages: 3
+  lifespan: 50
+  endurance: 40
+  maturation: 25
+  production: 25
+  yield: 30
+  potency: 10
+  chemicals:
+    PumpkinFlesh: 0.2
+    Vitamin: 0.04
+    Nutriment: 0.2
+  cookingMinimums: # SS14's old amounts
+    PumpkinFlesh: { min: 1, max: 20, potencyDivisor: 5 }
+  traits: [ PerennialGrowth ]
+  mutations: [ MutationBluePumpkin ]
+
+- type: plantSpecies
+  id: BluePumpkinPlants
+  name: seeds-blue-pumpkin-name
+  packetPrototype: BluePumpkinSeeds
+  productPrototypes: [ FoodBluePumpkin ]
+  plantRsi: Objects/Specific/Hydroponics/blue_pumpkin.rsi
+  growthStages: 3
+  lifespan: 50
+  endurance: 40
+  maturation: 25
+  production: 25
+  yield: 30
+  potency: 10
+  chemicals:
+    Ammonia: 0.2
+    Chlorine: 0.1
+    Vitamin: 0.333
+    Nutriment: 0.2
+  traits: [ PerennialGrowth ]
+  rarity: 20
+
+- type: plantSpecies
+  id: CottonPlants
+  name: seeds-cotton-name
+  packetPrototype: CottonSeeds
+  productPrototypes: [ CottonBol ]
+  plantRsi: Objects/Specific/Hydroponics/cotton.rsi
+  growthStages: 3
+  lifespan: 35
+  endurance: 25
+  maturation: 15
+  production: 1
+  yield: 20
+  potency: 50
+  harvestAge: 100
+  chemicals:
+    Fiber: 0.05
+  cookingMinimums: # SS14's old amounts
+    Fiber: { min: 5, max: 10, potencyDivisor: 20 }
+  mutations: [ MutationPyrotton ]
+
+- type: plantSpecies
+  id: PyrottonPlants
+  name: seeds-pyrotton-name
+  packetPrototype: PyrottonSeeds
+  productPrototypes: [ PyrottonBol ]
+  plantRsi: Objects/Specific/Hydroponics/pyrotton.rsi
+  growthStages: 3
+  lifespan: 35
+  endurance: 25
+  maturation: 15
+  production: 1
+  yield: 20
+  potency: 50
+  harvestAge: 100
+  chemicals:
+    Fiber: 0.05
+    Phlogiston: 0.033
+  cookingMinimums: # SS14's old amounts
+    Fiber: { min: 5, max: 10, potencyDivisor: 20 }
+
+- type: plantSpecies
+  id: CherryPlants
+  name: seeds-cherry-name
+  packetPrototype: CherrySeeds
+  productPrototypes: [ FoodCherry ]
+  plantRsi: Objects/Specific/Hydroponics/cherry.rsi
+  growthStages: 6
+  lifespan: 35
+  endurance: 35
+  maturation: 40
+  production: 5
+  yield: 30
+  potency: 10
+  harvestAge: 100
+  chemicals:
+    Nutriment: 0.07
+    Vitamin: 0.025
+    Sugar: 0.07
+  traits: [ PerennialGrowth ]
+
+- type: plantSpecies
+  id: AnomalyBerryPlants
+  name: seeds-anomaly-berry-name
+  packetPrototype: AnomalyBerrySeeds
+  productPrototypes: [ FoodAnomalyBerry ]
+  plantRsi: Objects/Specific/Hydroponics/anomaly_berry.rsi
+  growthStages: 2
+  lifespan: 20
+  endurance: 15
+  maturation: 25
+  production: 5
+  yield: 20
+  potency: 10
+  harvestAge: 100
+  chemicals:
+    Artifexium: 0.25
+    Nutriment: 0.1
+    Vitamin: 0.04
+  traits: [ PerennialGrowth ]
+
+- type: plantSpecies
+  id: BloonionPlants
+  name: seeds-bloonion-name
+  packetPrototype: BloonionSeeds
+  productPrototypes: [ FoodBloonion ]
+  plantRsi: Objects/Specific/Hydroponics/bloonion.rsi
+  growthStages: 4
+  lifespan: 20
+  endurance: 25
+  maturation: 30
+  production: 4
+  yield: 60
+  potency: 10
+  weedChance: 3
+  harvestAge: 80
+  chemicals:
+    Potassium: 0.05
+    Phosphorus: 0.05
+    Sugar: 0.05
+    Allicin: 0.1
+    Vitamin: 0.04
+    Nutriment: 0.1
+  cookingMinimums: # SS14's old amounts
+    Sugar: { min: 1, max: 5, potencyDivisor: 20 }
+    Allicin: { min: 1, max: 10, potencyDivisor: 10 }
+
+- type: plantSpecies
+  id: WhitebeetPlants
+  name: seeds-whitebeet-name
+  packetPrototype: WhitebeetSeeds
+  productPrototypes: [ FoodWhitebeet ]
+  plantRsi: Objects/Specific/Hydroponics/whitebeet.rsi
+  growthStages: 6
+  lifespan: 60
+  endurance: 50
+  maturation: 25
+  production: 25
+  yield: 60
+  potency: 10
+  chemicals:
+    Vitamin: 0.04
+    Sugar: 0.2
+    Nutriment: 0.05
+  mutations: [ MutationRedbeet ]
+
+- type: plantSpecies
+  id: RedbeetPlants
+  name: seeds-redbeet-name
+  packetPrototype: RedbeetSeeds
+  productPrototypes: [ FoodRedbeet ]
+  plantRsi: Objects/Specific/Hydroponics/redbeet.rsi
+  growthStages: 6
+  lifespan: 60
+  endurance: 50
+  maturation: 25
+  production: 25
+  yield: 50
+  potency: 10
+  chemicals:
+    Vitamin: 0.05
+    Nutriment: 0.05
+  traits: [ DensifiedChemicals ]
+  graftTrait: DensifiedChemicals
+
+- type: plantSpecies
+  id: OmegaCannabisPlants
+  name: seeds-omegacannabis-name
+  packetPrototype: OmegaCannabisSeeds
+  productPrototypes: [ LeavesCannabisOmega ]
+  plantRsi: Objects/Specific/Hydroponics/omega_cannabis.rsi
+  growthStages: 3
+  lifespan: 25
+  endurance: 15
+  maturation: 40
+  production: 25
+  yield: 30
+  potency: 20
+  chemicals:
+    THC: 0.3
+    MindbreakerToxin: 0.3
+    Mercury: 0.15
+    Lithium: 0.15
+    Desoxyephedrine: 0.15
+    Lipolicide: 0.15
+    Nicotine: 0.1
+  traits: [ PerennialGrowth, GreenBioluminescence, DankVesicles ]
+  graftTrait: GreenBioluminescence
+  rarity: 69
+
+- type: plantSpecies
+  id: HoneydewPlants
+  name: seeds-honeydew-name
+  packetPrototype: HoneydewSeeds
+  productPrototypes: [ FoodHoneydew ]
+  plantRsi: Objects/Specific/Hydroponics/honeydew.rsi
+  growthStages: 6
+  lifespan: 60
+  endurance: 40
+  maturation: 25
+  production: 25
+  yield: 30
+  potency: 10
+  chemicals:
+    Vitamin: 0.1
+    Nutriment: 0.15
+  traits: [ PerennialGrowth ]
+  graftTrait: PerennialGrowth
+  mutations: [ MutationBarrelmelon, MutationHolymelon, MutationHoneydew ]
+  rarity: 20
+
+- type: plantSpecies
+  id: BarrelmelonPlants
+  name: seeds-barrelmelon-name
+  packetPrototype: BarrelmelonSeeds
+  productPrototypes: [ FoodBarrelmelon ]
+  plantRsi: Objects/Specific/Hydroponics/barrelmelon.rsi
+  growthStages: 6
+  lifespan: 50
+  endurance: 40
+  maturation: 25
+  production: 25
+  yield: 30
+  potency: 10
+  chemicals:
+    Ale: 0.2
+    Nutriment: 0.1
+  traits: [ AutoDistilling ]
+  graftTrait: AutoDistilling
+  rarity: 10
+
+- type: plantSpecies
+  id: StrangePlants
+  name: seeds-strange-name
+  packetPrototype: StrangeSeeds
+  productPrototypes: [ FoodStrangePlant ]
+  plantRsi: Objects/Specific/Hydroponics/strange.rsi
+  growthStages: 4
+  lifespan: 25
+  endurance: 15
+  maturation: 25
+  production: 25
+  yield: 30
+  potency: 10

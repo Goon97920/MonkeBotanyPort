@@ -1,0 +1,351 @@
+# Plant traits, ported from Monkestation code/modules/hydroponics/plant_genes.dm and unique_plant_genes.dm.
+
+- type: plantTrait
+  id: LiquidContents
+  name: plant-trait-liquid-contents-name
+  description: plant-trait-liquid-contents-desc
+  flags: Removable, Mutatable, Graftable
+  groups: [ ThrowImpact, ReagentTransfer, AttackSelf ]
+  produceComponents:
+  - type: PlantSquash
+
+- type: plantTrait
+  id: SlipperySkin
+  name: plant-trait-slippery-skin-name
+  description: plant-trait-slippery-skin-desc
+  flags: Removable, Mutatable, Graftable
+  produceComponents:
+  - type: PlantSlippery
+
+- type: plantTrait
+  id: ElectricalActivity
+  name: plant-trait-electrical-activity-name
+  description: plant-trait-electrical-activity-desc
+  flags: Removable, Mutatable, Graftable
+  produceComponents:
+  - type: PlantElectric
+
+- type: plantTrait
+  id: Bioluminescence
+  name: plant-trait-bioluminescence-name
+  description: plant-trait-bioluminescence-desc
+  flags: Removable, Mutatable, Graftable
+  groups: [ Glow ]
+  glowColor: "#C3E381"
+
+- type: plantTrait
+  id: ShadowEmission
+  name: plant-trait-shadow-emission-name
+  description: plant-trait-shadow-emission-desc
+  flags: Removable, Mutatable, Graftable
+  groups: [ Glow ]
+  glowColor: "#AAD84B"
+  glowRate: 0.04
+
+- type: plantTrait
+  id: WhiteBioluminescence
+  name: plant-trait-white-bioluminescence-name
+  description: plant-trait-white-bioluminescence-desc
+  flags: Removable, Mutatable, Graftable
+  groups: [ Glow ]
+  glowColor: "#FFFFFF"
+
+- type: plantTrait
+  id: RedBioluminescence
+  name: plant-trait-red-bioluminescence-name
+  description: plant-trait-red-bioluminescence-desc
+  flags: Removable, Mutatable, Graftable
+  groups: [ Glow ]
+  glowColor: "#FF3333"
+
+- type: plantTrait
+  id: YellowBioluminescence
+  name: plant-trait-yellow-bioluminescence-name
+  description: plant-trait-yellow-bioluminescence-desc
+  flags: Removable, Mutatable, Graftable
+  groups: [ Glow ]
+  glowColor: "#FFFF66"
+
+- type: plantTrait
+  id: GreenBioluminescence
+  name: plant-trait-green-bioluminescence-name
+  description: plant-trait-green-bioluminescence-desc
+  flags: Removable, Mutatable, Graftable
+  groups: [ Glow ]
+  glowColor: "#99FF99"
+
+- type: plantTrait
+  id: BlueBioluminescence
+  name: plant-trait-blue-bioluminescence-name
+  description: plant-trait-blue-bioluminescence-desc
+  flags: Removable, Mutatable, Graftable
+  groups: [ Glow ]
+  glowColor: "#6699FF"
+
+- type: plantTrait
+  id: PurpleBioluminescence
+  name: plant-trait-purple-bioluminescence-name
+  description: plant-trait-purple-bioluminescence-desc
+  flags: Removable, Mutatable, Graftable
+  groups: [ Glow ]
+  glowColor: "#D966FF"
+
+- type: plantTrait
+  id: PinkBioluminescence
+  name: plant-trait-pink-bioluminescence-name
+  description: plant-trait-pink-bioluminescence-desc
+  flags: Removable, Mutatable, Graftable
+  groups: [ Glow ]
+  glowColor: "#FFB3DA"
+
+- type: plantTrait
+  id: BluespaceActivity
+  name: plant-trait-bluespace-activity-name
+  description: plant-trait-bluespace-activity-desc
+  flags: Removable, Mutatable, Graftable
+  produceComponents:
+  - type: PlantTeleport
+
+- type: plantTrait
+  id: DensifiedChemicals
+  name: plant-trait-densified-chemicals-name
+  description: plant-trait-densified-chemicals-desc
+  flags: Removable, Mutatable, Graftable
+  volumeMultiplier: 2
+  halvesYieldOnGain: true
+
+- type: plantTrait
+  id: PerennialGrowth
+  name: plant-trait-perennial-growth-name
+  description: plant-trait-perennial-growth-desc
+  flags: Removable, Mutatable, Graftable
+  perennial: true
+
+- type: plantTrait
+  id: CapacitiveCellProduction
+  name: plant-trait-capacitive-cell-production-name
+  description: plant-trait-capacitive-cell-production-desc
+  flags: Removable, Mutatable, Graftable
+  produceComponents:
+  - type: PlantBattery
+
+- type: plantTrait
+  id: HypodermicPrickles
+  name: plant-trait-hypodermic-prickles-name
+  description: plant-trait-hypodermic-prickles-desc
+  flags: Removable, Mutatable, Graftable
+  groups: [ ReagentTransfer ]
+  produceComponents:
+  - type: PlantStinging
+
+- type: plantTrait
+  id: GaseousDecomposition
+  name: plant-trait-gaseous-decomposition-name
+  description: plant-trait-gaseous-decomposition-desc
+  flags: Removable, Mutatable, Graftable
+  produceComponents:
+  - type: PlantSmoke
+
+- type: plantTrait
+  id: FireResistance
+  name: plant-trait-fire-resistance-name
+  description: plant-trait-fire-resistance-desc
+  flags: Removable, Mutatable, Graftable
+
+- type: plantTrait
+  id: InvasiveSpreading
+  name: plant-trait-invasive-spreading-name
+  description: plant-trait-invasive-spreading-desc
+  flags: Removable, Mutatable, Graftable
+
+- type: plantTrait
+  id: AutoDistilling
+  name: plant-trait-auto-distilling-name
+  description: plant-trait-auto-distilling-desc
+  flags: Removable, Mutatable, Graftable
+  groups: [ ContentsChange ]
+  distilling: true
+
+- type: plantTrait
+  id: AutoJuicing
+  name: plant-trait-auto-juicing-name
+  description: plant-trait-auto-juicing-desc
+  flags: Removable, Mutatable, Graftable
+  groups: [ ContentsChange ]
+  juicing: true
+
+- type: plantTrait
+  id: HallucinatoryFeedback
+  name: plant-trait-hallucinatory-feedback-name
+  description: plant-trait-hallucinatory-feedback-desc
+  flags: Removable, Mutatable, Graftable
+  produceComponents:
+  - type: PlantLaughter
+
+- type: plantTrait
+  id: OcularyMimicry
+  name: plant-trait-oculary-mimicry-name
+  description: plant-trait-oculary-mimicry-desc
+  flags: Removable, Mutatable, Graftable
+
+- type: plantTrait
+  id: PricklyAdhesion
+  name: plant-trait-prickly-adhesion-name
+  description: plant-trait-prickly-adhesion-desc
+  flags: Removable, Mutatable, Graftable
+  groups: [ ThrowImpact ]
+  produceComponents:
+  - type: PlantSticky
+
+- type: plantTrait
+  id: ExothermicActivity
+  name: plant-trait-exothermic-activity-name
+  description: plant-trait-exothermic-activity-desc
+  flags: Removable, Mutatable, Graftable
+  groups: [ TempChange ]
+  heatPerNutriment: 25
+  halvesYieldOnGain: true
+
+- type: plantTrait
+  id: EndothermicActivity
+  name: plant-trait-endothermic-activity-name
+  description: plant-trait-endothermic-activity-desc
+  flags: Removable, Mutatable, Graftable
+  groups: [ TempChange ]
+  coolPerNutriment: 5
+  halvesYieldOnGain: true
+
+- type: plantTrait
+  id: ProsophobicInclination
+  name: plant-trait-prosophobic-inclination-name
+  description: plant-trait-prosophobic-inclination-desc
+  flags: Removable, Graftable
+
+- type: plantTrait
+  id: SymbioticResilience
+  name: plant-trait-symbiotic-resilience-name
+  description: plant-trait-symbiotic-resilience-desc
+  flags: Removable, Graftable
+
+- type: plantTrait
+  id: NaturalInsecticide
+  name: plant-trait-natural-insecticide-name
+  description: plant-trait-natural-insecticide-desc
+  flags: Removable, Mutatable, Graftable
+
+- type: plantTrait
+  id: ObligateCarnivory
+  name: plant-trait-obligate-carnivory-name
+  description: plant-trait-obligate-carnivory-desc
+  flags: None
+
+- type: plantTrait
+  id: WeedAdaptation
+  name: plant-trait-weed-adaptation-name
+  description: plant-trait-weed-adaptation-desc
+  flags: Graftable
+  groups: [ PlantType ]
+
+- type: plantTrait
+  id: FungalVitality
+  name: plant-trait-fungal-vitality-name
+  description: plant-trait-fungal-vitality-desc
+  flags: Graftable
+  groups: [ PlantType ]
+
+- type: plantTrait
+  id: AlienProperties
+  name: plant-trait-alien-properties-name
+  flags: Graftable
+  groups: [ PlantType ]
+
+- type: plantTrait
+  id: Seedless
+  name: plant-trait-seedless-name
+  description: plant-trait-seedless-desc
+  flags: Removable, Mutatable, Graftable
+  seedless: true
+
+- type: plantTrait
+  id: CatalyticInhibitorSerum
+  name: plant-trait-catalytic-inhibitor-serum-name
+  description: plant-trait-catalytic-inhibitor-serum-desc
+  flags: Removable, Graftable
+  noReact: true
+
+- type: plantTrait
+  id: AntiMagicVacuoles
+  name: plant-trait-anti-magic-vacuoles-name
+  description: plant-trait-anti-magic-vacuoles-desc
+  flags: None
+
+- type: plantTrait
+  id: SharpenedLeaves
+  name: plant-trait-sharpened-leaves-name
+  flags: None
+
+- type: plantTrait
+  id: AggressiveSharpenedLeaves
+  name: plant-trait-aggressive-sharpened-leaves-name
+  flags: None
+
+- type: plantTrait
+  id: StingingStem
+  name: plant-trait-stinging-stem-name
+  description: plant-trait-stinging-stem-desc
+  flags: None
+
+- type: plantTrait
+  id: AggressiveStingingStem
+  name: plant-trait-aggressive-stinging-stem-name
+  description: plant-trait-aggressive-stinging-stem-desc
+  flags: None
+
+- type: plantTrait
+  id: DormantFerocity
+  name: plant-trait-dormant-ferocity-name
+  flags: None
+  groups: [ AttackSelf ]
+
+- type: plantTrait
+  id: LargeBites
+  name: plant-trait-large-bites-name
+  description: plant-trait-large-bites-desc
+  flags: None
+  oneBite: true
+
+- type: plantTrait
+  id: DeepVesicles
+  name: plant-trait-deep-vesicles-name
+  description: plant-trait-deep-vesicles-desc
+  flags: None
+  baseVolume: 100
+
+- type: plantTrait
+  id: DankVesicles
+  name: plant-trait-dank-vesicles-name
+  description: plant-trait-dank-vesicles-desc
+  flags: None
+  baseVolume: 420
+
+- type: plantTrait
+  id: PowderFilledBulbs
+  name: plant-trait-powder-filled-bulbs-name
+  description: plant-trait-powder-filled-bulbs-desc
+  flags: None
+  baseVolume: 125
+
+- type: plantTrait
+  id: GalaxythistleSpreading
+  name: plant-trait-galaxythistle-spreading-name
+  description: plant-trait-galaxythistle-spreading-desc
+  flags: Graftable
+
+- type: plantTrait
+  id: SyndicateHypodermicNeedles
+  name: plant-trait-syndicate-hypodermic-needles-name
+  description: plant-trait-syndicate-hypodermic-needles-desc
+  flags: Removable, Graftable
+  produceComponents:
+  - type: PlantSyndicateNeedles
+  randomPool: false

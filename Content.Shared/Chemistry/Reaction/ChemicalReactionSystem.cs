@@ -53,6 +53,15 @@ namespace Content.Shared.Chemistry.Reaction
         /// <summary>
         ///     Handles building the reaction cache.
         /// </summary>
+        /// <summary>
+        /// Rebuilds the reactant lookup after a reaction's reactants were changed at runtime
+        /// (randomized recipes like metalgen).
+        /// </summary>
+        public void RebuildReactionCache()
+        {
+            InitializeReactionCache();
+        }
+
         private void InitializeReactionCache()
         {
             // Construct single-reaction dictionary.

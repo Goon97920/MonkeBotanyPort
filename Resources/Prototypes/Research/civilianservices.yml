@@ -33,6 +33,8 @@
   recipeUnlocks:
   - SeedExtractorMachineCircuitboard
   - HydroponicsTrayMachineCircuitboard
+  - PlantDnaManipulatorMachineCircuitboard
+  - PlantSplicerMachineCircuitboard
   - ReagentGrinderIndustrialMachineCircuitboard
 
 - type: technology

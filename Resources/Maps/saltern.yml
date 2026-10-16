@@ -5,7 +5,7 @@ meta:
   forkId: ""
   forkVersion: ""
   time: 09/22/2026 18:21:07
-  entityCount: 11484
+  entityCount: 11486
 maps:
 - 658
 grids:
@@ -5171,7 +5171,7 @@ entities:
     components:
     - type: Transform
       parent: 31
-      pos: -19.764086,1.4415555
+      pos: -20.7641,-0.558445
   - uid: 5631
     components:
     - type: Transform
@@ -24122,7 +24122,7 @@ entities:
     components:
     - type: Transform
       parent: 31
-      pos: -20.5,-1.5
+      pos: -16.5,-0.5
   - uid: 9023
     components:
     - type: Transform
@@ -28477,6 +28477,20 @@ entities:
         9418:
         - - ArtifactAnalyzerSender
           - ArtifactAnalyzerReceiver
+- proto: PlantDnaManipulator
+  entities:
+  - uid: 11485
+    components:
+    - type: Transform
+      parent: 31
+      pos: -19.5,1.5
+- proto: PlantSplicer
+  entities:
+  - uid: 11486
+    components:
+    - type: Transform
+      parent: 31
+      pos: -20.5,-1.5
 - proto: computerBodyScanner
   entities:
   - uid: 7285

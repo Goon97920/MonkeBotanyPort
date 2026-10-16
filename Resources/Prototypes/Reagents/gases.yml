@@ -393,3 +393,85 @@
         messages: [ "frezon-euphoric" ]
         probability: 0.1
         minScale: 1
+
+# Monkestation (tgstation) gases.
+
+# Breathing BZ: hallucinations, and brain damage at high concentration (SS14 has no brain damage,
+# so it's poison here).
+- type: reagent
+  id: BZ
+  name: reagent-name-bz
+  desc: reagent-desc-bz
+  physicalDesc: reagent-physical-desc-gaseous
+  flavor: bitter
+  color: "#C9A13E"
+  boilingPoint: -30
+  meltingPoint: -40
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectSeeingRainbow
+        type: Add
+        time: 20
+    Respiration:
+      effects:
+      - !type:ModifyStatusEffect
+        minScale: 0.2
+        effectProto: StatusEffectSeeingRainbow
+        type: Add
+        time: 20
+      - !type:HealthChange
+        minScale: 2
+        probability: 0.33
+        damage:
+          types:
+            Poison: 3
+
+# Healium: deep, regenerative sleep. Monkestation heals 2 burn, 5 toxin and 2 brute every
+# 2 second tick at half strength, which is 1, 2.5 and 1 per second here.
+- type: reagent
+  id: Healium
+  name: reagent-name-healium
+  desc: reagent-desc-healium
+  physicalDesc: reagent-physical-desc-gaseous
+  flavor: bitter
+  color: "#C25A5A"
+  boilingPoint: -150
+  meltingPoint: -160
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectForcedSleeping
+        time: 3
+        type: Update
+      - !type:EvenHealthChange
+        damage:
+          Burn: -1
+          Toxin: -2.5
+          Brute: -1
+    Respiration:
+      effects:
+      - !type:PopupMessage
+        minScale: 0.1
+        type: Local
+        messages: [ "healium-head-spinning" ]
+        probability: 0.15
+      - !type:ModifyStatusEffect
+        minScale: 0.5
+        probability: 0.3
+        effectProto: StatusEffectForcedSleeping
+        time: 4
+        type: Update
+      - !type:ModifyStatusEffect
+        minScale: 1
+        effectProto: StatusEffectForcedSleeping
+        time: 3
+        type: Update
+      - !type:EvenHealthChange
+        minScale: 1
+        damage:
+          Burn: -1
+          Toxin: -2.5
+          Brute: -1

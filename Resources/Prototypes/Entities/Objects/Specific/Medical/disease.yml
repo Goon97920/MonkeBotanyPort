@@ -14,7 +14,7 @@
     - BotanyTool
     - Recyclable
     - Trash
-  - type: BotanySwab
+    - Swab
   - type: GuideHelp
     guides:
   # - Virology (when it's back)
@@ -36,8 +36,8 @@
     - BotanyTool
   - type: BallisticAmmoProvider
     whitelist:
-      components:
-      - BotanySwab
+      tags:
+      - Swab
     proto: DiseaseSwab
     capacity: 30
   - type: GuideHelp

@@ -146,6 +146,8 @@
       prob: 0.3
     - id: ClothingBeltPlantFilled
     - id: PlantBag ##Some maps don't have nutrivend
+    - id: PortableSeedExtractor # Monkestation botanist locker
+    - id: BoxPlantDataDisk # Monkestation botanist locker
     - id: BoxMouthSwab
     - id: Dropper
     - id: HandLabeler

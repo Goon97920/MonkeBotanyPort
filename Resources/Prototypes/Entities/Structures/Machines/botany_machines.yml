@@ -1,0 +1,216 @@
+# Monkestation botany machines. Sprites from tgstation (CC-BY-SA-3.0).
+
+- type: entity
+  id: PlantDnaManipulator
+  name: plant DNA manipulator
+  parent: [ BaseMachinePowered, ConstructibleMachine, BaseConstructibleMachineDestructible ]
+  description: An advanced device designed to manipulate plant genetic makeup. Extracts genes from seeds onto plant data disks, and inserts them into others.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/plant_dna_manipulator.rsi
+    snapCardinals: true
+    layers:
+    - state: off
+    - state: icon
+      shader: unshaded
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+    - state: panel
+      map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: true }
+          False: { visible: false }
+  - type: WiresPanel
+  - type: ApcPowerReceiver
+    powerLoad: 400
+  - type: PlantDnaManipulator
+  - type: ItemSlots
+    slots:
+      seed_slot:
+        name: plant-dna-slot-seed
+        whitelist:
+          components:
+          - Seed
+      disk_slot:
+        name: plant-dna-slot-disk
+        whitelist:
+          components:
+          - PlantGeneDisk
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      seed_slot: !type:ContainerSlot
+      disk_slot: !type:ContainerSlot
+  - type: ActivatableUI
+    key: enum.PlantDnaManipulatorUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+      enum.PlantDnaManipulatorUiKey.Key:
+        type: PlantDnaManipulatorBoundUserInterface
+  - type: Machine
+    board: PlantDnaManipulatorMachineCircuitboard
+  - type: GuideHelp
+    guides:
+    - Botany
+
+- type: entity
+  id: PlantSplicer
+  name: seed splicer
+  parent: [ BaseMachinePowered, ConstructibleMachine, BaseConstructibleMachineDestructible ]
+  description: A machine that splices two seeds into a hybrid, or infuses a seed with the reagents in a beaker.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/plant_splicer.rsi
+    snapCardinals: true
+    layers:
+    - state: off
+    - state: icon
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+    - state: panel
+      map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: true }
+          False: { visible: false }
+  - type: WiresPanel
+  - type: ApcPowerReceiver
+    powerLoad: 400
+  - type: PlantSplicer
+    # Monkestation generate_infusion_values. Per unit of the reagent in the beaker.
+    infusions:
+      Uranium:
+        Maturation: { min: -1, max: 1 }
+        Production: { min: -1, max: 1 }
+        Potency: { min: -1, max: 1 }
+        Yield: { min: -1, max: 1 }
+        Lifespan: { min: -1, max: 1 }
+        Endurance: { min: -1, max: 1 }
+      Radium:
+        Maturation: { min: -1, max: 1 }
+        Production: { min: -1, max: 1 }
+        Potency: { min: -1, max: 1 }
+        Yield: { min: -1, max: 1 }
+        Lifespan: { min: -1, max: 1 }
+        Endurance: { min: -1, max: 1 }
+      Ammonia:
+        Maturation: { min: 0.5, max: 1 }
+        Production: { min: 0.2, max: 0.5 }
+      RobustHarvest:
+        Yield: { min: 0.1, max: 0.4 }
+        Lifespan: { min: -0.2, max: 0 }
+      Saltpetre:
+        Potency: { min: 0.4, max: 1.6, step: 0.2 }
+        Yield: { min: 0, max: 0.4, step: 0.2 }
+  - type: ItemSlots
+    slots:
+      seed_slot_one:
+        name: plant-splicer-slot-seed-one
+        whitelist:
+          components:
+          - Seed
+      seed_slot_two:
+        name: plant-splicer-slot-seed-two
+        whitelist:
+          components:
+          - Seed
+      beaker_slot:
+        name: plant-splicer-slot-beaker
+        whitelist:
+          components:
+          - FitsInDispenser
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      seed_slot_one: !type:ContainerSlot
+      seed_slot_two: !type:ContainerSlot
+      beaker_slot: !type:ContainerSlot
+  - type: ActivatableUI
+    key: enum.PlantSplicerUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+      enum.PlantSplicerUiKey.Key:
+        type: PlantSplicerBoundUserInterface
+  - type: Machine
+    board: PlantSplicerMachineCircuitboard
+  - type: GuideHelp
+    guides:
+    - Botany
+
+## Boards
+
+- type: entity
+  id: PlantDnaManipulatorMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: plant DNA manipulator machine board
+  description: A machine printed circuit board for a plant DNA manipulator.
+  components:
+  - type: Sprite
+    state: service
+  - type: MachineBoard
+    prototype: PlantDnaManipulator
+    stackRequirements:
+      Manipulator: 2
+      Glass: 1
+      Cable: 2
+
+- type: entity
+  id: PlantSplicerMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: seed splicer machine board
+  description: A machine printed circuit board for a seed splicer.
+  components:
+  - type: Sprite
+    state: service
+  - type: MachineBoard
+    prototype: PlantSplicer
+    stackRequirements:
+      Manipulator: 2
+      Cable: 2
+    tagRequirements:
+      GlassBeaker:
+        amount: 1
+        defaultPrototype: Beaker

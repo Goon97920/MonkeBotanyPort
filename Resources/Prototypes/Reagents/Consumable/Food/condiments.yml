@@ -147,19 +147,6 @@
   recognizable: true
   boilingPoint: 1465.0
   meltingPoint: 800.7
-  plantMetabolism:
-  - !type:PlantAdjustWater
-    amount: -3
-  - !type:PlantAdjustNutrition
-    amount: -0.3
-  - !type:PlantAdjustToxins
-    amount: 8
-  - !type:PlantAdjustWeeds
-    amount: -2
-  - !type:PlantAdjustPests
-    amount: -1
-  - !type:PlantAdjustHealth
-    amount: -2
   metabolisms:
     Digestion:
       effects:

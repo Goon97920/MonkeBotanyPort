@@ -7,12 +7,6 @@
       methods: [ Touch ]
       effects:
         - !type:Flammable
-  plantMetabolism:
-    - !type:PlantAdjustWeeds
-      amount: -2
-    - !type:PlantAdjustHealth
-      amount: -2
-
 - type: reagent
   id: Thermite
   name: reagent-name-thermite
@@ -65,6 +59,13 @@
             Caustic: 0.5 # based off napalm being an irritant
       - !type:Flammable
         multiplier: 0.4
+  plantMetabolism:
+    - !type:PlantAdjustHealth
+      perUnit: -6
+    - !type:PlantTrayAdjust
+      attribute: Weeds
+      flatMin: -9
+      flatMax: -5
 
 - type: reagent
   id: Phlogiston

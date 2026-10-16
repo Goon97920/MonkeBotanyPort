@@ -1,0 +1,42 @@
+# Monkestation metalgen. Its recipe is randomized on the server every 3 days; see MetalgenSystem.
+
+- type: reagent
+  id: Metalgen
+  name: reagent-name-metalgen
+  group: Unknown
+  desc: reagent-desc-metalgen
+  physicalDesc: reagent-physical-desc-metallic
+  flavor: nothing
+  color: "#b000aa"
+  tileReactions:
+  - !type:MetalgenTileReaction {}
+
+- type: reaction
+  id: MetalgenSynthesis
+  # Placeholder that can never react. The server replaces the reactants with the random recipe.
+  hidden: true
+  quantized: true
+  reactants:
+    Metalgen:
+      amount: 100000
+  products:
+    Metalgen: 20
+
+- type: reaction
+  id: MetalgenImprint
+  reactants:
+    Metalgen:
+      amount: 1
+    Mercury: # liquid dark matter in Monkestation
+      amount: 1
+  products:
+    Metalgen: 1
+  extension: !type:MetalgenKeepImprintExtension {}
+  effects:
+  - !type:MetalgenImprint
+    metals:
+      Iron: Steel
+      Gold: Gold
+      Silver: Silver
+      Uranium: Uranium
+      Plasma: Plasma

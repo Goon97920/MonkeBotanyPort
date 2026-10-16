@@ -57,3 +57,21 @@
     guides:
     - Botanical
     - Chemicals
+
+# Monkestation /obj/item/storage/box/plant_gene, found in every botanist's locker.
+- type: entity
+  name: disk storage box
+  parent: BoxCardboard
+  id: BoxPlantDataDisk
+  description: A box of blank plant data disks.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: PlantDataDisk
+          amount: 6
+  - type: Sprite
+    layers:
+    - state: box
+    - state: disk

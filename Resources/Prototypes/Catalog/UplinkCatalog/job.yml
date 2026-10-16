@@ -254,3 +254,33 @@
   - !type:BuyerJobCondition
     whitelist:
     - Lawyer
+
+# Monkestation botany
+
+- type: listing
+  id: UplinkPlantDiskCatalyticInhibitor
+  name: uplink-plant-disk-catalytic-inhibitor-name
+  description: uplink-plant-disk-catalytic-inhibitor-desc
+  productEntity: PlantDataDiskCatalyticInhibitor
+  cost:
+    Telecrystal: 17
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Botanist
+
+- type: listing
+  id: UplinkPlantDiskSyndicateNeedles
+  name: uplink-plant-disk-syndicate-needles-name
+  description: uplink-plant-disk-syndicate-needles-desc
+  productEntity: PlantDataDiskSyndicateNeedles
+  cost:
+    Telecrystal: 10
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Botanist

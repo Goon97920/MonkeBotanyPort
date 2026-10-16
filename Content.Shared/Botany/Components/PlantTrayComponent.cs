@@ -1,127 +1,125 @@
-using Content.Shared.Botany.Systems;
 using Content.Shared.Chemistry.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
+using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared.Botany.Components;
 
+[Serializable, NetSerializable]
+public enum PlantState : byte
+{
+    None,
+    Growing,
+    Harvestable,
+    Dead,
+}
+
 /// <summary>
-/// Component for hydroponics trays plots that hold resources and link to a plant entity.
+/// A hydroponics tray or soil plot. Ported from Monkestation's <c>/datum/component/plant_growing</c>
+/// and <c>/datum/component/growth_information</c>: the tray holds the planted genome, a
+/// nutrient solution whose reagents change the plant's stats every cycle, and water.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true, raiseAfterAutoHandleState: true), AutoGenerateComponentPause]
-[Access(typeof(PlantTraySystem))]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true), AutoGenerateComponentPause]
 public sealed partial class PlantTrayComponent : Component
 {
-    /// <summary>
-    /// Amount of water available to the plant.
-    /// </summary>
+    /// <summary>The planted genome, if anything is planted.</summary>
     [DataField, AutoNetworkedField]
-    public float WaterLevel = 100f;
+    public PlantGenome? Genome;
 
     [DataField, AutoNetworkedField]
-    public float MaxWaterLevel = 100f;
+    public PlantState State = PlantState.None;
 
-    /// <summary>
-    /// Amount of nutrients available to the plant.
-    /// </summary>
+    /// <summary>Growth cycles since planting or the last repeat harvest.</summary>
     [DataField, AutoNetworkedField]
-    public float NutritionLevel = 100f;
+    public int GrowthCycle;
 
+    /// <summary>Age in cycles. Stops increasing once the plant is fully grown.</summary>
     [DataField, AutoNetworkedField]
-    public float MaxNutritionLevel = 100f;
+    public int Age;
 
-    /// <summary>
-    /// Amount of weeds growing in the tray.
-    /// </summary>
+    /// <summary>Plant health. Maximum is three times endurance.</summary>
     [DataField, AutoNetworkedField]
-    public float WeedLevel;
+    public float Health;
 
+    /// <summary>Extra lifespan granted by repeat harvests (5% of lifespan each).</summary>
     [DataField, AutoNetworkedField]
-    public float MaxWeedLevel = 10f;
+    public float RepeatedHarvestValue;
 
-    /// <summary>
-    /// Amount of pests in the tray
-    /// </summary>
+    /// <summary>Water, as a percentage of <see cref="MaxWater"/>.</summary>
     [DataField, AutoNetworkedField]
-    public float PestLevel;
+    public float WaterPercent = 100f;
 
-    [DataField, AutoNetworkedField]
-    public float MaxPestLevel = 10f;
-
-    /// <summary>
-    /// Amount of toxins in the tray.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public float ToxinLevel;
+    /// <summary>Units of water the tray holds at 100%.</summary>
+    [DataField]
+    public float MaxWater = 200f;
 
     [DataField, AutoNetworkedField]
-    public float MaxToxinLevel = 100f;
+    public float Toxicity;
 
-    /// <summary>
-    /// Chance per tick for weeds to grow around this tray.
-    /// </summary>
     [DataField, AutoNetworkedField]
-    public float WeedGrowthChance = 0.01f;
+    public float Pests;
 
-    /// <summary>
-    /// Amount of weed growth per successful weed tray tick.
-    /// </summary>
     [DataField, AutoNetworkedField]
-    public float WeedGrowthAmount = 0.5f;
+    public float Weeds;
 
-    /// <summary>
-    /// Multiplier for weed growth rate.
-    /// </summary>
+    /// <summary>Self-sustenance percentage (Earthsblood). At 100% weeds stop growing.</summary>
     [DataField, AutoNetworkedField]
-    public float WeedCoefficient = 1f;
+    public float SelfSustain;
 
-    /// <summary>
-    /// Multiplier for resource consumption (water, nutrients) in the tray.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public float TrayConsumptionMultiplier = 2f;
+    /// <summary>Counts work cycles; water drain and weeds happen every second cycle.</summary>
+    [DataField]
+    public int WorkCycle;
 
-    /// <summary>
-    /// Currently planted plant entity (parented to this tray).
-    /// </summary>
-    [ViewVariables, AutoNetworkedField]
-    public EntityUid? PlantEntity;
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
+    public TimeSpan NextWork = TimeSpan.Zero;
 
-    /// <summary>
-    /// Set to true if the plant holder displays plant warnings (e.g. water low) in the sprite and
-    /// examine text. Used to differentiate hydroponic trays from simple soil plots.
-    /// </summary>
+    /// <summary>Time between growth cycles (Monkestation work_processes).</summary>
+    [DataField]
+    public TimeSpan WorkInterval = TimeSpan.FromSeconds(10);
+
+    /// <summary>Whether the tray shows warning lights (hydroponics trays do, soil doesn't).</summary>
     [DataField]
     public bool DrawWarnings;
 
-    /// <summary>
-    /// Sound played when any reagent is transferred into the tray.
-    /// </summary>
     [DataField]
     public SoundSpecifier? WateringSound;
 
-    /// <summary>
-    /// Name of the solution container that holds the soil/nutrient solution.
-    /// </summary>
-    [ViewVariables]
+    [DataField]
     public string SoilSolutionName = "soil";
 
-    /// <summary>
-    /// Reference to the soil solution container.
-    /// </summary>
     [ViewVariables]
-    public Entity<SolutionComponent>? SoilSolution = null;
+    public Entity<SolutionComponent>? SoilSolution;
 
-    /// <summary>
-    /// Game time for the next plant reagent update.
-    /// </summary>
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoNetworkedField, AutoPausedField]
-    public TimeSpan NextUpdate = TimeSpan.Zero;
-
-    /// <summary>
-    /// The basic tick for updating the tray, between which most of the tray logic processing takes place.
-    /// </summary>
+    /// <summary>Reagent units in the soil the last time the server looked. Networked for examine.</summary>
     [DataField, AutoNetworkedField]
-    public TimeSpan UpdateDelay = TimeSpan.FromSeconds(3);
+    public float Nutrients;
+
+    /// <summary>Percentage of growth done, networked for UI and examine.</summary>
+    [DataField, AutoNetworkedField]
+    public float GrowthPercent;
+
+    public const float MaxWeeds = 10f;
+    public const float MaxPests = 10f;
+}
+
+/// <summary>Appearance keys for trays.</summary>
+[Serializable, NetSerializable]
+public enum PlantTrayVisuals : byte
+{
+    /// <summary>RSI path of the planted species (string), empty when nothing is planted.</summary>
+    PlantRsi,
+    /// <summary>State in that RSI to draw (string).</summary>
+    PlantState,
+    HealthLight,
+    WaterLight,
+    NutritionLight,
+    AlertLight,
+    HarvestLight,
+}
+
+[Serializable, NetSerializable]
+public enum PlantTrayLayers : byte
+{
+    Plant,
 }

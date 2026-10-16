@@ -117,3 +117,31 @@
   color: '#3a758c'
   reagent: Frezon
   pricePerMole: 1
+
+# Monkestation (tgstation) gases.
+
+- type: gas
+  id: BZ
+  name: gas-bz
+  abbreviation: gas-bz-abbreviation
+  molarHeatCapacity: 20
+  heatCapacityRatio: 1.4
+  molarMass: 70
+  color: '#C9A13E'
+  reagent: BZ
+  pricePerMole: 1.5
+
+- type: gas
+  id: Healium
+  name: gas-healium
+  abbreviation: gas-healium-abbreviation
+  molarHeatCapacity: 10
+  heatCapacityRatio: 1.4
+  molarMass: 40
+  gasOverlaySprite:
+    sprite: /Textures/Effects/atmospherics.rsi
+    state: healium
+  gasMolesVisible: 0.25
+  color: '#C25A5A'
+  reagent: Healium
+  pricePerMole: 5.5

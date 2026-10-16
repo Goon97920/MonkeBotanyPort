@@ -27,3 +27,10 @@ reagent-desc-diethylamine = A very potent fertilizer, treats plants with nutrien
 
 reagent-name-sedin = sedin
 reagent-desc-sedin = A modified version of diethylamine that can restore seeds on plants at the cost of potency.
+
+reagent-name-saltpetre = saltpetre
+reagent-desc-saltpetre = Volatile. Controversial. Third thing. Makes plants healthier, more potent and faster to produce.
+reagent-name-endurogrow = enduro grow
+reagent-desc-endurogrow = A specialized nutriment which decreases product quantity and potency, but strengthens the plant's endurance.
+reagent-name-liquid-earthquake = liquid earthquake
+reagent-desc-liquid-earthquake = A specialized nutriment which increases the plant's production speed, as well as its susceptibility to weeds.

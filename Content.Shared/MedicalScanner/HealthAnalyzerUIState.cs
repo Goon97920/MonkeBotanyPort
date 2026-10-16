@@ -15,6 +15,11 @@ public sealed class HealthAnalyzerUiState : BoundUserInterfaceState
     public bool Bleeding;
     public bool Unrevivable;
 
+    /// <summary>
+    /// Units of plant matter waiting in the secondary stomach (Large Bites produce). Server only; NaN when unknown.
+    /// </summary>
+    public float UndigestedPlantMatter = float.NaN;
+
     public HealthAnalyzerUiState() {}
 
     public HealthAnalyzerUiState(NetEntity? targetEntity, float temperature, float bloodLevel, bool scanMode, bool bleeding, bool unrevivable)

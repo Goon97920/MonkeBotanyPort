@@ -40,6 +40,10 @@
   id: Materials
   name: lathe-category-materials
 
+- type: latheCategory
+  id: Seeds
+  name: lathe-category-seeds
+
 # Circuit imprinter
 - type: latheCategory
   id: Computers

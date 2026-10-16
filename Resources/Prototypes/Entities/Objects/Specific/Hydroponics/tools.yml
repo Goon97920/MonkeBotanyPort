@@ -24,7 +24,7 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 100
-  - type: BotanyHoe
+  - type: BotanyCultivator
 
 - type: entity
   name: plant clippers
@@ -49,7 +49,7 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 100
-  - type: BotanySampleTaker
+  - type: BotanySecateurs
   - type: Tool
     qualities:
     - Shearing
@@ -148,6 +148,7 @@
       sprite: Objects/Tools/Hydroponics/spade.rsi
   - type: Shovel
     speedModifier: 0.75 # slower at digging than a full-sized shovel
+  - type: BotanySpade
   - type: PhysicalComposition
     materialComposition:
       Steel: 100
@@ -178,3 +179,23 @@
         - Produce
         - Seed
   - type: Dumpable
+  - type: BotanyHarvestBag
+
+- type: entity
+  name: portable seed extractor
+  parent: PlantBag
+  id: PortableSeedExtractor
+  description: For the enterprising botanist on the go. Less efficient than the stationary model, it creates one seed per plant. Alt-click to make seeds.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/Equipment/portaseeder.rsi
+    state: icon
+  - type: Clothing
+    sprite: Objects/Specific/Hydroponics/Equipment/portaseeder.rsi
+    quickEquip: false
+    slots:
+    - belt
+  - type: Item
+    sprite: Objects/Specific/Hydroponics/Equipment/portaseeder.rsi
+    storedRotation: -90
+  - type: PortableSeedExtractor

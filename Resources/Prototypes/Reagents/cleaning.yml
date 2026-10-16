@@ -94,6 +94,14 @@
   tileReactions:
   - !type:SpillTileReaction
   friction: 0.05
+  plantMetabolism:
+    - !type:PlantTrainTrait
+      trait: SlipperySkin
+      perUnit: 0.25
+    - !type:PlantAdjustStat
+      stat: Endurance
+      perUnit: 0.08
+      round: false
 
 - type: reagent
   id: SpaceGlue

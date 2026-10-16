@@ -5,7 +5,7 @@ meta:
   forkId: ""
   forkVersion: ""
   time: 09/22/2026 15:51:04
-  entityCount: 16513
+  entityCount: 16515
 maps:
 - 126
 grids:
@@ -46525,6 +46525,20 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 29.5,-27.5
+- proto: PlantDnaManipulator
+  entities:
+  - uid: 16514
+    components:
+    - type: Transform
+      parent: 2
+      pos: 45.5,-3.5
+- proto: PlantSplicer
+  entities:
+  - uid: 16515
+    components:
+    - type: Transform
+      parent: 2
+      pos: 41.5,-3.5
 - proto: computerBodyScanner
   entities:
   - uid: 31

@@ -16,3 +16,7 @@ gas-nitrous-oxide = Nitrous Oxide
 gas-nitrous-oxide-abbreviation = N₂O
 gas-frezon = Frezon
 gas-frezon-abbreviation = F
+gas-bz = BZ
+gas-bz-abbreviation = BZ
+gas-healium = Healium
+gas-healium-abbreviation = Hl

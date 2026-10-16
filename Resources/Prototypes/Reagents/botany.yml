@@ -6,9 +6,6 @@
   flavor: bitter
   color: "#664330"
   physicalDesc: reagent-physical-desc-thick
-  plantMetabolism:
-    - !type:PlantAdjustNutrition
-      amount: 2
   metabolisms:
     Digestion:
       effects:
@@ -17,6 +14,18 @@
         conditions:
         - !type:MetabolizerTypeCondition
           type: [Plant]
+  plantMetabolism:
+    - !type:PlantAdjustHealth
+      perUnit: 0.15
+    - !type:PlantAdjustStat
+      stat: Lifespan
+      perUnit: 0.15
+    - !type:PlantAdjustStat
+      stat: Potency
+      perUnit: 0.1
+    - !type:PlantAdjustStat
+      stat: Yield
+      perUnit: 0.1
 
 - type: reagent
   id: Left4Zed
@@ -26,14 +35,6 @@
   flavor: bitter
   color: "#5b406c"
   physicalDesc: reagent-physical-desc-heterogeneous
-  plantMetabolism:
-    - !type:PlantAdjustNutrition
-      amount: 1
-    - !type:PlantAdjustHealth
-      amount: -0.5
-    - !type:PlantAdjustMutationMod
-      probability: 0.3
-      amount: 0.4
   metabolisms:
     Bloodstream:
       effects:
@@ -49,6 +50,28 @@
         conditions:
         - !type:MetabolizerTypeCondition
           type: [Plant]
+  plantMetabolism:
+    - !type:PlantAdjustHealth
+      round: false
+      flat: -1
+    - !type:PlantAdjustStat
+      stat: Lifespan
+      perUnit: -0.2
+    - !type:PlantAdjustStat
+      stat: Endurance
+      perUnit: 0.1
+    - !type:PlantAdjustStat
+      stat: Potency
+      perUnit: 0.1
+    - !type:PlantAdjustStat
+      stat: Yield
+      perUnit: 0.1
+    - !type:PlantAdjustStat
+      stat: Maturation
+      perUnit: 0.1
+    - !type:PlantAdjustStat
+      stat: Production
+      perUnit: 0.1
 
 - type: reagent
   id: MutagenicFertilizer
@@ -59,11 +82,6 @@
   flavor: earthy
   color: "#759923"
   recognizable: false
-  plantMetabolism:
-  - !type:PlantAdjustMutationLevel
-    amount: 1
-    mutationTable: FarmingPlantMutations
-
 - type: reagent
   id: PestKiller
   name: reagent-name-pest-killer
@@ -72,11 +90,6 @@
   flavor: bitter
   color: "#9e9886"
   physicalDesc: reagent-physical-desc-bubbling
-  plantMetabolism:
-    - !type:PlantAdjustToxins
-      amount: 4
-    - !type:PlantAdjustPests
-      amount: -6
   metabolisms:
     Bloodstream:
       effects:
@@ -87,6 +100,14 @@
         conditions:
         - !type:MetabolizerTypeCondition
           type: [Plant]
+  plantMetabolism:
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: 1
+    - !type:PlantTrayAdjust
+      attribute: Pests
+      flatMin: -2
+      flatMax: -1
 
 - type: reagent
   id: PlantBGone
@@ -96,18 +117,6 @@
   flavor: bitter
   color: "#49002E"
   physicalDesc: reagent-physical-desc-bubbling
-  plantMetabolism:
-    - !type:PlantAdjustToxins
-      amount: 6
-    - !type:PlantAdjustWeeds
-      amount: -8
-    - !type:PlantAdjustHealth
-      amount: -20
-    - !type:PlantAdjustMutationMod
-      amount: 0.1
-    - !type:PlantChangeTraits
-      trait: PlantTraitKudzu
-      type: Remove
   metabolisms:
     Bloodstream:
       effects:
@@ -121,6 +130,16 @@
         conditions:
         - !type:MetabolizerTypeCondition
           type: [Plant]
+  plantMetabolism:
+    - !type:PlantAdjustHealth
+      perUnit: -10
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: 6
+    - !type:PlantTrayAdjust
+      attribute: Weeds
+      flatMin: -8
+      flatMax: -4
 
 - type: reagent
   id: RobustHarvest
@@ -130,16 +149,6 @@
   flavor: bitter
   color: "#3e901c"
   physicalDesc: reagent-physical-desc-robust
-  plantMetabolism:
-    - !type:PlantAdjustNutrition
-      amount: 0.05
-    - !type:PlantAdjustWeeds
-      probability: 0.025
-      amount: 1
-    - !type:PlantAdjustPests
-      probability: 0.025
-      amount: 1
-    - !type:RobustHarvest {}
   metabolisms:
     Bloodstream:
       effects:
@@ -173,6 +182,16 @@
           - !type:ReagentCondition
             reagent: RobustHarvest
             min: 80
+  plantMetabolism:
+    - !type:PlantAdjustStat
+      stat: Yield
+      perUnit: 0.35
+    - !type:PlantAdjustStat
+      stat: Maturation
+      perUnit: 0.1
+    - !type:PlantAdjustStat
+      stat: Production
+      perUnit: 0.05
 
 - type: reagent
   id: Sedin
@@ -182,14 +201,6 @@
   flavor: bitter
   color: "#3CB371"
   physicalDesc: reagent-physical-desc-sickly
-  plantMetabolism:
-    - !type:PlantAdjustHealth
-      amount: -2
-    - !type:PlantRestoreSeeds
-      probability: 0.20
-    - !type:PlantAdjustPotency
-      amount: -3 # Match this with current rate of Robust Harvest potency increase
-
 - type: reagent
   id: WeedKiller
   name: reagent-name-weed-killer
@@ -198,11 +209,6 @@
   flavor: bitter
   color: "#968395"
   physicalDesc: reagent-physical-desc-bubbling
-  plantMetabolism:
-    - !type:PlantAdjustToxins
-      amount: 4
-    - !type:PlantAdjustWeeds
-      amount: -6
   metabolisms:
     Bloodstream:
       effects:
@@ -213,6 +219,14 @@
         conditions:
         - !type:MetabolizerTypeCondition
           type: [Plant]
+  plantMetabolism:
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: 0.5
+    - !type:PlantTrayAdjust
+      attribute: Weeds
+      flatMin: -2
+      flatMax: -1
 
 - type: reagent
   id: Ammonia
@@ -224,11 +238,6 @@
   color: "#77b58e"
   boilingPoint: -33.0
   meltingPoint: -77.7
-  plantMetabolism:
-  - !type:PlantAdjustNutrition
-    amount: 1
-  - !type:PlantAdjustHealth
-    amount: 0.5
   metabolisms:
     Bloodstream:
       effects:
@@ -294,7 +303,20 @@
         - !type:MetabolizerTypeCondition
           type: [ Vox ]
         factor: -4
-
+  plantMetabolism:
+    - !type:PlantAdjustHealth
+      perUnit: 0.12
+    - !type:PlantAdjustStat
+      stat: Maturation
+      perUnit: 0.2
+    - !type:PlantAdjustStat
+      stat: Production
+      perUnit: 0.1
+    - !type:PlantAdjustStat
+      stat: Yield
+      flatMin: 1
+      flatMax: 1
+      probability: 0.1
 
 - type: reagent
   id: Diethylamine
@@ -306,18 +328,6 @@
   color: "#a1000b"
   boilingPoint: 55.5
   meltingPoint: -50.0
-  plantMetabolism:
-  - !type:PlantAdjustNutrition
-    amount: 0.1
-  - !type:PlantAdjustPests
-    probability: 0.1
-    amount: -1
-  - !type:PlantAdjustHealth
-    amount: 0.1
-  - !type:PlantAffectGrowth
-    probability: 0.2
-    amount: 1
-  - !type:PlantDiethylamine {}
   metabolisms:
     Bloodstream:
       effects:
@@ -325,3 +335,71 @@
         damage:
           types:
             Caustic: 1
+  plantMetabolism:
+    - !type:PlantAdjustHealth
+      perUnit: 1
+    - !type:PlantAdjustStat
+      stat: Yield
+      perUnit: 0.2
+    - !type:PlantTrayAdjust
+      attribute: Pests
+      flatMin: -2
+      flatMax: -1
+
+# Monkestation plant nutrients.
+
+- type: reagent
+  id: Saltpetre
+  name: reagent-name-saltpetre
+  group: Botanical
+  desc: reagent-desc-saltpetre
+  flavor: salty
+  color: "#60A584"
+  physicalDesc: reagent-physical-desc-crystalline
+  plantMetabolism:
+    - !type:PlantAdjustHealth
+      perUnit: 0.18
+    - !type:PlantAdjustStat
+      stat: Production
+      perUnit: 0.1
+    - !type:PlantAdjustStat
+      stat: Potency
+      perUnit: 0.2
+
+- type: reagent
+  id: Endurogrow
+  name: reagent-name-endurogrow
+  group: Botanical
+  desc: reagent-desc-endurogrow
+  flavor: bitter
+  color: "#a06fa7"
+  physicalDesc: reagent-physical-desc-thick
+  plantMetabolism:
+    - !type:PlantAdjustStat
+      stat: Potency
+      perUnit: -0.1
+    - !type:PlantAdjustStat
+      stat: Yield
+      perUnit: -0.075
+    - !type:PlantAdjustStat
+      stat: Endurance
+      perUnit: 0.35
+
+- type: reagent
+  id: LiquidEarthquake
+  name: reagent-name-liquid-earthquake
+  group: Botanical
+  desc: reagent-desc-liquid-earthquake
+  flavor: bitter
+  color: "#912e00"
+  physicalDesc: reagent-physical-desc-bubbling
+  plantMetabolism:
+    - !type:PlantAdjustStat
+      stat: WeedRate
+      perUnit: 0.1
+    - !type:PlantAdjustStat
+      stat: WeedChance
+      perUnit: 0.3
+    - !type:PlantAdjustStat
+      stat: Production
+      perUnit: -0.075

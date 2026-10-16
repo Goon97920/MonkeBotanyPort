@@ -284,3 +284,14 @@
   materials:
     Steel: 500
     Plastic: 300
+
+- type: latheRecipe
+  id: StomachPump
+  result: StomachPump
+  categories:
+  - Tools
+  completetime: 4
+  materials:
+    Steel: 300
+    Plastic: 300
+    Glass: 100

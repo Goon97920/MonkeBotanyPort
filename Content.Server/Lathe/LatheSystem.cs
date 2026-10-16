@@ -24,6 +24,8 @@ using Content.Shared.Power;
 using Content.Shared.ReagentSpeed;
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Prototypes;
+using Content.Shared.Storage;
+using Content.Shared.Storage.EntitySystems;
 using JetBrains.Annotations;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
@@ -50,6 +52,7 @@ namespace Content.Server.Lathe
         [Dependency] private ReagentSpeedSystem _reagentSpeed = default!;
         [Dependency] private SharedSolutionContainerSystem _solution = default!;
         [Dependency] private StackSystem _stack = default!;
+        [Dependency] private SharedStorageSystem _storage = default!;
         [Dependency] private TransformSystem _transform = default!;
         [Dependency] private RadioSystem _radio = default!;
 
@@ -234,7 +237,8 @@ namespace Content.Server.Lathe
                 if (currentRecipe.Result is { } resultProto)
                 {
                     var result = Spawn(resultProto, Transform(uid).Coordinates);
-                    _stack.TryMergeToContacts(result);
+                    if (!TryInsertIntoOutput(uid, comp, result))
+                        _stack.TryMergeToContacts(result);
                 }
 
                 if (currentRecipe.ResultReagents is { } resultReagents &&
@@ -267,6 +271,24 @@ namespace Content.Server.Lathe
                 UpdateUserInterfaceState(uid, comp);
                 UpdateRunningAppearance(uid, false);
             }
+        }
+
+        /// <summary>
+        /// Puts a printed item into the storage item held in the lathe's item output slot, if it has one.
+        /// Keeps large print runs (like thousands of strange seeds) off the floor.
+        /// </summary>
+        private bool TryInsertIntoOutput(EntityUid uid, LatheComponent comp, EntityUid result)
+        {
+            if (comp.ItemOutputSlotId is not { } slotId
+                || !_container.TryGetContainer(uid, slotId, out var container)
+                || container.ContainedEntities.Count != 1)
+                return false;
+
+            var output = container.ContainedEntities[0];
+            if (!TryComp<StorageComponent>(output, out var storage))
+                return false;
+
+            return _storage.Insert(output, result, out _, storageComp: storage, playSound: false);
         }
 
         public void UpdateUserInterfaceState(EntityUid uid, LatheComponent? component = null)

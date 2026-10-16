@@ -1,0 +1,223 @@
+# Plant mutations, ported from Monkestation code/modules/hydroponics/mutations.
+# A species mutates while its stats sit inside every listed window.
+
+- type: plantMutation
+  id: MutationAmbrosiaDeus
+  result: AmbrosiaDeusPlants
+  from: [ AmbrosiaVulgarisPlants ]
+  endurance: { min: 40, max: 70 }
+
+- type: plantMutation
+  id: MutationBarrelmelon
+  result: BarrelmelonPlants
+  from: [ HoneydewPlants, WatermelonPlants ]
+  endurance: { min: 60 }
+  lifespan: { min: 40 }
+
+- type: plantMutation
+  id: MutationBloodTomato
+  result: BloodTomatoPlants
+  from: [ BlueTomatoPlants, TomatoPlants ]
+  potency: { min: 60 }
+
+- type: plantMutation
+  id: MutationBloonion
+  result: BloonionPlants
+  from: [ OnionPlants ]
+  endurance: { min: 50 }
+
+- type: plantMutation
+  id: MutationBluePumpkin
+  result: BluePumpkinPlants
+  from: [ PumpkinPlants ]
+  endurance: { max: 30 }
+  lifespan: { max: 30 }
+
+- type: plantMutation
+  id: MutationBlueTomato
+  result: BlueTomatoPlants
+  from: [ BlueTomatoPlants, TomatoPlants ]
+  endurance: { min: 50 }
+
+- type: plantMutation
+  id: MutationBungo
+  result: BungoPlants
+  from: [ CocoaPlants ]
+  endurance: { min: 60 }
+
+- type: plantMutation
+  id: MutationChillyInfusion
+  result: ChillyPlants
+  from: [ ChiliPlants ]
+  infusionReagents: [ Cryoxadone ]
+
+- type: plantMutation
+  id: MutationDeathNettle
+  result: DeathNettlePlants
+  from: [ NettlePlants ]
+  endurance: { min: 80 }
+  lifespan: { min: 40, max: 90 }
+
+- type: plantMutation
+  id: MutationEggyInfusion
+  result: EggyPlants
+  from: [ EggplantPlants ]
+  infusionReagents: [ Eggnog ]
+
+- type: plantMutation
+  id: MutationExtradimensionalOrange
+  result: ExtradimensionalOrangePlants
+  from: [ OrangePlants ]
+  endurance: { min: 50 }
+
+- type: plantMutation
+  id: MutationFakeCapfruit
+  result: FakeCapfruitPlants
+  from: [ GatfruitPlants ]
+  potency: { max: 20 }
+
+- type: plantMutation
+  id: MutationGlasstle
+  result: GlasstlePlants
+  from: [ GalaxythistlePlants ]
+  endurance: { min: 60 }
+
+- type: plantMutation
+  id: MutationGoldenApple
+  result: GoldenApplePlants
+  from: [ ApplePlants ]
+  potency: { min: 70 }
+  yield: { min: 10, max: 15 }
+
+- type: plantMutation
+  id: MutationHolymelon
+  result: HolymelonPlants
+  from: [ HoneydewPlants, WatermelonPlants ]
+  potency: { min: 30, max: 50 }
+  endurance: { min: 60, max: 80 }
+
+- type: plantMutation
+  id: MutationHoneydew
+  result: HoneydewPlants
+  from: [ HoneydewPlants, WatermelonPlants ]
+  yield: { min: 20 }
+  lifespan: { min: 60 }
+
+- type: plantMutation
+  id: MutationKillerTomato
+  result: KillerTomatoPlants
+  from: [ BloodTomatoPlants, BlueTomatoPlants, TomatoPlants ]
+  lifespan: { min: 50, max: 90 }
+
+- type: plantMutation
+  id: MutationKoibean
+  result: KoibeanPlants
+  from: [ SoybeanPlants ]
+  potency: { min: 30, max: 50 }
+
+- type: plantMutation
+  id: MutationLaughinPea
+  result: LaughinPeaPlants
+  from: [ PeaPlants ]
+  potency: { min: 40, max: 50 }
+  endurance: { max: 25 }
+
+- type: plantMutation
+  id: MutationLemoon
+  result: LemoonPlants
+  from: [ LemonPlants ]
+  lifespan: { min: 80 }
+
+- type: plantMutation
+  id: MutationLily
+  result: LilyPlants
+  from: [ PoppyPlants ]
+
+- type: plantMutation
+  id: MutationLime
+  result: LimePlants
+  from: [ OrangePlants ]
+
+- type: plantMutation
+  id: MutationMeatWheat
+  result: MeatWheatPlants
+  from: [ WheatPlants ]
+  lifespan: { min: 70 }
+
+- type: plantMutation
+  id: MutationMimana
+  result: MimanaPlants
+  from: [ BananaPlants ]
+  potency: { max: 20 }
+  lifespan: { min: 60, max: 80 }
+
+- type: plantMutation
+  id: MutationOat
+  result: OatPlants
+  from: [ WheatPlants ]
+  endurance: { min: 50 }
+
+- type: plantMutation
+  id: MutationOmegaCannabis
+  result: OmegaCannabisPlants
+  from: [ CannabisPlants ]
+  potency: { min: 420 }
+
+- type: plantMutation
+  id: MutationOnionRed
+  result: OnionRedPlants
+  from: [ OnionPlants ]
+  potency: { min: 70 }
+
+- type: plantMutation
+  id: MutationOrange
+  result: OrangePlants
+  from: [ LimePlants ]
+
+- type: plantMutation
+  id: MutationPapercane
+  result: PapercanePlants
+  from: [ SugarcanePlants ]
+  endurance: { min: 80 }
+
+- type: plantMutation
+  id: MutationPyrotton
+  result: PyrottonPlants
+  from: [ CottonPlants ]
+  endurance: { min: 80 }
+
+- type: plantMutation
+  id: MutationRainbowCannabis
+  result: RainbowCannabisPlants
+  from: [ CannabisPlants ]
+
+- type: plantMutation
+  id: MutationRealCapfruit
+  result: RealCapfruitPlants
+  from: [ GatfruitPlants ]
+  potency: { min: 80 }
+
+- type: plantMutation
+  id: MutationRedbeet
+  result: RedbeetPlants
+  from: [ WhitebeetPlants ]
+  potency: { min: 90, max: 120 }
+
+- type: plantMutation
+  id: MutationSpacemansTrumpet
+  result: SpacemansTrumpetPlants
+  from: [ LilyPlants ]
+  endurance: { min: 30 }
+
+- type: plantMutation
+  id: MutationSteelcap
+  result: SteelcapPlants
+  from: [ TowercapPlants ]
+  endurance: { min: 80 }
+
+- type: plantMutation
+  id: MutationWorldPea
+  result: WorldPeaPlants
+  from: [ LaughinPeaPlants ]
+  yield: { min: 100 }
+  production: { min: 100 }

@@ -42,3 +42,13 @@
   parent: HandheldHealthAnalyzer
   id: PlantAnalyzer
   result: PlantAnalyzer
+
+- type: latheRecipe
+  id: PlantDataDisk
+  result: PlantDataDisk
+  categories:
+  - Tools
+  completetime: 1
+  materials:
+    Steel: 50
+    Glass: 25

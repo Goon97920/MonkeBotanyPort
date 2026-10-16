@@ -24,6 +24,18 @@ public sealed partial class IngestionSystem
     // BodySystem has no way of telling us where the mouth is so we're making some assumptions.
     public const SlotFlags DefaultFlags = SlotFlags.HEAD | SlotFlags.MASK;
 
+    /// <summary>
+    /// Sets how much of an edible's solution is consumed per bite. Null eats the whole thing at once.
+    /// </summary>
+    public void SetTransferAmount(Entity<EdibleComponent?> ent, FixedPoint2? amount)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return;
+
+        ent.Comp.TransferAmount = amount;
+        Dirty(ent);
+    }
+
     #region Ingestion
 
     /// <summary>

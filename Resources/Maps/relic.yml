@@ -5,7 +5,7 @@ meta:
   forkId: ""
   forkVersion: ""
   time: 08/23/2026 10:23:30
-  entityCount: 11612
+  entityCount: 11615
 maps:
 - 1
 grids:
@@ -51648,6 +51648,20 @@ entities:
     - type: Transform
       parent: 3564
       pos: 29.5,-16.5
+- proto: PlantDnaManipulator
+  entities:
+  - uid: 11613
+    components:
+    - type: Transform
+      parent: 3564
+      pos: 13.5,-20.5
+- proto: PlantSplicer
+  entities:
+  - uid: 11614
+    components:
+    - type: Transform
+      parent: 3564
+      pos: 9.5,-23.5
 - proto: PlasmaCanister
   entities:
   - uid: 890
@@ -60622,6 +60636,13 @@ entities:
     - type: Transform
       parent: 2
       pos: 50.5,27.5
+- proto: StomachPump
+  entities:
+  - uid: 11615
+    components:
+    - type: Transform
+      parent: 3564
+      pos: 30.5,16.5
 - proto: Stool
   entities:
   - uid: 1925

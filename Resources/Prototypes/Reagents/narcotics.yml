@@ -236,11 +236,6 @@
   flavorMinimum: 0.05
   color: "#808080"
   physicalDesc: reagent-physical-desc-crystalline
-  plantMetabolism:
-  - !type:PlantAdjustNutrition
-    amount: -5
-  - !type:PlantAdjustHealth
-    amount: -1
   metabolisms:
     Bloodstream:
       effects:
@@ -258,8 +253,13 @@
   color: "#C0C0C0"
   physicalDesc: reagent-physical-desc-strong-smelling
   plantMetabolism:
-  - !type:PlantAdjustHealth
-    amount: -5
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: 1
+    - !type:PlantTrayAdjust
+      attribute: Pests
+      flatMin: -2
+      flatMax: -1
 
 # TODO: Replace these nonstandardized effects with generic brain damage
 - type: reagent

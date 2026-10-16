@@ -22,6 +22,10 @@
   - BioGenRobustHarvest
   - BioGenDiseaseSwab
   - BioGenCompostAmmonia
+  - BioGenSaltpetre
+  - BioGenEndurogrow
+  - BioGenLiquidEarthquake
+  - BioGenLesserStrangeSeeds
 
 - type: latheRecipePack
   id: BioGenMaterialsStatic
@@ -35,3 +39,4 @@
   id: BioGenEmagStatic
   recipes:
   - BioGenUnstableMutagen
+  - BioGenStrangeSeeds

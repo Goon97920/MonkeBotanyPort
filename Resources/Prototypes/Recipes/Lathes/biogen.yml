@@ -283,3 +283,65 @@
   completetime: 1
   materials:
     Biomass: 10
+
+# Monkestation botany
+
+- type: latheRecipe
+  id: BioGenSaltpetre
+  resultReagents:
+    Saltpetre: 10
+  categories:
+  - Chemicals
+  icon:
+    sprite: Objects/Specific/Chemistry/bottle.rsi
+    state: bottle-1
+  completetime: 1
+  materials:
+    Biomass: 20
+
+- type: latheRecipe
+  id: BioGenEndurogrow
+  resultReagents:
+    Endurogrow: 10
+  categories:
+  - Chemicals
+  icon:
+    sprite: Objects/Specific/Chemistry/bottle.rsi
+    state: bottle-1
+  completetime: 1
+  materials:
+    Biomass: 20
+
+- type: latheRecipe
+  id: BioGenLiquidEarthquake
+  resultReagents:
+    LiquidEarthquake: 10
+  categories:
+  - Chemicals
+  icon:
+    sprite: Objects/Specific/Chemistry/bottle.rsi
+    state: bottle-1
+  completetime: 1
+  materials:
+    Biomass: 20
+
+# Strange seeds print fast but one at a time, so a run of a thousand spreads its spawns over
+# many ticks instead of landing all at once. A plant bag in the output slot catches them.
+# Monkestation's 2000 biomass at tier 4 efficiency (a quarter). Only these get the discount.
+- type: latheRecipe
+  id: BioGenLesserStrangeSeeds
+  result: LesserStrangeSeeds
+  categories:
+  - Seeds
+  completetime: 0.1
+  materials:
+    Biomass: 500
+
+- type: latheRecipe
+  id: BioGenStrangeSeeds
+  result: StrangeSeeds
+  categories:
+  - Seeds
+  completetime: 0.1
+  materials:
+    Biomass: 500

@@ -41,5 +41,12 @@
           True: { visible: true }
           False: { visible: false }
   - type: SeedExtractor
+  - type: ActivatableUI
+    key: enum.SeedExtractorUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+      enum.SeedExtractorUiKey.Key:
+        type: SeedExtractorBoundUserInterface
   - type: Machine
     board: SeedExtractorMachineCircuitboard

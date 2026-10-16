@@ -3569,25 +3569,21 @@ entities:
     - type: Transform
       parent: 2
       pos: 7.5,27.5
-    - type: PlantHolder
   - uid: 886
     components:
     - type: Transform
       parent: 2
       pos: 9.5,27.5
-    - type: PlantHolder
   - uid: 887
     components:
     - type: Transform
       parent: 2
       pos: 9.5,25.5
-    - type: PlantHolder
   - uid: 888
     components:
     - type: Transform
       parent: 2
       pos: 7.5,25.5
-    - type: PlantHolder
 - proto: LockerBotanist
   entities:
   - uid: 891

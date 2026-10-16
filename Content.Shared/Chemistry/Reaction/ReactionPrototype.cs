@@ -101,6 +101,13 @@ namespace Content.Shared.Chemistry.Reaction
         public bool Source;
 
         /// <summary>
+        /// Secret recipe: kept out of the guidebook. Used by randomized recipes (metalgen) whose real
+        /// reactants are only set on the server.
+        /// </summary>
+        [DataField]
+        public bool Hidden;
+
+        /// <summary>
         ///     Comparison for creating a sorted set of reactions. Determines the order in which reactions occur.
         /// </summary>
         public int CompareTo(ReactionPrototype? other)

@@ -68,3 +68,26 @@
 #    - !type:WaterVaporReaction
 #      gas: 5
 #      reagent: Water
+
+# Monkestation (tgstation) formation reactions.
+
+- type: gasReaction
+  id: BZFormation
+  priority: 3
+  maximumTemperature: 313.15 # Atmospherics.BZFormationMaxTemperature
+  minimumRequirements:
+    NitrousOxide: 10
+    Plasma: 10
+  effects:
+  - !type:BZFormationReaction {}
+
+- type: gasReaction
+  id: HealiumFormation
+  priority: 3
+  minimumTemperature: 25
+  maximumTemperature: 300
+  minimumRequirements:
+    BZ: 0.01
+    Frezon: 0.01
+  effects:
+  - !type:HealiumFormationReaction {}

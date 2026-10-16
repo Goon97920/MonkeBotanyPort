@@ -1,0 +1,16 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      Title="{Loc 'seed-extractor-window-title'}"
+                      MinSize="520 420"
+                      SetSize="600 640">
+    <BoxContainer Orientation="Vertical" Margin="8" VerticalExpand="True">
+        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+            <LineEdit Name="SearchBar" PlaceHolder="{Loc 'seed-extractor-search'}" HorizontalExpand="True" />
+            <Label Name="CapacityLabel" Margin="8 0 0 0" />
+        </BoxContainer>
+        <controls:Separator StyleClasses="LowDivider" Margin="0 6 0 6" />
+        <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+            <BoxContainer Name="PileList" Orientation="Vertical" HorizontalExpand="True" />
+        </ScrollContainer>
+    </BoxContainer>
+</controls:FancyWindow>

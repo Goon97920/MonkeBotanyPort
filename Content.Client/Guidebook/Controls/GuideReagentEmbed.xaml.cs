@@ -112,7 +112,7 @@ public sealed partial class GuideReagentEmbed : BoxContainer, IDocumentTag, ISea
 
         #region Recipe
         var reactions = _prototype.EnumeratePrototypes<ReactionPrototype>()
-            .Where(p => !p.Source && p.Products.ContainsKey(reagent.ID))
+            .Where(p => !p.Source && !p.Hidden && p.Products.ContainsKey(reagent.ID))
             .OrderBy(p => p.Priority)
             .ThenBy(p => p.Products.Count)
             .ToList();

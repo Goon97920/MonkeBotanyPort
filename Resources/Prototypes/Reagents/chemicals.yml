@@ -51,6 +51,9 @@
   desc: reagent-desc-ash
   physicalDesc: reagent-physical-desc-powdery
   color: white
+  plantMetabolism:
+    - !type:PlantAdjustHealth
+      perUnit: 1
 
 - type: reagent
   id: Lye

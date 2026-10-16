@@ -77,3 +77,15 @@
     Ethanol: 2
     Mercury: 1.5
     Chlorine: 1.5
+
+- type: reaction
+  id: Saltpetre
+  reactants:
+    Potassium:
+      amount: 1
+    Nitrogen:
+      amount: 1
+    Oxygen:
+      amount: 3
+  products:
+    Saltpetre: 3

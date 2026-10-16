@@ -5,7 +5,7 @@ meta:
   forkId: ""
   forkVersion: ""
   time: 09/22/2026 17:17:10
-  entityCount: 19008
+  entityCount: 19011
 maps:
 - 1793
 grids:
@@ -50051,6 +50051,27 @@ entities:
       parent: 1
       rot: -1.5707963267948966 rad
       pos: 49.5,42.5
+- proto: PlantDnaManipulator
+  entities:
+  - uid: 19009
+    components:
+    - type: Transform
+      parent: 1
+      pos: 63.5,71.5
+- proto: PlantSplicer
+  entities:
+  - uid: 19010
+    components:
+    - type: Transform
+      parent: 1
+      pos: 63.5,72.5
+- proto: StomachPump
+  entities:
+  - uid: 19011
+    components:
+    - type: Transform
+      parent: 1
+      pos: 62.5,43.5
 - proto: d2Dice
   entities:
   - uid: 2651

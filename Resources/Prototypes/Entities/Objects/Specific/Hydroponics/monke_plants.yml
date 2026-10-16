@@ -1,0 +1,200 @@
+# Seeds and produce for the plants ported from Monkestation that SS14 didn't have.
+# Sprites are converted from tgstation (CC-BY-SA-3.0).
+
+## Seeds
+
+- type: entity
+  parent: SeedBase
+  name: packet of white-beet seeds
+  description: These seeds grow into sugary beet producing plants.
+  id: WhitebeetSeeds
+  components:
+  - type: Seed
+    plantId: WhitebeetPlants
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/whitebeet.rsi
+
+- type: entity
+  parent: SeedBase
+  name: packet of redbeet seeds
+  description: These seeds grow into beet producing plants with unusually dense flesh.
+  id: RedbeetSeeds
+  components:
+  - type: Seed
+    plantId: RedbeetPlants
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/redbeet.rsi
+
+- type: entity
+  parent: SeedBase
+  name: packet of omega weed seeds
+  description: These seeds grow into omega weed.
+  id: OmegaCannabisSeeds
+  components:
+  - type: Seed
+    plantId: OmegaCannabisPlants
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/omega_cannabis.rsi
+
+- type: entity
+  parent: SeedBase
+  name: packet of honeydew seeds
+  description: These seeds grow into honeydew plants.
+  id: HoneydewSeeds
+  components:
+  - type: Seed
+    plantId: HoneydewPlants
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/honeydew.rsi
+
+- type: entity
+  parent: SeedBase
+  name: packet of barrelmelon seeds
+  description: These seeds grow into barrelmelon plants.
+  id: BarrelmelonSeeds
+  components:
+  - type: Seed
+    plantId: BarrelmelonPlants
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/barrelmelon.rsi
+
+- type: entity
+  parent: SeedBase
+  name: packet of strange seeds
+  description: Mysterious seeds as strange as their name implies. Spooky.
+  id: StrangeSeeds
+  components:
+  - type: Seed
+    plantId: StrangePlants
+    randomizeGenome: true
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/strange.rsi
+
+- type: entity
+  parent: StrangeSeeds
+  name: packet of lesser strange seeds
+  description: Mysterious seeds as strange as their name implies, albeit with less potential than their "normal" counterparts.
+  id: LesserStrangeSeeds
+  components:
+  - type: Seed
+    plantId: StrangePlants
+    randomizeGenome: true
+    # Monkestation's lesser strange seed blacklist, mapped to SS14 reagents.
+    # Reagents no reaction can make or use are never rolled in the first place.
+    randomReagentBlacklist:
+    - Stimulants
+    - Omnizine
+    - Metalgen
+    - Healium
+
+- type: entity
+  parent: SeedBase
+  name: packet of spliced seeds
+  description: A hybrid of two plants, made in a seed splicer.
+  id: SplicedSeeds
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Seed
+    plantId: StrangePlants
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/strange.rsi
+
+## Produce
+
+- type: entity
+  name: white-beet
+  parent: FoodProduceBase
+  id: FoodWhitebeet
+  description: You can't beat white-beet.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - sweet
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/whitebeet.rsi
+  - type: Produce
+    plantId: WhitebeetPlants
+  - type: Tag
+    tags:
+    - Vegetable
+
+- type: entity
+  name: redbeet
+  parent: FoodProduceBase
+  id: FoodRedbeet
+  description: You can't beat redbeet.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - bitter
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/redbeet.rsi
+  - type: Produce
+    plantId: RedbeetPlants
+  - type: Tag
+    tags:
+    - Vegetable
+
+- type: entity
+  name: omega weed leaves
+  parent: ProduceBase
+  id: LeavesCannabisOmega
+  description: You feel dizzy looking at it. What the fuck?
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/omega_cannabis.rsi
+  - type: Produce
+    plantId: OmegaCannabisPlants
+  - type: Edible
+
+- type: entity
+  name: honeydew
+  parent: [FoodProduceBase, ItemHeftyBase]
+  id: FoodHoneydew
+  description: A sweet, pale green melon.
+  components:
+  - type: Item
+    size: Normal
+  - type: FlavorProfile
+    flavors:
+    - sweet
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/honeydew.rsi
+  - type: Produce
+    plantId: HoneydewPlants
+  - type: Tag
+    tags:
+    - Fruit
+
+- type: entity
+  name: barrelmelon
+  parent: [FoodProduceBase, ItemHeftyBase]
+  id: FoodBarrelmelon
+  description: The nutriments within this melon have been compressed and fermented into rich alcohol.
+  components:
+  - type: Item
+    size: Normal
+  - type: FlavorProfile
+    flavors:
+    - alcohol
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/barrelmelon.rsi
+  - type: Produce
+    plantId: BarrelmelonPlants
+  - type: Tag
+    tags:
+    - Fruit
+
+- type: entity
+  name: strange plant
+  parent: FoodProduceBase
+  id: FoodStrangePlant
+  description: What could this even be?
+  components:
+  - type: FlavorProfile
+    flavors:
+    - bitter
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/strange.rsi
+  - type: Produce
+    plantId: StrangePlants

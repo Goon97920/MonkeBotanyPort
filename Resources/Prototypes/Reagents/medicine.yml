@@ -67,10 +67,9 @@
           reagent: Dylovene
           min: 15
   plantMetabolism:
-  - !type:PlantAdjustToxins
-    amount: -10
-  - !type:PlantAdjustHealth
-    amount: 1
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: -2
 
 - type: reagent
   id: Diphenhydramine
@@ -179,12 +178,6 @@
   physicalDesc: reagent-physical-desc-fizzy
   flavor: medicine
   color: "#0091ff"
-  plantMetabolism:
-  - !type:PlantAdjustToxins
-    amount: -5
-  - !type:PlantAdjustHealth
-    amount: 5
-  - !type:PlantCryoxadone {}
   metabolisms:
     Bloodstream:
       effects:
@@ -201,6 +194,12 @@
           Brute: -2
           Burn: -2
           Toxin: -2
+  plantMetabolism:
+    - !type:PlantAdjustHealth
+      perUnit: 3
+    - !type:PlantTrayAdjust
+      attribute: Toxicity
+      perUnit: -3
 
 - type: reagent
   id: Doxarubixadone
@@ -591,13 +590,6 @@
   physicalDesc: reagent-physical-desc-acrid
   flavor: medicine
   color: "#c8ff75"
-  plantMetabolism:
-    - !type:PlantAdjustToxins
-      amount: 6
-    - !type:PlantChangeTraits
-      trait: PlantTraitUnviable
-      type: Remove
-      minScale: 4
   metabolisms:
     Bloodstream:
       metabolismRate: 0.1
@@ -756,9 +748,6 @@
   physicalDesc: reagent-physical-desc-starry
   flavor: medicine
   color: "#2b2f77"
-  plantMetabolism:
-  - !type:PlantAdjustToxins
-    amount: -5
   metabolisms:
     Bloodstream:
       effects:
@@ -1213,11 +1202,11 @@
         damage:
           types:
             Holy: 0.5
-  plantMetabolism:
-  - !type:PlantAdjustWater
-    amount: 1
   tileReactions:
   - !type:ExtinguishTileReaction { }
+  plantMetabolism:
+    - !type:PlantAdjustHealth
+      perUnit: 0.1
 
 - type: reagent
   id: Pyrazine

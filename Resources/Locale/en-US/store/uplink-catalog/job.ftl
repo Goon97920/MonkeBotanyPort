@@ -42,3 +42,8 @@ uplink-saw-advanced-desc = A bleeding-edge surgical implement designed to cut th
 
 uplink-briefcase-gun-name = Briefcase Gun
 uplink-briefcase-gun-desc = An indistinct briefcase with a highly compact C-20K mounted inside it. Careful not the grip the handle too tight!
+
+uplink-plant-disk-catalytic-inhibitor-name = Catalytic Inhibitor Serum Plant Data Disk
+uplink-plant-disk-catalytic-inhibitor-desc = This plant data disk contains the genetic blueprint for the Catalytic Inhibitor Serum gene, enabling plants to produce a serum that halts all internal chemical reactions. Insert it with a plant DNA manipulator.
+uplink-plant-disk-syndicate-needles-name = Syndicate Hypodermic Needles Plant Data Disk
+uplink-plant-disk-syndicate-needles-desc = A read-only plant data disk with a Syndicate-engineered gene. Plants grown with it inject their chemicals through hardsuits and armor when used as a melee weapon. Insert it with a plant DNA manipulator.

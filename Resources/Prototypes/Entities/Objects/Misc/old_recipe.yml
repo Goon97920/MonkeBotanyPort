@@ -1,0 +1,8 @@
+# Monkestation /obj/item/paper/secretrecipe. Shows the current metalgen recipe.
+- type: entity
+  parent: Paper
+  id: PaperOldRecipe
+  name: Old Recipe
+  description: A faded, handwritten recipe.
+  components:
+  - type: MetalgenRecipePaper

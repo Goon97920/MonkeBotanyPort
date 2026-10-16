@@ -223,7 +223,7 @@ namespace Content.Shared.Atmos
         /// <summary>
         ///     Total number of gases. Increase this if you want to add more!
         /// </summary>
-        public const int TotalNumberOfGases = 9;
+        public const int TotalNumberOfGases = 11;
 
         /// <summary>
         ///     This is the actual length of the gases arrays in mixtures.
@@ -258,6 +258,20 @@ namespace Content.Shared.Atmos
         public const float TritiumBurnOxyFactor = 100f;
         public const float TritiumBurnTritFactor = 10f;
         public const float TritiumBurnFuelRatio = 2f;
+
+        #region Monkestation gases
+
+        /// <summary>BZ forms from N2O and plasma below this (tg BZ_FORMATION_MAX_TEMPERATURE).</summary>
+        public const float BZFormationMaxTemperature = FireMinimumTemperatureToExist - 60f;
+
+        public const float BZFormationEnergy = 80000f;
+        public const float N2ODecompositionEnergy = 200000f;
+
+        public const float HealiumFormationMinTemperature = 25f;
+        public const float HealiumFormationMaxTemperature = 300f;
+        public const float HealiumFormationEnergy = 9000f;
+
+        #endregion
 
         public const float FrezonCoolLowerTemperature = 23.15f;
 
@@ -387,6 +401,8 @@ namespace Content.Shared.Atmos
         WaterVapor = 5,
         Ammonia = 6,
         NitrousOxide = 7,
-        Frezon = 8
+        Frezon = 8,
+        BZ = 9,
+        Healium = 10,
     }
 }

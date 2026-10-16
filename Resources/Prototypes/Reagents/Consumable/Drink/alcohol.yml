@@ -72,6 +72,13 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: true
   fizziness: 0.6
+  plantMetabolism:
+    - !type:PlantTrainTrait
+      trait: AutoDistilling
+      perUnit: 0.25
+      flat: 3
+    - !type:PlantAdjustHealth
+      perUnit: 0.1
 
 - type: reagent
   id: BlueCuracao

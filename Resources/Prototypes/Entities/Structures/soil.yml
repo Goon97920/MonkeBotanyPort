@@ -27,6 +27,8 @@
     drawWarnings: false
   - type: Solution
     id: soil
+    solution:
+      maxVol: 60 # Monkestation plant_growing max_reagents for trays
   - type: RefillableSolution
     solution: soil
     maxRefill: 50
@@ -41,7 +43,6 @@
         reagent: Water
         solution: soil
   - type: Appearance
-  - type: PlantTrayVisuals
 
 - type: entity
   parent: [ BaseHydroponicsSoil, StructureHealthContainer ]
@@ -62,7 +63,12 @@
           path: /Audio/Effects/break_stone.ogg
   - type: Sprite
     sprite: Structures/Hydroponics/misc.rsi
-    state: soil
+    layers:
+    - state: soil
+    - sprite: Objects/Specific/Hydroponics/wheat.rsi
+      state: stage-1
+      map: [ "enum.PlantTrayLayers.Plant" ]
+      visible: false
 
 - type: entity
   parent: HydroponicsSoil
@@ -75,8 +81,12 @@
     node: fungalSoil
   - type: Sprite
     sprite: Structures/Hydroponics/misc.rsi
-    state: fungal_soil
+    layers:
+    - state: fungal_soil
+    - sprite: Objects/Specific/Hydroponics/wheat.rsi
+      state: stage-1
+      map: [ "enum.PlantTrayLayers.Plant" ]
+      visible: false
     noRot: true
   - type: PlantTray
-    waterLevel: 0
-    nutritionLevel: 0
+    waterPercent: 0

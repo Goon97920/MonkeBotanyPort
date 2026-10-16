@@ -25,6 +25,8 @@
       Ammonia: stationAmmonia
       NitrousOxide: stationNO
       Frezon: danger
+      BZ: danger
+      Healium: danger
   - type: GuideHelp
     guides:
     - DeviceMonitoringAndControl

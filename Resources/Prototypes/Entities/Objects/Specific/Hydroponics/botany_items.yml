@@ -1,0 +1,62 @@
+# Monkestation botany items. Sprites from tgstation (CC-BY-SA-3.0).
+
+- type: entity
+  parent: BaseItem
+  id: PlantDataDisk
+  name: plant data disk
+  description: A disk for storing plant genetic data.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/plant_disk.rsi
+    layers:
+    - state: icon
+    - state: gene
+  - type: Item
+    size: Tiny
+  - type: PlantGeneDisk
+  - type: StaticPrice
+    price: 20
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 25
+      Glass: 12
+
+# Monkestation's /obj/item/disk/plantgene/syndicate, sold to botanists in the uplink.
+- type: entity
+  parent: PlantDataDisk
+  id: PlantDataDiskCatalyticInhibitor
+  suffix: Catalytic Inhibitor Serum
+  components:
+  - type: PlantGeneDisk
+    readOnly: true
+    gene:
+      trait:
+        trait: CatalyticInhibitorSerum
+        flags: Removable, Graftable
+
+# Only sold in the uplink. Never rolled on strange seeds.
+- type: entity
+  parent: PlantDataDisk
+  id: PlantDataDiskSyndicateNeedles
+  suffix: Syndicate Hypodermic Needles
+  components:
+  - type: PlantGeneDisk
+    readOnly: true
+    gene:
+      trait:
+        trait: SyndicateHypodermicNeedles
+        flags: Removable, Graftable
+
+- type: entity
+  parent: BaseItem
+  id: PlantGraft
+  name: plant graft
+  description: A cutting from a plant. Apply it to a planted tray to graft its trait and stats onto the plant.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/plant_graft.rsi
+    state: plant
+  - type: Item
+    size: Tiny
+  - type: PlantGraft

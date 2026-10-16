@@ -63,7 +63,7 @@ public sealed partial class ChemistryGuideDataSystem : SharedChemistryGuideDataS
 
         foreach (var reaction in ProtoMan.EnumeratePrototypes<ReactionPrototype>())
         {
-            if (!reaction.Source)
+            if (!reaction.Source || reaction.Hidden)
                 continue;
 
             var data = new ReagentReactionSourceData(
